@@ -1,0 +1,10 @@
+{
+  "name": "UVoteJ",
+  "version": "0.0.1",
+  "description": "Software for voting @ Jacobs University",
+  "dependencies": {
+    "express": "^4.4.1",
+    "mongo": "^0.1.0",
+    "socket.io": "^1.0.4"
+  }
+}
