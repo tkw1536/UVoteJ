@@ -5,7 +5,7 @@
  * @this {PermissionNode}
  * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */
-var PermissionNode = function(source_object){
+function PermissionNode(source_object){
     this._data = [];
 
     if(typeof source_object !== "undefined"){

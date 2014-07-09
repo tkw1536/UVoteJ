@@ -1,50 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Vote</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <title>Class: Vote</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Class: Vote</h1>
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{}};
+    </script>
+    
 
     
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html"></a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="PermissionNode">
+            <span class="title">
+                <a href="PermissionNode.html">PermissionNode</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="PermissionNode.LogicalRelation"><a href="PermissionNode.html#LogicalRelation">LogicalRelation</a></li>
+            
+                <li data-name="PermissionNode.QueryRelation"><a href="PermissionNode.html#QueryRelation">QueryRelation</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            <span class="subtitle">Typedefs</span>
+            
+                <li data-name="PermissionNode.Rule"><a href="PermissionNode.html#Rule">Rule</a></li>
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="PermissionNode#findMatchingUsers"><a href="PermissionNode.html#findMatchingUsers">findMatchingUsers</a></li>
+            
+                <li data-name="PermissionNode#fromJSON"><a href="PermissionNode.html#fromJSON">fromJSON</a></li>
+            
+                <li data-name="PermissionNode#matches"><a href="PermissionNode.html#matches">matches</a></li>
+            
+                <li data-name="PermissionNode#matchesRule"><a href="PermissionNode.html#matchesRule">matchesRule</a></li>
+            
+                <li data-name="PermissionNode#toJSON"><a href="PermissionNode.html#toJSON">toJSON</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Vote">
+            <span class="title">
+                <a href="Vote.html">Vote</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Vote.Stage"><a href="Vote.html#Stage">Stage</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            <span class="subtitle">Typedefs</span>
+            
+                <li data-name="Vote.Source"><a href="Vote.html#Source">Source</a></li>
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Vote#fromJSON"><a href="Vote.html#fromJSON">fromJSON</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="Vote.html">Class: Vote</h1>
+        
 
 
 
 <section>
-
+    
 <header>
     <h2>
     Vote
     </h2>
     
-</header>
+</header>  
 
 <article>
     <div class="container-overview">
     
-
+    
     
         
 <dt>
-    <h4 class="name" id="Vote"><span class="type-signature"></span>new Vote<span class="signature">(<span class="optional">source_object</span>)</span><span class="type-signature"></span></h4>
+    <div class="nameContainer">
+        <h4 class="name" id="Vote">
+            
+            new Vote<span class="signature">(<span class="optional">source_object</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Vote.js, line 10
+        </div>
+        
+    </div>
 
     
 </dt>
 <dd>
-
+    
     
     <div class="description">
         Creates a new Vote.
@@ -52,43 +154,38 @@
     
 
     
-
+    
     
         <h5>This:</h5>
         <ul><li>{<a href="Vote.html">Vote</a>}</li></ul>
     
-
     
-        <h5>Parameters:</h5>
+    
         
 
 <table class="params">
     <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
         <tr>
             
                 <td class="name"><code>source_object</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -97,100 +194,88 @@
 
             
             </td>
-
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
             
-
             
-
-            <td class="description last">Optional JSON-style source for the vote.</td>
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Optional JSON-style source for the vote.</td>
         </tr>
-
-    
-    </tbody>
+	
+	
+	</tbody>
 </table>
     
-
+    
     
 <dl class="details">
     
-
+        
+    
+    
     
 
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Vote.js.html">Vote.js</a>, <a href="Vote.js.html#line8">line 8</a>
-    </li></ul></dd>
     
-
     
-
     
-
+    
+    
+    
     
 </dl>
 
-
+    
     
 
     
 
     
-
     
-
     
-
     
-
+    
+    
     
 </dd>
 
     
     </div>
-
     
-
     
-
     
-
     
-
     
-
+    
+    
+    
+    
+    
+    
     
         <h3 class="subsection-title">Members</h3>
-
+        
         <dl>
             
 <dt>
-    <h4 class="name" id="Stage"><span class="type-signature">&lt;static> </span>Stage<span class="type-signature"> :string</span></h4>
-
+    <div class="nameContainer">
+        <h4 class="name" id="Stage"><span class="type-signature static">static</span>Vote.Stage<span class="type-signature type string">string</span> </h4>
+    </div>
+    
     
 </dt>
 <dd>
@@ -199,54 +284,42 @@
         Vote Stages.
     </div>
     
-
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-            </li>
-        </ul>
-    
-
     
 <dl class="details">
     
-
+        
         <h5 class="subsection-title">Properties:</h5>
-
+        
         <dl>
 
 <table class="props">
     <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
         <tr>
             
                 <td class="name"><code>INIT</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -255,9 +328,9 @@
 
             
             </td>
-
             
-
+            
+            
             
                 <td class="default">
                 
@@ -265,17 +338,17 @@
                 
                 </td>
             
-
+            
             <td class="description last">Vote has been created and is ready to be scheduled.</td>
         </tr>
-
-    
-
+	
+	
+	
         <tr>
             
                 <td class="name"><code>OPEN</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -284,9 +357,9 @@
 
             
             </td>
-
             
-
+            
+            
             
                 <td class="default">
                 
@@ -294,17 +367,17 @@
                 
                 </td>
             
-
+            
             <td class="description last">Vote is open and people can vote.</td>
         </tr>
-
-    
-
+	
+	
+	
         <tr>
             
                 <td class="name"><code>CLOSED</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -313,9 +386,9 @@
 
             
             </td>
-
             
-
+            
+            
             
                 <td class="default">
                 
@@ -323,17 +396,17 @@
                 
                 </td>
             
-
+            
             <td class="description last">Voting is closed.</td>
         </tr>
-
-    
-
+	
+	
+	
         <tr>
             
                 <td class="name"><code>PUBLIC</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -342,9 +415,9 @@
 
             
             </td>
-
             
-
+            
+            
             
                 <td class="default">
                 
@@ -352,67 +425,67 @@
                 
                 </td>
             
-
+            
             <td class="description last">Vote is closed and results are now public.</td>
         </tr>
-
-    
-    </tbody>
+	
+	
+	</tbody>
 </table></dl>
-
+        
+    
+        
+    
+    
     
 
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Vote.js.html">Vote.js</a>, <a href="Vote.js.html#line31">line 31</a>
-    </li></ul></dd>
     
-
     
-
     
-
+    
+    
     
 </dl>
 
-
     
-
     
 </dd>
 
         </dl>
     
-
+    
     
         <h3 class="subsection-title">Methods</h3>
-
+        
         <dl>
             
 <dt>
-    <h4 class="name" id="fromJSON"><span class="type-signature"></span>fromJSON<span class="signature">(<span class="optional">source_object</span>)</span><span class="type-signature"></span></h4>
+    <div class="nameContainer">
+        <h4 class="name" id="fromJSON">
+            
+            fromJSON<span class="signature">(<span class="optional">source_object</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Vote.js, line 25
+        </div>
+        
+    </div>
 
     
 </dt>
 <dd>
-
+    
     
     <div class="description">
         Updates this Vote form JSON data.
@@ -420,40 +493,35 @@
     
 
     
-
     
-
     
-        <h5>Parameters:</h5>
+    
+    
         
 
 <table class="params">
     <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
         <tr>
             
                 <td class="name"><code>source_object</code></td>
             
-
+            
             <td class="type">
             
                 
@@ -462,90 +530,78 @@
 
             
             </td>
-
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
             
-
             
-
-            <td class="description last">JSON-style source for this vote.</td>
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                JSON-style source for this vote.</td>
         </tr>
-
-    
-    </tbody>
+	
+	
+	</tbody>
 </table>
     
-
+    
     
 <dl class="details">
     
-
+        
+    
+    
     
 
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Vote.js.html">Vote.js</a>, <a href="Vote.js.html#line21">line 21</a>
-    </li></ul></dd>
     
-
     
-
     
-
+    
+    
+    
     
 </dl>
 
-
+    
     
 
     
 
     
-
     
-
     
-
     
-
+    
+    
     
 </dd>
 
         </dl>
     
-
+    
     
         <h3 class="subsection-title">Type Definitions</h3>
-
+        
         <dl>
                 
 <dt>
-    <h4 class="name" id="Source">Source</h4>
-
+    <div class="nameContainer">
+        <h4 class="name" id="Source">Vote.Source<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
     
 </dt>
 <dd>
@@ -554,83 +610,57 @@
         A JSON-style source object of the vote. Intended to be used to store in a database.
     </div>
     
-
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Object</span>
-
-
-            </li>
-        </ul>
-    
-
     
 <dl class="details">
     
-
+        
+    
+    
     
 
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Vote.js.html">Vote.js</a>, <a href="Vote.js.html#line42">line 42</a>
-    </li></ul></dd>
     
-
     
-
     
-
+    
+    
+    
     
 </dl>
 
-
     
-
     
 </dd>
 
             </dl>
     
-
+    
     
 </article>
 
-</section>
+</section>  
 
 
 
 
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Wed Jul 09 2014 21:11:42 GMT+0200 (CEST)
+        </footer>
+    </div>
 </div>
-
-<nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="PermissionNode.html">PermissionNode</a></li><li><a href="Vote.html">Vote</a></li></ul>
-</nav>
-
-<br clear="both">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Wed Jul 09 2014 18:59:24 GMT+0200 (CEST)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

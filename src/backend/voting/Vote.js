@@ -1,3 +1,5 @@
+var PermissionNode = require("./PermissionNode");
+
 /**
  * Creates a new Vote.
  *
@@ -5,8 +7,10 @@
  * @this {Vote}
  * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
  */
-var Vote = function(source_object){
-    this._data = [];
+function Vote(source_object){
+
+    /** PermissonNode representing users with access to voting. */
+    this.votePermissions = new PermissionNode();
 
     if(typeof source_object !== "undefined"){
         this.fromJSON(source_object);
@@ -20,6 +24,8 @@ var Vote = function(source_object){
 */
 Vote.prototype.fromJSON = function(source_object){
     //TODO: Implement this.
+
+    this.PermissionNode = [];
 }
 
 
