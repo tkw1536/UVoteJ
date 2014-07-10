@@ -1,11 +1,18 @@
 /**
  * Creates a new PermissionNode.
  *
- * @constructor
+ * @class
  * @this {PermissionNode}
  * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */
 function PermissionNode(source_object){
+    /**
+    * JSON-style source for the permissionNode.
+    *
+    * @private
+    * @name PermissionNode#_data
+    * @type PermissionNode
+    */
     this._data = [];
 
     if(typeof source_object !== "undefined"){

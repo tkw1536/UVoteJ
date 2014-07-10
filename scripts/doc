@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# Update the documentation. 
+# Update the documentation.
 
 ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../"
 cd "$ROOTDIR"
 
+echo -n "Generating documentation ..."
 jsdoc -c "$ROOTDIR/jsdoc.json"
+echo "Done. "

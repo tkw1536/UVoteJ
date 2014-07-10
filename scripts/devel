@@ -27,7 +27,7 @@ else
     jsdoc --version
 fi
 
-echo "Checking submodules. "
+echo "Checking submodules ..."
 git submodule init
 git submodule update
 

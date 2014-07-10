@@ -11,6 +11,7 @@
     "opts": {
         "destination": "doc",
         "recurse": true,
-        "template": "lib/jaguarjs-jsdoc"
+        "template": "lib/jaguarjs-jsdoc",
+        "private": true
     }
 }

@@ -47,6 +47,8 @@
             
                 <li data-name="PermissionNode.QueryRelation"><a href="PermissionNode.html#QueryRelation">QueryRelation</a></li>
             
+                <li data-name="PermissionNode#_data"><a href="PermissionNode.html#_data">_data</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -86,10 +88,30 @@
             
                 <li data-name="Vote.Stage"><a href="Vote.html#Stage">Stage</a></li>
             
+                <li data-name="Vote#adminPermissions"><a href="Vote.html#adminPermissions">adminPermissions</a></li>
+            
+                <li data-name="Vote#machine_name"><a href="Vote.html#machine_name">machine_name</a></li>
+            
+                <li data-name="Vote#maxVotes"><a href="Vote.html#maxVotes">maxVotes</a></li>
+            
+                <li data-name="Vote#minVotes"><a href="Vote.html#minVotes">minVotes</a></li>
+            
+                <li data-name="Vote#name"><a href="Vote.html#name">name</a></li>
+            
+                <li data-name="Vote#options"><a href="Vote.html#options">options</a></li>
+            
+                <li data-name="Vote#stage"><a href="Vote.html#stage">stage</a></li>
+            
+                <li data-name="Vote#userIdentifier"><a href="Vote.html#userIdentifier">userIdentifier</a></li>
+            
+                <li data-name="Vote#votePermissions"><a href="Vote.html#votePermissions">votePermissions</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
             <span class="subtitle">Typedefs</span>
+            
+                <li data-name="Vote.Option"><a href="Vote.html#Option">Option</a></li>
             
                 <li data-name="Vote.Source"><a href="Vote.html#Source">Source</a></li>
             
@@ -317,6 +339,35 @@
 	
         <tr>
             
+                <td class="name"><code>ABORTED</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    -1
+                
+                </td>
+            
+            
+            <td class="description last">Vote has been aborted.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
                 <td class="name"><code>INIT</code></td>
             
             
@@ -460,6 +511,436 @@
     
 </dd>
 
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="adminPermissions">adminPermissions<span class="type-signature type permissionnode"><a href="PermissionNode.html">PermissionNode</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        PermissonNode representing users with access to voting administration.
+Might be superseded by the site-wide Admin permissionNode.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>Empty Permission Node.</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="machine_name">machine_name<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Machine-Readable Name of this vote.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>unnamed_vote_(Date)</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="maxVotes">maxVotes<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Maximum number of votes allowed.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="minVotes">minVotes<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Minimum Number of votes required.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="name">name<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Human-Readable Name of this vote.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>Unnamed Vote from (Date)</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="options">options<span class="type-signature type array.<vote.option>">Array.&lt;<a href="Vote.html#Option">Vote.Option</a>></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set of options for this vote.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>[]</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="stage">stage<span class="type-signature type vote.stage"><a href="Vote.html#Stage">Vote.Stage</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current Stage of the Vote.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>@linkcode Vote.Stage.INIT</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="userIdentifier">userIdentifier<span class="type-signature type string">string</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Property to identifiy users on. Preferably something like 'id'.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>name</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="votePermissions">votePermissions<span class="type-signature type permissionnode"><a href="PermissionNode.html">PermissionNode</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        PermissonNode representing users with access to voting.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
         </dl>
     
     
@@ -477,7 +958,7 @@
     
         
         <div class="tag-source">
-            Vote.js, line 25
+            Vote.js, line 111
         </div>
         
     </div>
@@ -599,6 +1080,51 @@
                 
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="Option">Vote.Option<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        A JSON-Style Vote Option
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+            
+                
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="Source">Vote.Source<span class="type-signature type object">Object</span> </h4>
     </div>
     
@@ -655,7 +1181,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Wed Jul 09 2014 21:11:42 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Jul 10 2014 12:19:52 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
