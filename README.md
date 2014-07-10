@@ -40,6 +40,15 @@ scripts/devel # Make sure everything is set up for development
 scripts/doc # Update the documentation
 ```
 
+or on Windows:
+
+```
+cd UVoteJ
+scripts\devel
+scripts\doc
+```
+
+
 Frontend: Bootstrap, jQuery
 
 Backend: NodeJS, Socket.io, Mongodb
