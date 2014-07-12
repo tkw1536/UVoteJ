@@ -1,7 +1,11 @@
+var
+    util = require("util"),
+    events = require("events");
 /**
  * Creates a new PermissionNode.
  *
  * @class
+ * @inherits EventEmitter
  * @this {PermissionNode}
  * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */
@@ -28,6 +32,14 @@ function PermissionNode(source_object){
  */
 PermissionNode.prototype.fromJSON = function(source_object){
     this._data = source_object;
+
+    /**
+    * Update event. Occurs whenever this PermissionNode is updated.
+    *
+    * @event PermissionNode#update
+    */
+    this.emit("update");
+
     return this;
 }
 
@@ -220,5 +232,5 @@ PermissionNode.LogicalRelation = {
     XNOR: "xnor"
 };
 
-
+util.inherits(PermissionNode, events.EventEmitter);
 module.exports = PermissionNode;

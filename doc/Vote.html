@@ -74,6 +74,10 @@
             </ul>
             <ul class="events itemMembers">
             
+            <span class="subtitle">Events</span>
+            
+                <li data-name="PermissionNode#event:update"><a href="PermissionNode.html#event:update">update</a></li>
+            
             </ul>
         </li>
     
@@ -88,7 +92,15 @@
             
                 <li data-name="Vote.Stage"><a href="Vote.html#Stage">Stage</a></li>
             
+                <li data-name="Vote.VoteState"><a href="Vote.html#VoteState">VoteState</a></li>
+            
+                <li data-name="Vote#_timer"><a href="Vote.html#_timer">_timer</a></li>
+            
                 <li data-name="Vote#adminPermissions"><a href="Vote.html#adminPermissions">adminPermissions</a></li>
+            
+                <li data-name="Vote#close_time"><a href="Vote.html#close_time">close_time</a></li>
+            
+                <li data-name="Vote#description"><a href="Vote.html#description">description</a></li>
             
                 <li data-name="Vote#machine_name"><a href="Vote.html#machine_name">machine_name</a></li>
             
@@ -98,13 +110,19 @@
             
                 <li data-name="Vote#name"><a href="Vote.html#name">name</a></li>
             
+                <li data-name="Vote#open_time"><a href="Vote.html#open_time">open_time</a></li>
+            
                 <li data-name="Vote#options"><a href="Vote.html#options">options</a></li>
+            
+                <li data-name="Vote#results"><a href="Vote.html#results">results</a></li>
             
                 <li data-name="Vote#stage"><a href="Vote.html#stage">stage</a></li>
             
                 <li data-name="Vote#userIdentifier"><a href="Vote.html#userIdentifier">userIdentifier</a></li>
             
                 <li data-name="Vote#votePermissions"><a href="Vote.html#votePermissions">votePermissions</a></li>
+            
+                <li data-name="Vote#voters"><a href="Vote.html#voters">voters</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -122,8 +140,16 @@
             
                 <li data-name="Vote#fromJSON"><a href="Vote.html#fromJSON">fromJSON</a></li>
             
+                <li data-name="Vote#toJSON"><a href="Vote.html#toJSON">toJSON</a></li>
+            
+                <li data-name="Vote#vote"><a href="Vote.html#vote">vote</a></li>
+            
             </ul>
             <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Vote#event:update"><a href="Vote.html#event:update">update</a></li>
             
             </ul>
         </li>
@@ -160,7 +186,7 @@
     
         
         <div class="tag-source">
-            Vote.js, line 10
+            Vote.js, line 14
         </div>
         
     </div>
@@ -295,7 +321,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="Stage"><span class="type-signature static">static</span>Vote.Stage<span class="type-signature type string">string</span> </h4>
+        <h4 class="name" id="Stage"><span class="type-signature static">static</span>Vote.Stage<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -339,42 +365,13 @@
 	
         <tr>
             
-                <td class="name"><code>ABORTED</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    -1
-                
-                </td>
-            
-            
-            <td class="description last">Vote has been aborted.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
                 <td class="name"><code>INIT</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -403,7 +400,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -432,7 +429,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -461,7 +458,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -515,6 +512,329 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="VoteState"><span class="type-signature static">static</span>Vote.VoteState<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Status of voting.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>OK</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">Voting was successfull.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>CANT_VOTE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+            
+            <td class="description last">Failure: User is not allowed to vote here.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>HAS_VOTED</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+            
+            <td class="description last">Failure: User has already voted.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>CLOSED</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    3
+                
+                </td>
+            
+            
+            <td class="description last">Failure: Voting is not open.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>INVALID_NUMBER</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+            
+            <td class="description last">Failure: Invalid number of opinions selected.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>UNKNOWN_OPINION</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+            
+            <td class="description last">Failure: Unknown Opinion selected.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>DOUBLE_OPINION</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    6
+                
+                </td>
+            
+            
+            <td class="description last">Failure: Some opinion was selected more than once.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="_timer"><span class="type-signature ">private</span>_timer<span class="type-signature type *">*</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current Timer for <a href="Vote.html#Stage">Vote.Stage</a> scheduling or undefined.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="adminPermissions">adminPermissions<span class="type-signature type permissionnode"><a href="PermissionNode.html">PermissionNode</a></span> </h4>
     </div>
     
@@ -523,7 +843,8 @@
 <dd>
     
     <div class="description">
-        PermissonNode representing users with access to voting administration.Might be superseded by the site-wide Admin permissionNode.
+        PermissonNode representing users with access to voting administration.
+Might be superseded by the site-wide Admin permissionNode.
     </div>
     
     
@@ -546,6 +867,103 @@
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy"><li>Empty Permission Node.</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="close_time">close_time<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Time when the <a href="Vote.html#Stage">Vote.Stage.CLOSE</a> is scheduled.
+Set to undefined if not scheduled.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>undefined</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="description">description<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Description of Vote. May contain Markdown.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>An unnamed vote created at  (Date).</li></ul></dd>
     
     
     
@@ -755,6 +1173,55 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="open_time">open_time<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Time when the <a href="Vote.html#Stage">Vote.Stage.OPEN</a> is scheduled.
+Set to undefined if not scheduled.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>undefined</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="options">options<span class="type-signature type array.<vote.option>">Array.&lt;<a href="Vote.html#Option">Vote.Option</a>></span> </h4>
     </div>
     
@@ -803,6 +1270,51 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="results">results<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        List of votes for each opinion.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="stage">stage<span class="type-signature type vote.stage"><a href="Vote.html#Stage">Vote.Stage</a></span> </h4>
     </div>
     
@@ -833,7 +1345,7 @@
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>@linkcode Vote.Stage.INIT</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li><a href="Vote.html#Stage">Vote.Stage.INIT</a></li></ul></dd>
     
     
     
@@ -940,6 +1452,51 @@
     
 </dd>
 
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="voters">voters<span class="type-signature type array.<string>">Array.&lt;string></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        List of user identifiers of people that have voted.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
         </dl>
     
     
@@ -952,12 +1509,12 @@
     <div class="nameContainer">
         <h4 class="name" id="fromJSON">
             
-            fromJSON<span class="signature">(<span class="optional">source_object</span>)</span>
+            fromJSON<span class="signature">(<span class="optional">source_object</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Vote.html">Vote</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Vote.js, line 111
+            Vote.js, line 166
         </div>
         
     </div>
@@ -1067,6 +1624,243 @@
     
     
     
+
+
+<h5>Returns:</h5>
+The Vote the function was originally called on.
+<br />
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="toJSON">
+            
+            toJSON<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Vote.html#Source">Vote.Source</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Vote.js, line 207
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns the JSON-style source of this Vote.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
+<h5>Returns:</h5>
+The source of this Vote.
+<br />
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vote">
+            
+            vote<span class="signature">(user, opinions)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Vote.html#VoteState">Vote.VoteState</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Vote.js, line 245
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Attempts to place a vote.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                JSON-like information about the user attempting to vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opinions</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                List of indexes of options selected.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
+<h5>Returns:</h5>
+Status of the Voting attempt.
+<br />
+
+    
+    
+    
 </dd>
 
         </dl>
@@ -1093,6 +1887,103 @@
     
     
 <dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Title of this option. Short and human readable.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>short_description</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Short, text only description of this Option.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>markdown_description</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Description of the option, may contain markdown.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
     
         
     
@@ -1140,6 +2031,356 @@
 <dl class="details">
     
         
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Human-Readable Name of this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>machine_name</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Machine-Readable Name of this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Description of Vote. May contain Markdown.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="Vote.html#Option">Vote.Option</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Set of options for this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>minVotes</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Minimum number of votes required for this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>maxVotes</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Maximum number of votes allowed for this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>userIdentifier</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Property to identifiy users on.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>votePermissions</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="PermissionNode.html#Rule">PermissionNode.Rule</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">PermissionNode for users being able to vote on this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>adminPermissions</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="PermissionNode.html#Rule">PermissionNode.Rule</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">PermissionNode for users being able to vote on this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>results</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">List of results for this Vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>voters</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">List of user_identifiers of people that have voted.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>stage</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Vote.html#Stage">Vote.Stage</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Current Stage of the Vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>open_time</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Time when the OPEN stage starts.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>close_time</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Time when the CLOSED stage starts.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
     
     
     
@@ -1169,6 +2410,81 @@
     
     
     
+        <h3 class="subsection-title">Events</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="event:update">
+            
+            update
+        </h4>
+    
+        
+        <div class="tag-source">
+            Vote.js, line 194
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Update event. Occurs whenever this PermissionNode is updated.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
 </article>
 
 </section>  
@@ -1180,7 +2496,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Jul 10 2014 14:22:42 GMT+0200 (Romance Summer Time)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 12 2014 14:06:57 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

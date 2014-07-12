@@ -6,7 +6,7 @@ Written in NodeJS, will be used for USG Elections.
 
 ## License
 
-```txt
+```
 The MIT License (MIT)
 
 Copyright (c) 2014 Tom Wiesing
