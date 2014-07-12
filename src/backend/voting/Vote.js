@@ -232,8 +232,88 @@ Vote.prototype.toJSON = function(){
     }
 }
 
-//TODO: Implement Vote.prototype.stopStages
-//TODO: Implement Vote.prototype.startStages
+/**
+* Stops all current staging timers.
+*
+* @return {Vote} - The vote this function was originally called from.
+*/
+Vote.prototype.stopStages = function(){
+    //if we have a timeout, please clear it.
+    if(typeof this._timer !== "undefined"){
+        clearTimeout(this._timer);
+        this._timer = undefined;
+    }
+
+    return this;
+}
+
+/**
+* Sets Staging timers.
+*
+* @return {Vote} - The vote this function was originally called from.
+*/
+Vote.prototype.startStages = function(){
+    //self-reference for callbacks
+    var me = this;
+
+    //make sure everything is stopped first.
+    this.stopStages();
+
+    if(this.stage == Vote.Stage.INIT && typeof this.open_time == "number"){
+        //we need to set a timeout for opening the stage
+
+        var now = (new Date()).getTime();
+        var then = (now - this.open_time);
+
+        var next_stage = function(){
+
+            //update the results, we need to reset them.
+            me.results = [];
+
+            //everything should be zero now.
+            for(var i=0;i<this.options.length;i++){
+                me.results.push(0);
+            }
+
+            //set the Stage to open
+            me.Stage = Vote.STAGE.OPEN;
+
+            //set the next timer
+            me.startStages();
+
+            //we have updated
+            me.emit("update");
+        }
+
+        if(then > 0){
+            this._timer = setTimeout(next_stage, then)
+        } else {
+            next_stage();
+        }
+    }
+
+    if(this.stage == Vote.Stage.OPEN && typeof this.close_time == "number"){
+        //we need to set a timeout for closing the stage
+
+        var now = (new Date()).getTime();
+        var then = (now - this.close_time);
+
+        var next_stage = function(){
+            //set the Stage to closed
+            me.Stage = Vote.Stage.CLOSED;
+
+            //we have updated
+            me.emit("update");
+        }
+
+        if(then > 0){
+            this._timer = setTimeout(next_stage, then)
+        } else {
+            next_stage();
+        }
+    }
+}
+
 
 /**
 * Attempts to place a vote.
