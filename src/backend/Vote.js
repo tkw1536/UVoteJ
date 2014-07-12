@@ -7,7 +7,7 @@ var
  * Creates a new Vote.
  *
  * @class
- * @inherits EventEmitter
+ * @augments EventEmitter
  * @this {Vote}
  * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
  */

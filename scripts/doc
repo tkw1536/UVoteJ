@@ -5,6 +5,9 @@
 ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../"
 cd "$ROOTDIR"
 
+# Remove old documentation.
+rm -rf "$ROOTDIR/static/doc"
+
 echo -n "Generating documentation ..."
 jsdoc -c "$ROOTDIR/jsdoc.json"
 echo "Done. "

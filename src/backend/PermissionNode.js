@@ -5,7 +5,7 @@ var
  * Creates a new PermissionNode.
  *
  * @class
- * @inherits EventEmitter
+ * @augments EventEmitter
  * @this {PermissionNode}
  * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */

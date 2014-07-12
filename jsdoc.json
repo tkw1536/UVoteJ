@@ -9,7 +9,7 @@
         "excludePattern": "(^|\\/|\\\\)_"
     },
     "opts": {
-        "destination": "doc",
+        "destination": "static/doc",
         "recurse": true,
         "template": "lib/jaguarjs-jsdoc",
         "private": true

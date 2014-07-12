@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../"
+cd "$ROOTDIR"
+
+# Install everything
+if ! which node >/dev/null; then
+    echo "Missing node. "
+    exit 1
+else
+    npm install "$ROOTDIR"
+    node "$ROOTDIR/src/scripts/install.js"
+    exit $?
+fi

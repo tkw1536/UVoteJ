@@ -4,6 +4,47 @@ Software for voting @ Jacobs University
 
 Written in NodeJS, will be used for USG Elections.
 
+## Deployment
+
+UVoteJ needs MongoDB. Make sure to set one up.
+
+Currently, LDAP is used for authentication and user management. In the future,
+custom logins can also be used.
+
+Run:
+
+```bash
+cd UVoteJ # Directory the repository was cloned into.
+scripts/install # Interactive setup routine
+scripts/run # Run the script
+```
+
+or on Windows:
+
+```
+cd UVoteJ
+scripts\install
+scripts\run
+```
+
+
+## Documentation
+Can be found in "static/doc". To update documentation:
+
+```bash
+cd UVoteJ # Directory the repository was cloned into.
+scripts/devel # Make sure everything is set up for development
+scripts/doc # Update the documentation
+```
+
+or on Windows:
+
+```
+cd UVoteJ
+scripts\devel
+scripts\doc
+```
+
 ## License
 
 ```
@@ -29,26 +70,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-# Documentation
-
-Can be found in "doc/". To update documentation:
-
-```bash
-cd UVoteJ # Directory the repository was cloned into.
-scripts/devel # Make sure everything is set up for development
-scripts/doc # Update the documentation
-```
-
-or on Windows:
-
-```
-cd UVoteJ
-scripts\devel
-scripts\doc
-```
-
-
-Frontend: Bootstrap, jQuery
-
-Backend: NodeJS, Socket.io, Mongodb

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Run UVoteJ
+
+ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../"
+cd "$ROOTDIR"
+
+# Run everything
+if ! which node >/dev/null; then
+    echo "Missing node. "
+    exit 1
+else
+    node "$ROOTDIR/src/frontend/index.js"
+    exit $?
+fi
