@@ -4,7 +4,7 @@ var
 
 
 /**
- * LDAP Authentication class.
+ * LDAP Authentication class. Uses an LDAP server for authentication. 
  *
  * @param {object} config - Given configuration for authentication.
  * @param {Authentication~readyCallback} callback - Called once Authentication has been initalised.

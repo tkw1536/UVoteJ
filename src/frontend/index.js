@@ -1,16 +1,39 @@
-var express = require("express");
-var http = require('http');
-
-var app = express();
-var port = 3000;
-
-app.get('/', function(req, res){
-  res.send('Nothing here yet. Try again later. ');
+//Logger config
+var logger = require('winston');
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  prettyPrint: true,
+  colorize: true,
+  silent: false,
+  timestamp: true
 });
 
-//documentation served under /doc
-app.use("/doc", express.static(__dirname + '/../../static/doc'));
+//Files to load
+var files = [
+    "init/pre",
+    "http/routes",
+    "socket/admin",
 
-http.Server(app).listen(port, function(){
-  console.log('listening on *:'+port);
-});
+    "init/post"
+]
+
+//we are here
+var here = __dirname+"/";
+
+
+var runner_next = function(i, state){
+    if(i < files.length){
+        var fn = files[i];
+        logger.info("Loading "+fn);
+        require(here+fn+".js")(state, logger, function(s){
+            logger.info("Loaded "+fn);
+            runner_next(i+1, s);
+        })
+    } else {
+        logger.info("Initalisation complete. ")
+    }
+}
+
+//start everything
+logger.info("Starting Initalisation. "); 
+runner_next(0, {});
