@@ -12,9 +12,10 @@ logger.add(logger.transports.Console, {
 var files = [
     "init/legal",
     "init/pre",
+    "init/auth",
     "mongo/init",
     "http/routes",
-    "socket/admin",
+    "socket/init",
 
     "init/post"
 ]

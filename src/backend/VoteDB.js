@@ -1,16 +1,16 @@
 var VoteAPI = require("./Vote.js"),
-    uuid = require("node-uuid");
+    uuid = require("node-uuid"),
+    logger = require("winston");
 
 /**
  * Represents a Databse interface.
  *
  * @param {MongoDB.collection} collection - MongoDB collection representing the collection to store the votes in.
- * @param {Winston} logger - Logging entity.
  * @param {function} callback - Callback
  * @class
- * @this {DB}
+ * @this {VoteDB}
  */
-var DB = function DB(collection, logger, callback){
+var VoteDB = function VoteDB(collection, callback){
     var me = this;
 
     /**
@@ -65,7 +65,7 @@ var DB = function DB(collection, logger, callback){
  * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
  * @param {function} cb - Callback
  */
-DB.prototype.createVote = function(source_object, cb){
+VoteDB.prototype.createVote = function(source_object, cb){
     var me = this;
     var v = new VoteAPI(source_object);
     me.addVote(v, cb);
@@ -77,7 +77,7 @@ DB.prototype.createVote = function(source_object, cb){
  * @param {Vote} vote - Vote to add.
  * @param {function} cb - Callback
  */
-DB.prototype.addVote = function(vote, cb){
+VoteDB.prototype.addVote = function(vote, cb){
     var me = this;
 
     var next = function(){
@@ -117,7 +117,7 @@ DB.prototype.addVote = function(vote, cb){
  * @param {Vote} vote - Vote to remove.
  * @param {function} cb - Callback
  */
-DB.prototype.removeVote = function(vote, cb){
+VoteDB.prototype.removeVote = function(vote, cb){
     //what do we have to do
     var id = vote.id;
     this.logger.info("MONGO: Deleting", id);
@@ -142,7 +142,7 @@ DB.prototype.removeVote = function(vote, cb){
  * @param {Vote} vote - Vote to update.
  * @param {function} cb - Callback
  */
-DB.prototype.updateVote = function(vote, cb){
+VoteDB.prototype.updateVote = function(vote, cb){
     //what do we have to do
     var id = vote.id;
     this.logger.info("MONGO: Storing", id);
@@ -159,4 +159,4 @@ DB.prototype.updateVote = function(vote, cb){
     });
 }
 
-module.exports = DB;
+module.exports = VoteDB;

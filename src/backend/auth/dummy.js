@@ -14,7 +14,8 @@ var
  */
 function Dummy(config, callback){
     this.config = config;
-    this.userData = JSON.parse(fs.readFileSync(__dirname+"/../../config/users.json"));
+    this.userData = JSON.parse(fs.readFileSync(__dirname+"/../../../config/users.json"));
+    console.log(this.userData);
 
     setTimeout(callback, 0);
 }
@@ -24,13 +25,15 @@ function Dummy(config, callback){
  *
  * @type {Authentication.ConfigInfo[]}
  */
-Dummy.config = [];
+Dummy.config = [["nameField", "string", "Dummy Configuration User Field: "]];
 
 /**
  * Dummy configuration defaults.
  * @type {object}
 */
-Dummy.defaults = {}
+Dummy.defaults = {
+    "nameField": "name"
+}
 
 /**
  * Authenticates a single user.
@@ -40,11 +43,16 @@ Dummy.defaults = {}
  * @param {Authentication~loginCallback} callback - Callback that handles the request.
  */
 Dummy.prototype.loginUser = function(user, pass, callback){
-    if(this.userData.hasOwnProperty(user)){
-        callback(true, this.userData[user])
-    } else {
-        callback(false);
+    for(var i=0;i<this.userData.length;i++){
+        if(this.userData[i][this.config.nameField] == user){
+            callback(true, this.userData[i]);
+            return;
+        }
     }
+
+    //we did not find the user
+    callback(false);
+    return;
 }
 
 /**
@@ -55,11 +63,7 @@ Dummy.prototype.loginUser = function(user, pass, callback){
  * @param {Authentication~listCallback} callback - Callback that handles the request.
  */
 Dummy.prototype.getAll = function(user, pass, callback){
-    if(this.userData.hasOwnProperty(user)){
-        callback(true, this.userData)
-    } else {
-        callback(false);
-    }
+    callback(true, this.userData);
 }
 
 module.exports = Dummy;

@@ -16,6 +16,7 @@ Run:
 ```bash
 cd UVoteJ # Directory the repository was cloned into.
 scripts/install # Interactive setup routine
+# Edit config/config.json and set yourself as admin.
 scripts/run # Run the script
 ```
 
@@ -24,11 +25,12 @@ or on Windows:
 ```
 cd UVoteJ
 scripts\install
+REM Edit config\config.json and set yourself as admin.
 scripts\run
 ```
 
 The scripts/install routine will write a configuration file to config/config.json
-which can also be manually edited. 
+which can also be manually edited.
 
 
 ## Documentation

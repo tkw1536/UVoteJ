@@ -1,6 +1,12 @@
 {
-    "port": 3000,
+    "port": null,
     "mongodb": "mongodb://localhost:27017/UVoteJ",
     "auth": "dummy",
-    "auth_config": {}
+    "auth_admins": [
+        "root"
+    ],
+    "auth_idProperty": "name",
+    "auth_config": {
+        "nameField": "name"
+    }
 }

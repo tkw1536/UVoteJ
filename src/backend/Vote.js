@@ -1,7 +1,8 @@
 var
     util = require("util"),
     events = require("events"),
-    PermissionNode = require("./PermissionNode");
+    PermissionNode = require("./PermissionNode"),
+    logger = require("winston");
 
 /**
  * Creates a new Vote.
@@ -51,6 +52,15 @@ var Vote = function Vote(source_object){
     * @default []
     */
     this.options = [];
+
+    /**
+    * Id of this vote. Automatically assigned by other classes.
+    *
+    * @name Vote#.id
+    * @type string
+    * @default undefined
+    */
+    this.id = undefined;
 
     /**
     * Minimum Number of votes required.
@@ -169,6 +179,7 @@ Vote.prototype.fromJSON = function(source_object){
 
     //general Vote info
     this.name = source_object.name;
+    this.id = source_object.id;
     this.machine_name = source_object.machine_name;
     this.description = source_object.description;
 
@@ -211,6 +222,7 @@ Vote.prototype.toJSON = function(){
         //general vote info
         "name": this.name,
         "machine_name": this.machine_name,
+        "id": this.id,
         "description": this.description,
 
         //options, config
@@ -243,6 +255,7 @@ Vote.prototype.stopStages = function(){
     //if we have a timeout, please clear it.
     if(typeof this._timer !== "undefined"){
         clearTimeout(this._timer);
+        logger.info("VOTE: Scheduled for", this.id, " aborted. ");
         this._timer = undefined;
     }
 
@@ -268,6 +281,7 @@ Vote.prototype.startStages = function(){
         var then = (now - this.open_time);
 
         var next_stage = function(){
+            logger.info("VOTE:", me.id, "now at STAGE.OPEN");
 
             //update the results, we need to reset them.
             me.results = [];
@@ -288,6 +302,7 @@ Vote.prototype.startStages = function(){
         }
 
         if(then > 0){
+            logger.info("VOTE: Scheduled", me.id, "Stage.OPEN for", new Date(me.open_time).toLocaleString());
             this._timer = setTimeout(next_stage, then)
         } else {
             next_stage();
@@ -301,6 +316,8 @@ Vote.prototype.startStages = function(){
         var then = (now - this.close_time);
 
         var next_stage = function(){
+            logger.info("VOTE:", me.id, "now at STAGE.CLOSED");
+
             //set the Stage to closed
             me.Stage = Vote.Stage.CLOSED;
 
@@ -309,6 +326,7 @@ Vote.prototype.startStages = function(){
         }
 
         if(then > 0){
+            logger.info("VOTE: Scheduled", me.id, "Stage.CLOSED for", new Date(me.close_time).toLocaleString());
             this._timer = setTimeout(next_stage, then)
         } else {
             next_stage();
@@ -433,6 +451,7 @@ Vote.VoteState = {
  * @typedef {Object} Vote.Source
  * @property {string} name - Human-Readable Name of this vote.
  * @property {string} machine_name - Machine-Readable Name of this vote.
+ * @property {string} id - Unique ID of this vote.
  * @property {string} description - Description of Vote. May contain Markdown.
  * @property {Vote.Option[]} options - Set of options for this vote.
  * @property {number} minVotes - Minimum number of votes required for this vote.

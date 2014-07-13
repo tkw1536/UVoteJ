@@ -1,4 +1,4 @@
-var DB = require("../../backend/DB.js"),
+var DB = require("../../backend/VoteDB.js"),
     MongoClient = require('mongodb').MongoClient;
 
 
@@ -22,7 +22,7 @@ module.exports = function(state, logger, next){
         state.db = db;
 
         //now create our internal API.
-        state.votes = new DB(db.collection("votes"), logger, function(){
+        state.votes = new DB(db.collection("votes"), function(){
             next(state);
         });
     });

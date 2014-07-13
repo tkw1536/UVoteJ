@@ -113,8 +113,7 @@ PermissionNode.prototype.matchesRule = function(user_data, rule){
             result = !result;
         }
     } catch(e){
-        //TODO: Better logging
-        console.warn("PermissionNodeError: "+e);
+        logger.warn("AUTH: PermissionNode error: ", e.toString());
     }
 
     return result;
@@ -159,7 +158,10 @@ PermissionNode.prototype.matches = function(user_data){
                 case PermissionNode.LogicalRelation.XNOR:
                     state = (state == me.matchesRule(user_data, e));
                     break;
-
+                defaut:
+                    logger.warn("AUTH: PermissionNode error: Unknown LogicalRelation. ")
+                    state = state && me.matchesRule(user_data, e)
+                    break;
             }
 
         }
