@@ -9,7 +9,8 @@ var
  * @this {PermissionNode}
  * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */
-function PermissionNode(source_object){
+var PermissionNode = function PermissionNode(source_object){
+
     /**
     * JSON-style source for the permissionNode.
     *
@@ -23,6 +24,8 @@ function PermissionNode(source_object){
         this.fromJSON(source_object);
     }
 }
+
+util.inherits(PermissionNode, events.EventEmitter);
 
 /**
  * Updates a permissionNode from JSON.
@@ -232,5 +235,4 @@ PermissionNode.LogicalRelation = {
     XNOR: "xnor"
 };
 
-util.inherits(PermissionNode, events.EventEmitter);
 module.exports = PermissionNode;

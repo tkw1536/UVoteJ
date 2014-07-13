@@ -12,7 +12,7 @@ var example_config_path = path.resolve(__dirname+"/../../config/config.json.samp
 var config_to_read = [
     ["mongodb", "str", "Enter mongodb adress: "],
     ["port", "int+", "Enter port: "],
-    ["auth", "str", "Enter authentication type (LDAP): "]
+    ["auth", "str", "Enter authentication type (dummy): "]
 ];
 
 var auth_config = {};
@@ -77,8 +77,8 @@ function read_config(i, config){
 
 
         //resolve the auth file
-        var auth_file = config["auth"] || "index";
-        config["auth"] = auth_file; 
+        var auth_file = config["auth"] || "dummy";
+        config["auth"] = auth_file;
 
         auth_file = __dirname + "/../backend/auth/"+auth_file.toLowerCase()+".js";
         auth_file = require(auth_file);

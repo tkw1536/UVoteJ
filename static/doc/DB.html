@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: LDAP</title>
+    <title>Class: DB</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -305,7 +305,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="LDAP.html">Class: LDAP</h1>
+        <h1 class="page-title" data-filename="DB.html">Class: DB</h1>
         
 
 
@@ -314,7 +314,7 @@
     
 <header>
     <h2>
-    LDAP
+    DB
     </h2>
     
 </header>  
@@ -327,14 +327,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="LDAP">
+        <h4 class="name" id="DB">
             
-            new LDAP<span class="signature">(config, callback)</span>
+            new DB<span class="signature">(collection, logger, callback)</span>
         </h4>
     
         
         <div class="tag-source">
-            auth/ldap.js, line 15
+            DB.js, line 13
         </div>
         
     </div>
@@ -345,7 +345,7 @@
     
     
     <div class="description">
-        LDAP Authentication class. Uses an LDAP server for authentication.
+        Represents a Databse interface.
     </div>
     
 
@@ -353,7 +353,7 @@
     
     
         <h5>This:</h5>
-        <ul><li>{<a href="LDAP.html">LDAP</a>}</li></ul>
+        <ul><li>{<a href="DB.html">DB</a>}</li></ul>
     
     
     
@@ -379,13 +379,13 @@
 	
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>collection</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">MongoDB.collection</span>
 
 
             
@@ -395,7 +395,30 @@
             
             <td class="description last">
                 
-                Given configuration for authentication.</td>
+                MongoDB collection representing the collection to store the votes in.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>logger</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Winston</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Logging entity.</td>
         </tr>
 	
 	
@@ -408,7 +431,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Authentication.html#readyCallback">Authentication~readyCallback</a></span>
+<span class="param-type">function</span>
 
 
             
@@ -418,7 +441,7 @@
             
             <td class="description last">
                 
-                Called once Authentication has been initalised.</td>
+                Callback</td>
         </tr>
 	
 	
@@ -469,12 +492,6 @@
     </div>
     
     
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li><a href="Authentication.html">Authentication</a></li>
-        </ul>
-    
     
     
     
@@ -491,7 +508,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="config"><span class="type-signature static">static</span>LDAP.config<span class="type-signature type array.<authentication.configinfo>">Array.&lt;<a href="Authentication.html#ConfigInfo">Authentication.ConfigInfo</a>></span> </h4>
+        <h4 class="name" id="collection">collection</h4>
     </div>
     
     
@@ -499,7 +516,7 @@
 <dd>
     
     <div class="description">
-        Provides information about interactive config.
+        Database collection
     </div>
     
     
@@ -536,7 +553,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="defaults"><span class="type-signature static">static</span>LDAP.defaults<span class="type-signature type object">object</span> </h4>
+        <h4 class="name" id="logger">logger</h4>
     </div>
     
     
@@ -544,7 +561,52 @@
 <dd>
     
     <div class="description">
-        LDAP configuration defaults.
+        Logger
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="votes">votes</h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Collection of supervised votes.
     </div>
     
     
@@ -587,14 +649,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="getAll">
+        <h4 class="name" id="addVote">
             
-            getAll<span class="signature">(key, pass, callback)</span>
+            addVote<span class="signature">(vote, cb)</span>
         </h4>
     
         
         <div class="tag-source">
-            auth/ldap.js, line 126
+            DB.js, line 80
         </div>
         
     </div>
@@ -605,7 +667,7 @@
     
     
     <div class="description">
-        Lists all users via LDAP.
+        Adds a vote to the supervised colelction.
     </div>
     
 
@@ -636,13 +698,13 @@
 	
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>vote</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="Vote.html">Vote</a></span>
 
 
             
@@ -652,384 +714,14 @@
             
             <td class="description last">
                 
-                Username of user to login.</td>
+                Vote to add.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Authentication.html#listCallback">Authentication~listCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback that handles the request.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="loginUser">
-            
-            loginUser<span class="signature">(user, pass, callback)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            auth/ldap.js, line 109
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Authenticates a single user via LDAP.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Username of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Authentication.html#loginCallback">Authentication~loginCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback that handles the request.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="makeQuery">
-            
-            makeQuery<span class="signature">(user, pass, query, callback)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            auth/ldap.js, line 51
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Makes a new ldap query.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">sring</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Username</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">srting</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>query</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Query to search for.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
+                <td class="name"><code>cb</code></td>
             
             
             <td class="type">
@@ -1045,7 +737,436 @@
             
             <td class="description last">
                 
-                with success and result parameters.</td>
+                Callback</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="createVote">
+            
+            createVote<span class="signature">(<span class="optional">source_object</span>, cb)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            DB.js, line 68
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates a new vote and adds it to the supervised colelction.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>source_object</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Vote.html#Source">Vote.Source</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Optional JSON-style source for the vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                Callback</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="removeVote">
+            
+            removeVote<span class="signature">(vote, cb)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            DB.js, line 120
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes a vote from the supervised collection.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>vote</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Vote.html">Vote</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Vote to remove.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Callback</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="updateVote">
+            
+            updateVote<span class="signature">(vote, cb)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            DB.js, line 145
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Updates a vote in the database
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>vote</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Vote.html">Vote</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Vote to update.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Callback</td>
         </tr>
 	
 	

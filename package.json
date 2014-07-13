@@ -5,7 +5,8 @@
   "dependencies": {
     "express": "^4.4.1",
     "ldapjs": "^0.7.1",
-    "mongo": "^0.1.0",
+    "mongodb": "^1.4.7",
+    "node-uuid": "^1.4.1",
     "socket.io": "^1.0.6",
     "winston": "^0.7.3"
   }

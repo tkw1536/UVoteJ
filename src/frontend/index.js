@@ -1,5 +1,5 @@
 //Logger config
-var logger = require('winston');
+var logger = require("winston");
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
   prettyPrint: true,
@@ -10,7 +10,9 @@ logger.add(logger.transports.Console, {
 
 //Files to load
 var files = [
+    "init/legal",
     "init/pre",
+    "mongo/init",
     "http/routes",
     "socket/admin",
 
@@ -23,17 +25,35 @@ var here = __dirname+"/";
 
 var runner_next = function(i, state){
     if(i < files.length){
+        //Load a specific file
+
         var fn = files[i];
-        logger.info("Loading "+fn);
-        require(here+fn+".js")(state, logger, function(s){
-            logger.info("Loaded "+fn);
-            runner_next(i+1, s);
-        })
+        logger.info("BOOTSTRAP: Loading module", fn);
+        try{
+            var module = require(here+fn+".js");
+        } catch(e){
+            logger.error("BOOTSTRAP: Failed to load", fn);
+            process.exit(1);
+        }
+
+        try{
+            module(state, logger, function(s){
+                setImmediate(function(){
+                    runner_next(i+1, s);
+                });
+            });
+        } catch(e){
+            logger.error("BOOTSTRAP: Error occured while executing", fn);
+            logger.error(e.toString());
+            process.exit(1);
+        }
+
     } else {
-        logger.info("Initalisation complete. ")
+        //we are done with init
+        logger.info("BOOTSTRAP: UVoteJ ready. ")
     }
 }
 
 //start everything
-logger.info("Starting Initalisation. "); 
+logger.info("BOOTSTRAP: Starting UVoteJ ...");
 runner_next(0, {});

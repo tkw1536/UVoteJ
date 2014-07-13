@@ -11,7 +11,7 @@ var
  * @this {Vote}
  * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
  */
-function Vote(source_object){
+var Vote = function Vote(source_object){
 
     //for unnamed things
     var now = new Date();
@@ -156,6 +156,8 @@ function Vote(source_object){
         this.fromJSON(source_object);
     }
 }
+
+util.inherits(Vote, events.EventEmitter);
 
 /**
 * Updates this Vote form JSON data.
@@ -454,6 +456,4 @@ Vote.VoteState = {
   * @property {string} short_description - Short, text only description of this Option.
   * @property {string} markdown_description - Description of the option, may contain markdown.
   */
-
- util.inherits(Vote, events.EventEmitter);
  module.exports = Vote;

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: LDAP</title>
+    <title>Class: Dummy</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -305,7 +305,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="LDAP.html">Class: LDAP</h1>
+        <h1 class="page-title" data-filename="Dummy.html">Class: Dummy</h1>
         
 
 
@@ -314,7 +314,7 @@
     
 <header>
     <h2>
-    LDAP
+    Dummy
     </h2>
     
 </header>  
@@ -327,14 +327,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="LDAP">
+        <h4 class="name" id="Dummy">
             
-            new LDAP<span class="signature">(config, callback)</span>
+            new Dummy<span class="signature">(config, callback)</span>
         </h4>
     
         
         <div class="tag-source">
-            auth/ldap.js, line 15
+            auth/dummy.js, line 15
         </div>
         
     </div>
@@ -353,7 +353,7 @@
     
     
         <h5>This:</h5>
-        <ul><li>{<a href="LDAP.html">LDAP</a>}</li></ul>
+        <ul><li>{<a href="Dummy.html">Dummy</a>}</li></ul>
     
     
     
@@ -491,7 +491,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="config"><span class="type-signature static">static</span>LDAP.config<span class="type-signature type array.<authentication.configinfo>">Array.&lt;<a href="Authentication.html#ConfigInfo">Authentication.ConfigInfo</a>></span> </h4>
+        <h4 class="name" id="config"><span class="type-signature static">static</span>Dummy.config<span class="type-signature type array.<authentication.configinfo>">Array.&lt;<a href="Authentication.html#ConfigInfo">Authentication.ConfigInfo</a>></span> </h4>
     </div>
     
     
@@ -536,7 +536,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="defaults"><span class="type-signature static">static</span>LDAP.defaults<span class="type-signature type object">object</span> </h4>
+        <h4 class="name" id="defaults"><span class="type-signature static">static</span>Dummy.defaults<span class="type-signature type object">object</span> </h4>
     </div>
     
     
@@ -544,7 +544,7 @@
 <dd>
     
     <div class="description">
-        LDAP configuration defaults.
+        Dummy configuration defaults.
     </div>
     
     
@@ -594,7 +594,7 @@
     
         
         <div class="tag-source">
-            auth/ldap.js, line 126
+            auth/dummy.js, line 57
         </div>
         
     </div>
@@ -605,7 +605,7 @@
     
     
     <div class="description">
-        Lists all users via LDAP.
+        Lists all users.
     </div>
     
 
@@ -756,7 +756,7 @@
     
         
         <div class="tag-source">
-            auth/ldap.js, line 109
+            auth/dummy.js, line 42
         </div>
         
     </div>
@@ -767,7 +767,7 @@
     
     
     <div class="description">
-        Authenticates a single user via LDAP.
+        Authenticates a single user.
     </div>
     
 
@@ -861,191 +861,6 @@
             <td class="description last">
                 
                 Callback that handles the request.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="makeQuery">
-            
-            makeQuery<span class="signature">(user, pass, query, callback)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            auth/ldap.js, line 51
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Makes a new ldap query.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">sring</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Username</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">srting</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>query</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Query to search for.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                with success and result parameters.</td>
         </tr>
 	
 	

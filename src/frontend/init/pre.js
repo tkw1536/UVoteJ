@@ -14,10 +14,14 @@ module.exports = function(state, logger, next){
     state.dirs.static = state.dirs.root + "static/"
 
     try{
-        state.config = JSON.parse(fs.readFileSync(state.dirs.root+"config/config.json"));
+        config_path = state.dirs.root+"config/config.json"
+        state.config = JSON.parse(fs.readFileSync(config_path));
+        logger.info("INIT: Loaded config from", config_path)
     } catch(e) {
-        logger.warn("Missing config, switching to default. ");
-        state.config = JSON.parse(fs.readFileSync(state.dirs.root+"config/config.json.sample"));
+        config_default_path = state.dirs.root+"config/config.json.sample"
+        logger.warn("INIT: Missing config, switching to default. ");
+        state.config = JSON.parse(fs.readFileSync(config_default_path));
+        logger.info("INIT: Loaded default config from", config_default_path)
     }
 
     //create servers
