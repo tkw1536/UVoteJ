@@ -1,5 +1,26 @@
-//Logger config
-var logger = require("winston");
+var logger = require("winston"),
+    util = require("util");
+
+//State
+var state = {"started": new Date(), "logs": []};
+
+//Custom logger that stores all the logs
+var StoreLogger = logger.transports.StoreLogger = function (options) {
+    this.name = 'StoreLogger';
+    this.level = 'info';
+};
+util.inherits(StoreLogger, logger.Transport);
+StoreLogger.prototype.log = function (level, msg, meta, callback) {
+
+    state.logs.push({
+        "level": level,
+        "message": msg,
+        "meta": meta,
+        "time": (new Date()).toString()
+    })
+    callback(null, true);
+};
+
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
   prettyPrint: true,
@@ -7,6 +28,9 @@ logger.add(logger.transports.Console, {
   silent: false,
   timestamp: true
 });
+
+logger.add(StoreLogger);
+
 
 //Files to load
 var files = [
@@ -65,4 +89,4 @@ var runner_next = function(i, state){
 
 //start everything
 logger.info("Starting UVoteJ ...");
-runner_next(0, {});
+runner_next(0, state);

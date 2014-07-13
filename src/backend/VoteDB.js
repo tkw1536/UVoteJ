@@ -3,7 +3,7 @@ var VoteAPI = require("./Vote.js"),
     logger = require("winston");
 
 /**
- * Represents a Databse interface.
+ * Represents a Database interface.
  *
  * @param {MongoDB.collection} collection - MongoDB collection representing the collection to store the votes in.
  * @param {function} callback - Callback

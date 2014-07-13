@@ -8,8 +8,8 @@ Written in NodeJS, will be used for USG Elections.
 
 UVoteJ needs MongoDB. Make sure to set one up.
 
-Currently, LDAP is used for authentication and user management. In the future,
-custom logins can also be used.
+Currently, LDAP is used for authentication and user management. Other
+authentications are also possible, but not yet implemented. 
 
 Run:
 

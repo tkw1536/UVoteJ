@@ -218,7 +218,7 @@ Vote.prototype.fromJSON = function(source_object){
 * @return {Vote.Source} - The source of this Vote.
 */
 Vote.prototype.toJSON = function(){
-    return {
+    return JSON.parse(JSON.stringify({
         //general vote info
         "name": this.name,
         "machine_name": this.machine_name,
@@ -243,7 +243,7 @@ Vote.prototype.toJSON = function(){
         "stage": this.stage,
         "open_time": this.open_time,
         "close_time": this.close_time
-    }
+    })); 
 }
 
 /**

@@ -33,7 +33,7 @@ module.exports = function(state, logger, next){
                     logger.info("AUTH:", user, ": Admin login. ");
 
                     //we are an admin, so lets run that script.
-                    socket_admin(socket, info, user, pass);
+                    socket_admin(socket, info, user, pass, state);
 
                     //also tell the client that we are an admin.
                     socket.emit("mode", true);
@@ -60,6 +60,13 @@ module.exports = function(state, logger, next){
     //On connection, we require an auth first.
     state.io.on("connection", function(socket){
         registerAuthHandler(socket);
+
+        //for proper cleanup
+        socket.on("disconnect", function(){
+            try{
+                socket.connection.close();
+            } catch(e){}
+        }); 
     });
 
     next(state);

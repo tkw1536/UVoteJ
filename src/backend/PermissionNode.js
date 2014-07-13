@@ -52,7 +52,7 @@ PermissionNode.prototype.fromJSON = function(source_object){
  * @return {PermissionNode.Rule[]} -  The source of this PermissionNode.
  */
 PermissionNode.prototype.toJSON = function(){
-    return this._data;
+    return JSON.parse(JSON.stringify(this._data));
 }
 
 /**
