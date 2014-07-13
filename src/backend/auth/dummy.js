@@ -1,6 +1,7 @@
 var
     Authentication = require("./index.js"),
-    fs = require('fs');
+    fs = require('fs'),
+    logger = require("winston");
 
 
 /**
@@ -15,7 +16,7 @@ var
 function Dummy(config, callback){
     this.config = config;
     this.userData = JSON.parse(fs.readFileSync(__dirname+"/../../../config/users.json"));
-    console.log(this.userData);
+    logger.info("AUTH: Loaded", this.userData.length, "dummy user(s) from config file. ");
 
     setTimeout(callback, 0);
 }

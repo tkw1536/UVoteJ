@@ -10,14 +10,19 @@ logger.add(logger.transports.Console, {
 
 //Files to load
 var files = [
-    "init/legal",
-    "init/pre",
-    "init/auth",
+    //init run
+    "init/00_legal",
+    "init/01_env",
+    "init/02_components",
+    "init/03_auth",
+
+    //methods
     "mongo/init",
     "http/routes",
     "socket/init",
 
-    "init/post"
+    //finally post init
+    "init/05_post"
 ]
 
 //we are here
@@ -26,17 +31,19 @@ var here = __dirname+"/";
 
 var runner_next = function(i, state){
     if(i < files.length){
-        //Load a specific file
-
         var fn = files[i];
-        logger.info("BOOTSTRAP: Loading module", fn);
+        logger.info("Loading module", fn);
+
+        //Try and load the module
         try{
             var module = require(here+fn+".js");
         } catch(e){
-            logger.error("BOOTSTRAP: Failed to load", fn);
+            logger.error(e.stack);
+            logger.error("Failed to load", fn);
             process.exit(1);
         }
 
+        //and run it now:
         try{
             module(state, logger, function(s){
                 setImmediate(function(){
@@ -44,17 +51,18 @@ var runner_next = function(i, state){
                 });
             });
         } catch(e){
-            logger.error("BOOTSTRAP: Error occured while executing", fn);
+            logger.error(e.stack);
+            logger.error("Error occured while executing", fn);
             logger.error(e.toString());
             process.exit(1);
         }
 
     } else {
         //we are done with init
-        logger.info("BOOTSTRAP: UVoteJ ready. ")
+        logger.info("UVoteJ ready. ")
     }
 }
 
 //start everything
-logger.info("BOOTSTRAP: Starting UVoteJ ...");
+logger.info("Starting UVoteJ ...");
 runner_next(0, {});
