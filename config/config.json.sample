@@ -1,6 +1,6 @@
 {
     "port": 3000,
     "mongodb": "mongodb://localhost:27017/UVoteJ",
-    "auth": "ldap",
+    "auth": "index",
     "auth_config": {}
 }

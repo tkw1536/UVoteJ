@@ -11,8 +11,11 @@ var example_config_path = path.resolve(__dirname+"/../../config/config.json.samp
 //configuration to read
 var config_to_read = [
     ["mongodb", "str", "Enter mongodb adress: "],
-    ["port", "int+", "Enter port: "]
+    ["port", "int+", "Enter port: "],
+    ["auth", "str", "Enter authentication type (LDAP): "]
 ];
+
+var auth_config = {};
 
 
 //Read the proper configuration
@@ -25,6 +28,34 @@ var rl = readline.createInterface({
     output: process.stdout
 });
 
+//parse some value
+function parseval(type, val){
+    switch(type){
+        case "float":
+            val = parseFloat(val);
+            break;
+        case "int":
+            val = parseInt(val);
+            break;
+        case "int+":
+            val = parseInt(val);
+            if(val <= 0){
+                val = undefined;
+            }
+            break;
+        case "bool":
+            val = (val.toLowerCase()[0] == "y");
+            break;
+        default:
+            if(val == ""){
+                val = undefined;
+            }
+            break;
+    }
+
+    return val
+}
+
 //read in some config
 function read_config(i, config){
     if(i < config_to_read.length){
@@ -32,19 +63,7 @@ function read_config(i, config){
         var key = what[0];
 
         rl.question(what[2]+">", function(val){
-            switch(what[1]){
-                case "int+":
-                    val = parseInt(val);
-                    if(val <= 0){
-                        val = undefined;
-                    }
-                    break;
-                default:
-                    if(val == ""){
-                        val = undefined;
-                    }
-                    break;
-            }
+            val = parseval(what[1], val);
 
             //check what we need to do.
             if(typeof val !== "undefined"){
@@ -55,6 +74,40 @@ function read_config(i, config){
             read_config(i+1, config);
         });
     } else {
+
+
+        //resolve the auth file
+        var auth_file = config["auth"] || "index";
+        config["auth"] = auth_file; 
+
+        auth_file = __dirname + "/../backend/auth/"+auth_file.toLowerCase()+".js";
+        auth_file = require(auth_file);
+
+        //set the defaults and stuff
+        auth_config = auth_file.config;
+        config["auth_config"] = auth_file.defaults;
+
+        read_auth_config(0, config);
+    }
+}
+
+function read_auth_config(i, config){
+    if(i < auth_config.length){
+        var what = auth_config[i];
+        var key = what[0];
+
+        rl.question(what[2]+">", function(val){
+            val = parseval(what[1], val);
+
+            //check what we need to do.
+            if(typeof val !== "undefined"){
+                config["auth_config"][key] = val;
+            }
+
+            //read the next config
+            read_auth_config(i+1, config);
+        });
+    } else {
         writeConfigFile(config);
     }
 }
@@ -62,27 +115,11 @@ function read_config(i, config){
 //start prompting the config
 read_config(0, {});
 
-
-//mongodb
-rl.question("Enter port: >", function(port) {
-    var port = parseInt(port);
-    rl.question("Enter mongodb adress: >", function(mongo_path) {
-        rl.close();
-
-        var config = {
-            "port": port,
-            "mongodb": mongo_path,
-            "auth": "ldap",
-            "auth_config": {}
-        };
-
-
-
-    });
-});
-
 //write the actual config file
 var writeConfigFile = function(config){
+
+    //close the radline
+    rl.close();
 
     //read in the sample configuration
     var dummy_config = JSON.parse(fs.readFileSync(example_config_path));
@@ -96,10 +133,8 @@ var writeConfigFile = function(config){
     fs.writeFile(config_path, JSON.stringify(dummy_config, null, 4), function(err) {
         if(err) {
             console.log(err);
-            process.exit(0);
         } else {
             console.log("Wrote config to", config_path);
-            process.exit(1);
         }
     });
 }

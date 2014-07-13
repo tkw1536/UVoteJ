@@ -27,6 +27,9 @@ scripts\install
 scripts\run
 ```
 
+The scripts/install routine will write a configuration file to config/config.json
+which can also be manually edited. 
+
 
 ## Documentation
 Can be found in "static/doc". To update documentation:

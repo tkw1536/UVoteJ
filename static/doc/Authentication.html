@@ -41,10 +41,20 @@
             </span>
             <ul class="members itemMembers">
             
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Authentication.config"><a href="Authentication.html#config">config</a></li>
+            
+                <li data-name="Authentication.configTypes"><a href="Authentication.html#configTypes">configTypes</a></li>
+            
+                <li data-name="Authentication.defaults"><a href="Authentication.html#defaults">defaults</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
             <span class="subtitle">Typedefs</span>
+            
+                <li data-name="Authentication.ConfigInfo"><a href="Authentication.html#ConfigInfo">ConfigInfo</a></li>
             
                 <li data-name="Authentication~listCallback"><a href="Authentication.html#listCallback">listCallback</a></li>
             
@@ -74,6 +84,12 @@
             </span>
             <ul class="members itemMembers">
             
+            <span class="subtitle">Members</span>
+            
+                <li data-name="LDAP.config"><a href="LDAP.html#config">config</a></li>
+            
+                <li data-name="LDAP.defaults"><a href="LDAP.html#defaults">defaults</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -85,6 +101,8 @@
                 <li data-name="LDAP#getAll"><a href="LDAP.html#getAll">getAll</a></li>
             
                 <li data-name="LDAP#loginUser"><a href="LDAP.html#loginUser">loginUser</a></li>
+            
+                <li data-name="LDAP#makeQuery"><a href="LDAP.html#makeQuery">makeQuery</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -396,6 +414,320 @@ establish a connection.
     
     
     
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="config"><span class="type-signature ">abstract,static</span>Authentication.config</h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Provides information about interactive config
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="configTypes"><span class="type-signature static">static</span>Authentication.configTypes<span class="type-signature type string">string</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Available types for configuration.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>STR</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    str
+                
+                </td>
+            
+            
+            <td class="description last">String</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>INT</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    int
+                
+                </td>
+            
+            
+            <td class="description last">Integer</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>INT_POSITIVE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    int+
+                
+                </td>
+            
+            
+            <td class="description last">Positive Integer</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>FLOAT</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    float
+                
+                </td>
+            
+            
+            <td class="description last">Float number</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>BOOL</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    bool
+                
+                </td>
+            
+            
+            <td class="description last">Boolean</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="defaults"><span class="type-signature ">abstract,static</span>Authentication.defaults<span class="type-signature type object">object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Configuration defaults.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
     
     
         <h3 class="subsection-title">Methods</h3>
@@ -406,12 +738,12 @@ establish a connection.
     <div class="nameContainer">
         <h4 class="name" id="getAll">
             
-            <span class="type-signature ">abstract</span>getAll<span class="signature">(callback)</span>
+            <span class="type-signature ">abstract</span>getAll<span class="signature">(user, pass, callback)</span>
         </h4>
     
         
         <div class="tag-source">
-            auth/index.js, line 45
+            auth/index.js, line 94
         </div>
         
     </div>
@@ -449,6 +781,52 @@ establish a connection.
 	</thead>
 	
 	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Username of user to login.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>pass</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Password of user to login.</td>
+        </tr>
+	
 	
 	
         <tr>
@@ -527,7 +905,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            auth/index.js, line 28
+            auth/index.js, line 75
         </div>
         
     </div>
@@ -688,6 +1066,148 @@ establish a connection.
                 
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="ConfigInfo">Authentication.ConfigInfo<span class="type-signature type array.<string>">Array.&lt;string></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Configuration Information used by the interactive setup.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">key of object to automatically configure.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Authentication.html#configTypes">Authentication.configTypes</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Configuration type.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Query to ask the user with.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+            
+                
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="listCallback">
             
             listCallback<span class="signature">(success, user_info)</span>
@@ -695,7 +1215,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            auth/index.js, line 47
+            auth/index.js, line 96
         </div>
         
     </div>
@@ -834,7 +1354,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            auth/index.js, line 30
+            auth/index.js, line 77
         </div>
         
     </div>
@@ -973,7 +1493,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            auth/index.js, line 14
+            auth/index.js, line 16
         </div>
         
     </div>
@@ -1048,7 +1568,7 @@ establish a connection.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 12 2014 20:40:59 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Jul 13 2014 12:36:07 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
