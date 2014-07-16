@@ -8,26 +8,29 @@ var VoteAPI = require("./Vote.js"),
  * @param {MongoDB.collection} collection - MongoDB collection representing the collection to store the votes in.
  * @param {function} callback - Callback
  * @class
- * @this {VoteDB}
+ * @alias Backend.VoteDB
+ * @this {Backend.VoteDB}
  */
 var VoteDB = function VoteDB(collection, callback){
     var me = this;
 
     /**
      * Collection of supervised votes.
-     * @name DB#votes
+     * @name Backend.VoteDB#votes
      */
     this.votes = {};
 
     /**
      * Database collection
-     * @name DB#collection
+     * @name Backend.VoteDB#collection
+     * @type NodeJS.Mongo.Collection
      */
     this.collection = collection;
 
     /**
      * Logger
-     * @name DB#logger
+     * @name Backend.VoteDB#logger
+     * @type NodeJS.Winston
      */
     this.logger = logger;
 
@@ -62,7 +65,7 @@ var VoteDB = function VoteDB(collection, callback){
 /**
  * Creates a new vote and adds it to the supervised colelction.
  *
- * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
+ * @param {Backend.Vote.Source} [source_object] - Optional JSON-style source for the vote.
  * @param {function} cb - Callback
  */
 VoteDB.prototype.createVote = function(source_object, cb){
@@ -74,7 +77,7 @@ VoteDB.prototype.createVote = function(source_object, cb){
 /**
  * Adds a vote to the supervised colelction.
  *
- * @param {Vote} vote - Vote to add.
+ * @param {Backend.Vote} vote - Vote to add.
  * @param {function} cb - Callback
  */
 VoteDB.prototype.addVote = function(vote, cb){
@@ -114,7 +117,7 @@ VoteDB.prototype.addVote = function(vote, cb){
 /**
  * Removes a vote from the supervised collection.
  *
- * @param {Vote} vote - Vote to remove.
+ * @param {Backend.Vote} vote - Vote to remove.
  * @param {function} cb - Callback
  */
 VoteDB.prototype.removeVote = function(vote, cb){
@@ -139,7 +142,7 @@ VoteDB.prototype.removeVote = function(vote, cb){
 /**
  * Updates a vote in the database
  *
- * @param {Vote} vote - Vote to update.
+ * @param {Backend.Vote} vote - Vote to update.
  * @param {function} cb - Callback
  */
 VoteDB.prototype.updateVote = function(vote, cb){

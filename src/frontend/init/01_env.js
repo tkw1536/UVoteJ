@@ -2,7 +2,7 @@
 var
     fs = require("fs"),
     path = require("path"),
-    config = require("../../backend/config.js");
+    config = require("../../Backend/config.js");
 
 
 module.exports = function(state, logger, next){

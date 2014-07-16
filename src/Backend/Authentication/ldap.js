@@ -1,15 +1,15 @@
 var
-    Authentication = require("./index.js"),
     ldap = require('ldapjs');
 
 
 /**
- * LDAP Authentication class. Uses an LDAP server for authentication. 
+ * LDAP Authentication class. Uses an LDAP server for authentication.
  *
  * @param {object} config - Given configuration for authentication.
- * @param {Authentication~readyCallback} callback - Called once Authentication has been initalised.
+ * @param {Backend.Authentication~readyCallback} callback - Called once Authentication has been initalised.
  * @class
- * @augments Authentication
+ * @alias Backend.Authentication.LDAP
+ * @augments Backend.Authentication
  * @this {LDAP}
  */
 function LDAP(config, callback){
@@ -21,7 +21,7 @@ function LDAP(config, callback){
 /**
  * Provides information about interactive config.
  *
- * @type {Authentication.ConfigInfo[]}
+ * @type {Backend.Authentication.ConfigInfo[]}
  */
 LDAP.config = [
     ["url", "string", "Enter LDAP Server URL: "],
@@ -104,7 +104,7 @@ LDAP.prototype.makeQuery = function(user, pass, query, callback){
  *
  * @param {string} user - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~loginCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~loginCallback} callback - Callback that handles the request.
  */
 LDAP.prototype.loginUser = function(user, pass, callback){
     this.makeQuery(user, pass, "(sAMAccountName="+user+")", function(s, r){
@@ -121,7 +121,7 @@ LDAP.prototype.loginUser = function(user, pass, callback){
  *
  * @param {string} key - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~listCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~listCallback} callback - Callback that handles the request.
  */
 LDAP.prototype.getAll = function(user, pass, callback){
     var queries = "abcdefghijklmnopqrstuvwxyz";

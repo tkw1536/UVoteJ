@@ -1,4 +1,4 @@
-var DB = require("../../backend/VoteDB.js"),
+var DB = require("../../Backend/VoteDB.js"),
     MongoClient = require('mongodb').MongoClient;
 
 

@@ -1,5 +1,5 @@
 var logger = require("winston"),
-    Vote = require("../../backend/Vote.js");
+    Vote = require("../../Backend/Vote.js");
 
 module.exports = function(socket, info, user, pass, state){
 

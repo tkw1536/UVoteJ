@@ -8,9 +8,10 @@ var
  * LDAP Authentication class. Uses an LDAP server for authentication.
  *
  * @param {object} config - Given configuration for authentication.
- * @param {Authentication~readyCallback} callback - Called once Authentication has been initalised.
+ * @param {Backend.Authentication~readyCallback} callback - Called once Authentication has been initalised.
  * @class
- * @augments Authentication
+ * @alias Backend.Authentication.Dummy
+ * @augments Backend.Authentication
  * @this {Dummy}
  */
 function Dummy(config, callback){
@@ -24,7 +25,7 @@ function Dummy(config, callback){
 /**
  * Provides information about interactive config.
  *
- * @type {Authentication.ConfigInfo[]}
+ * @type {Backend.Authentication.ConfigInfo[]}
  */
 Dummy.config = [["nameField", "string", "Dummy Configuration User Field: "]];
 
@@ -41,7 +42,7 @@ Dummy.defaults = {
  *
  * @param {string} user - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~loginCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~loginCallback} callback - Callback that handles the request.
  */
 Dummy.prototype.loginUser = function(user, pass, callback){
     for(var i=0;i<this.userData.length;i++){
@@ -61,7 +62,7 @@ Dummy.prototype.loginUser = function(user, pass, callback){
  *
  * @param {string} key - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~listCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~listCallback} callback - Callback that handles the request.
  */
 Dummy.prototype.getAll = function(user, pass, callback){
     callback(true, this.userData);

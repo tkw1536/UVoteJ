@@ -5,9 +5,11 @@
  * establish a connection.
  *
  * @param {object} config - Given configuration for authentication.
- * @param {Authentication~readyCallback} callback - Called once Authentication has been initalised.
+ * @param {Backend.Authentication~readyCallback} callback - Called once Authentication has been initalised.
  * @class
- * @this {Authentication}
+ * @abstract
+ * @alias Backend.Authentication
+ * @this {Backend.Authentication}
  */
 function Authentication(config, callback){
     throw "Dummy config script only";
@@ -16,14 +18,14 @@ function Authentication(config, callback){
 /**
  * Callback for initialisation
  *
- * @callback Authentication~readyCallback
+ * @callback Backend.Authentication~readyCallback
  */
 
 /**
  * Provides information about interactive config
  *
  * @abstract
- * @return {Authentication.ConfigInfo[]}
+ * @return {Backend.Authentication.ConfigInfo[]}
  */
 Authentication.config = [];
 
@@ -42,7 +44,7 @@ Authentication.defaults = {
  *
  * @typedef {string[]} Authentication.ConfigInfo
  * @property {string} key - key of object to automatically configure.
- * @property {Authentication.configTypes} type - Configuration type.
+ * @property {Backend.Authentication.configTypes} type - Configuration type.
  * @property {string} query - Query to ask the user with.
  */
 
@@ -70,14 +72,14 @@ Authentication.configTypes = {
  * @abstract
  * @param {string} user - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~loginCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~loginCallback} callback - Callback that handles the request.
  */
 Authentication.prototype.loginUser = function(user, pass, callback){}
 
 /**
  * Callback for login Attempts.
  *
- * @callback Authentication~loginCallback
+ * @callback Backend.Authentication~loginCallback
  * @param {boolean} success - Indicates success of the login (attempt).
  * @param {object} user_info - JSON-style user information.
  */
@@ -89,16 +91,25 @@ Authentication.prototype.loginUser = function(user, pass, callback){}
  * @abstract
  * @param {string} user - Username of user to login.
  * @param {string} pass - Password of user to login.
- * @param {Authentication~listCallback} callback - Callback that handles the request.
+ * @param {Backend.Authentication~listCallback} callback - Callback that handles the request.
  */
 Authentication.prototype.getAll = function(user, pass, callback){}
 
 /**
  * Callback for login Attempts.
  *
- * @callback Authentication~listCallback
+ * @callback Backend.Authentication~listCallback
  * @param {boolean} success - Indicates success of the list request.
  * @param {object[]} user_info - Array of JSON-style user information.
  */
 
+/**
+ * List of available Authentications.
+ * @type {string[]}
+ * @static
+ */
+Authentication.available = ["dummy", "LDAP"];
+
 module.exports = Authentication;
+module.exports.dummy = require("./dummy.js");
+module.exports.ldap = require("./ldap.js")

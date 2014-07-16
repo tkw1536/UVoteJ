@@ -5,9 +5,10 @@ var
  * Creates a new PermissionNode.
  *
  * @class
- * @augments EventEmitter
- * @this {PermissionNode}
- * @param {PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
+ * @augments NodeJS.EventEmitter
+ * @alias Backend.PermissionNode
+ * @this {Backend.PermissionNode}
+ * @param {Backend.PermissionNode.Rule[]} [source_object] - Optional JSON-style source for the permissionNode.
  */
 var PermissionNode = function PermissionNode(source_object){
 
@@ -15,8 +16,8 @@ var PermissionNode = function PermissionNode(source_object){
     * JSON-style source for the permissionNode.
     *
     * @private
-    * @name PermissionNode#_data
-    * @type PermissionNode
+    * @name Backend.PermissionNode#_data
+    * @type Backend.PermissionNode
     */
     this._data = [];
 
@@ -30,8 +31,8 @@ util.inherits(PermissionNode, events.EventEmitter);
 /**
  * Updates a permissionNode from JSON.
  *
- * @param {PermissionNode.Rule[]} source_object - JSON-style source for the PermissionNode.
- * @return {PermissionNode} The PermissionNode the function was originally called on.
+ * @param {Backend.PermissionNode.Rule[]} source_object - JSON-style source for the PermissionNode.
+ * @return {Backend.PermissionNode} The PermissionNode the function was originally called on.
  */
 PermissionNode.prototype.fromJSON = function(source_object){
     this._data = source_object;
@@ -39,7 +40,7 @@ PermissionNode.prototype.fromJSON = function(source_object){
     /**
     * Update event. Occurs whenever this PermissionNode is updated.
     *
-    * @event PermissionNode#update
+    * @event Backend.PermissionNode#update
     */
     this.emit("update");
 
@@ -49,7 +50,7 @@ PermissionNode.prototype.fromJSON = function(source_object){
 /**
  * Returns the JSON-style source of this PermissionNode.
  *
- * @return {PermissionNode.Rule[]} -  The source of this PermissionNode.
+ * @return {Backend.PermissionNode.Rule[]} -  The source of this PermissionNode.
  */
 PermissionNode.prototype.toJSON = function(){
     return JSON.parse(JSON.stringify(this._data));
@@ -59,7 +60,7 @@ PermissionNode.prototype.toJSON = function(){
  * Checks if a user with the given data matches the given Rule.
  *
  * @param {object} user_data - JSON-style user information.
- * @param {PermissionNode.Rule} rule - Rule to match.
+ * @param {Backend.PermissionNode.Rule} rule - Rule to match.
  */
 PermissionNode.prototype.matchesRule = function(user_data, rule){
     //get the two different values from the rule and the data
@@ -185,12 +186,12 @@ PermissionNode.prototype.findMatchingUsers = function(users){
 /**
  * A single rule for matching users.
  *
- * @typedef {Object} PermissionNode.Rule
+ * @typedef {Object} Backend.PermissionNode.Rule
  * @property {boolean} negate - Indicates if the rule should be negated or not.
  * @property {boolean} exceptionValue - Value to return in case an exception occurs while processing.
- * @property {PermissionNode.QueryRelation} fieldRelation - Type of relation between the value of the field and the query.
+ * @property {Backend.PermissionNode.QueryRelation} fieldRelation - Type of relation between the value of the field and the query.
  * @property {*} query - Query to be related to the value in question.
- * @property {PermissionNode.LogicalRelation} nextRelation - Logical Relation to the next member in a PermissionNode.Rule array.
+ * @property {Backend.PermissionNode.LogicalRelation} nextRelation - Logical Relation to the next member in a PermissionNode.Rule array.
  */
 
 /**

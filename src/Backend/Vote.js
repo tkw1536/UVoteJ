@@ -8,9 +8,10 @@ var
  * Creates a new Vote.
  *
  * @class
- * @augments EventEmitter
- * @this {Vote}
- * @param {Vote.Source} [source_object] - Optional JSON-style source for the vote.
+ * @alias Backend.Vote
+ * @augments NodeJS.EventEmitter
+ * @this {Backend.Vote}
+ * @param {Backend.Vote.Source} [source_object] - Optional JSON-style source for the vote.
  */
 var Vote = function Vote(source_object){
 
@@ -20,7 +21,7 @@ var Vote = function Vote(source_object){
     /**
     * Human-Readable Name of this vote.
     *
-    * @name Vote#name
+    * @name Backend.Vote#name
     * @type String
     * @default Unnamed Vote from (Date)
     */
@@ -29,7 +30,7 @@ var Vote = function Vote(source_object){
     /**
     * Machine-Readable Name of this vote.
     *
-    * @name Vote#machine_name
+    * @name Backend.Vote#machine_name
     * @type String
     * @default unnamed_vote_(Date)
     */
@@ -38,7 +39,7 @@ var Vote = function Vote(source_object){
     /**
     * Description of Vote. May contain Markdown.
     *
-    * @name Vote#description
+    * @name Backend.Vote#description
     * @type String
     * @default An unnamed vote created at  (Date).
     */
@@ -47,8 +48,8 @@ var Vote = function Vote(source_object){
     /**
     * Set of options for this vote.
     *
-    * @name Vote#options
-    * @type Vote.Option[]
+    * @name Backend.Vote#options
+    * @type Backend.Vote.Option[]
     * @default []
     */
     this.options = [];
@@ -56,7 +57,7 @@ var Vote = function Vote(source_object){
     /**
     * Id of this vote. Automatically assigned by other classes.
     *
-    * @name Vote#.id
+    * @name Backend.Vote#.id
     * @type string
     * @default undefined
     */
@@ -65,7 +66,7 @@ var Vote = function Vote(source_object){
     /**
     * Minimum Number of votes required.
     *
-    * @name Vote#minVotes
+    * @name Backend.Vote#minVotes
     * @type number
     * @default 1
     */
@@ -74,7 +75,7 @@ var Vote = function Vote(source_object){
     /**
     * Maximum number of votes allowed.
     *
-    * @name Vote#maxVotes
+    * @name Backend.Vote#maxVotes
     * @type number
     * @default 1
     */
@@ -83,8 +84,8 @@ var Vote = function Vote(source_object){
     /**
     * PermissonNode representing users with access to voting.
     *
-    * @name Vote#votePermissions
-    * @type PermissionNode
+    * @name Backend.Vote#votePermissions
+    * @type Backend.PermissionNode
     */
     this.votePermissions = new PermissionNode();
 
@@ -92,8 +93,8 @@ var Vote = function Vote(source_object){
     * PermissonNode representing users with access to voting administration.
     * Might be superseded by the site-wide Admin permissionNode.
     *
-    * @name Vote#adminPermissions
-    * @type PermissionNode
+    * @name Backend.Vote#adminPermissions
+    * @type Backend.PermissionNode
     * @default Empty Permission Node.
     */
     this.adminPermissions = new PermissionNode();
@@ -101,7 +102,7 @@ var Vote = function Vote(source_object){
     /**
     * Property to identifiy users on. Preferably something like 'id'.
     *
-    * @name Vote#userIdentifier
+    * @name Backend.Vote#userIdentifier
     * @type string
     * @default name
     */
@@ -110,27 +111,27 @@ var Vote = function Vote(source_object){
     /**
     * Current Stage of the Vote.
     *
-    * @name Vote#stage
-    * @type Vote.Stage
-    * @default {@link Vote.Stage|Vote.Stage.INIT}
+    * @name Backend.Vote#stage
+    * @type Backend.Vote.Stage
+    * @default {@link Backend.Vote.Stage|Vote.Stage.INIT}
     */
     this.stage = Vote.Stage.INIT;
 
     /**
-    * Time when the {@link Vote.Stage|Vote.Stage.OPEN} is scheduled.
+    * Time when the {@link Backend.Vote.Stage|Vote.Stage.OPEN} is scheduled.
     * Set to undefined if not scheduled.
     *
-    * @name Vote#open_time
+    * @name Backend.Vote#open_time
     * @type number
     * @default undefined
     */
     this.open_time = undefined;
 
     /**
-    * Time when the {@link Vote.Stage|Vote.Stage.CLOSE} is scheduled.
+    * Time when the {@link Backend.Vote.Stage|Vote.Stage.CLOSE} is scheduled.
     * Set to undefined if not scheduled.
     *
-    * @name Vote#close_time
+    * @name Backend.Vote#close_time
     * @type number
     * @default undefined
     */
@@ -139,7 +140,7 @@ var Vote = function Vote(source_object){
     /**
     * List of votes for each opinion.
     *
-    * @name Vote#results
+    * @name Backend.Vote#results
     * @type number[]
     */
     this.results = undefined;
@@ -147,16 +148,16 @@ var Vote = function Vote(source_object){
     /**
     * List of user identifiers of people that have voted.
     *
-    * @name Vote#voters
+    * @name Backend.Vote#voters
     * @type string[]
     */
     this.voters = [];
 
     /**
-    * Current Timer for {@link Vote.Stage} scheduling or undefined.
+    * Current Timer for {@link Backend.Vote.Stage} scheduling or undefined.
     *
     * @private
-    * @name Vote#_timer
+    * @name Backend.Vote#_timer
     * @type *
     */
     this._timer = undefined;
@@ -172,8 +173,8 @@ util.inherits(Vote, events.EventEmitter);
 /**
 * Updates this Vote form JSON data.
 *
-* @param {Vote.Source} [source_object] - JSON-style source for this vote.
-* @return {Vote} - The Vote the function was originally called on.
+* @param {Backend.Vote.Source} [source_object] - JSON-style source for this vote.
+* @return {Backend.Vote} - The Vote the function was originally called on.
 */
 Vote.prototype.fromJSON = function(source_object){
 
@@ -207,7 +208,7 @@ Vote.prototype.fromJSON = function(source_object){
     /**
     * Update event. Occurs whenever this PermissionNode is updated.
     *
-    * @event Vote#update
+    * @event Backend.Vote#update
     */
     this.emit("update");
 }
@@ -215,7 +216,7 @@ Vote.prototype.fromJSON = function(source_object){
 /**
 * Returns the JSON-style source of this Vote.
 *
-* @return {Vote.Source} - The source of this Vote.
+* @return {Backend.Vote.Source} - The source of this Vote.
 */
 Vote.prototype.toJSON = function(){
     return JSON.parse(JSON.stringify({
@@ -243,13 +244,13 @@ Vote.prototype.toJSON = function(){
         "stage": this.stage,
         "open_time": this.open_time,
         "close_time": this.close_time
-    })); 
+    }));
 }
 
 /**
 * Stops all current staging timers.
 *
-* @return {Vote} - The vote this function was originally called from.
+* @return {Backend.Vote} - The vote this function was originally called from.
 */
 Vote.prototype.stopStages = function(){
     //if we have a timeout, please clear it.
@@ -265,7 +266,7 @@ Vote.prototype.stopStages = function(){
 /**
 * Sets Staging timers.
 *
-* @return {Vote} - The vote this function was originally called from.
+* @return {Backend.Vote} - The vote this function was originally called from.
 */
 Vote.prototype.startStages = function(){
     //self-reference for callbacks
@@ -340,7 +341,7 @@ Vote.prototype.startStages = function(){
 *
 * @param {object} user - JSON-like information about the user attempting to vote.
 * @param {number[]} opinions List of indexes of options selected.
-* @return {Vote.VoteState} - Status of the Voting attempt.
+* @return {Backend.Vote.VoteState} - Status of the Voting attempt.
 */
 Vote.prototype.vote = function(user, opinions){
 
@@ -448,17 +449,17 @@ Vote.VoteState = {
 /**
  * A JSON-style source object of the vote. Intended to be used to store in a database.
  *
- * @typedef {Object} Vote.Source
+ * @typedef {Object} Backend.Vote.Source
  * @property {string} name - Human-Readable Name of this vote.
  * @property {string} machine_name - Machine-Readable Name of this vote.
  * @property {string} id - Unique ID of this vote.
  * @property {string} description - Description of Vote. May contain Markdown.
- * @property {Vote.Option[]} options - Set of options for this vote.
+ * @property {Backend.Vote.Option[]} options - Set of options for this vote.
  * @property {number} minVotes - Minimum number of votes required for this vote.
  * @property {number} maxVotes - Maximum number of votes allowed for this vote.
  * @property {string} userIdentifier - Property to identifiy users on.
- * @property {PermissionNode.Rule[]} votePermissions - PermissionNode for users being able to vote on this vote.
- * @property {PermissionNode.Rule[]} adminPermissions - PermissionNode for users being able to vote on this vote.
+ * @property {Backend.PermissionNode.Rule[]} votePermissions - PermissionNode for users being able to vote on this vote.
+ * @property {Backend.PermissionNode.Rule[]} adminPermissions - PermissionNode for users being able to vote on this vote.
  * @property {number[]} results - List of results for this Vote.
  * @property {string[]} voters - List of user_identifiers of people that have voted.
  * @property {Vote.Stage} stage - Current Stage of the Vote.
@@ -469,7 +470,7 @@ Vote.VoteState = {
  /**
   * A JSON-Style Vote Option
   *
-  * @typedef {Object} Vote.Option
+  * @typedef {Object} Backend.Vote.Option
   *
   * @property {string} title - Title of this option. Short and human readable.
   * @property {string} short_description - Short, text only description of this Option.

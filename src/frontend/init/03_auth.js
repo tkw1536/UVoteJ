@@ -7,7 +7,7 @@ module.exports = function(state, logger, next){
 
         //try and load the auth
         try{
-            var auth_class = require("../../backend/auth/"+auth+".js");
+            var auth_class = require("../../Backend/Authentication/"+auth+".js");
         } catch(e){
             logger.error("AUTH: Unable to load authentication, make sure it exists. ");
             process.exit(1);
@@ -21,7 +21,7 @@ module.exports = function(state, logger, next){
     }
 
     state.authReload(function(){
-        //onto the next one. 
+        //onto the next one.
         next(state);
     })
 };

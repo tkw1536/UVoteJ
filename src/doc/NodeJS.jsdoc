@@ -1,0 +1,35 @@
+/**
+* Virtual Namespace for all external NodeJS Functions.
+* @namespace NodeJS
+*/
+
+/**
+ * NodeJS builtin EventEmitter
+ * @external NodeJS.EventEmitter
+ * @class
+ * @see {@link http://nodejs.org/api/events.html#events_class_events_eventemitter EventEmitter}
+ */
+
+
+/**
+ * NodeJS Winston Logger.
+ * Winston is a multi-transport async logging library for node.js.
+ *
+ * @external NodeJS.Winston
+ * @class
+ * @see {@link https://github.com/flatiron/winston#usage Winston}
+ */
+
+/**
+ * NodeJS MongoDB Native Driver Namespace.
+ *
+ * @namespace NodeJS.Mongo
+ * @see {@link http://mongodb.github.io/node-mongodb-native/ Node MongoDB Native}
+ */
+
+/**
+ * NodeJS MongoDB Collection.
+ *
+ * @class NodeJS.Mongo.Collection
+ * @see {@link http://mongodb.github.io/node-mongodb-native/api-generated/collection.html Node MongoDB Collection}
+ */
