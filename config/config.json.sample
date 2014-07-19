@@ -5,7 +5,7 @@
     "auth_admins": [
         "root"
     ],
-    "auth_idProperty": "name",
+    "normalise_usernames": true, 
     "auth_config": {
         "nameField": "name"
     }

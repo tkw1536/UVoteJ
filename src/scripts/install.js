@@ -12,7 +12,8 @@ var example_config_path = path.resolve(__dirname+"/../../config/config.json.samp
 var config_to_read = [
     ["mongodb", "str", "Enter mongodb adress: "],
     ["port", "int+", "Enter port: "],
-    ["auth", "str", "Enter authentication type (dummy): "]
+    ["auth", "str", "Enter authentication type (dummy): "],
+    ["normalise_usernames", "bool", "Should usernames be normalised?: "]
 ];
 
 var auth_config = {};
@@ -53,7 +54,7 @@ function parseval(type, val){
             break;
     }
 
-    return val
+    return val;
 }
 
 //read in some config
@@ -79,9 +80,7 @@ function read_config(i, config){
         //resolve the auth file
         var auth_file = config["auth"] || "dummy";
         config["auth"] = auth_file;
-
-        auth_file = __dirname + "/../backend/auth/"+auth_file.toLowerCase()+".js";
-        auth_file = require(auth_file);
+        auth_file = require(__dirname + "/../Backend/Authentication")[auth_file.toLowerCase()];
 
         //set the defaults and stuff
         auth_config = auth_file.config;

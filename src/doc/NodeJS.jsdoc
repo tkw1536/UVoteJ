@@ -33,3 +33,31 @@
  * @class NodeJS.Mongo.Collection
  * @see {@link http://mongodb.github.io/node-mongodb-native/api-generated/collection.html Node MongoDB Collection}
  */
+
+ /**
+  * NodeJS MongoDB Database.
+  *
+  * @class NodeJS.Mongo.Database
+  * @see {@link http://mongodb.github.io/node-mongodb-native/api-generated/db.html Node MongoDB Databse}
+  */
+
+/**
+ * NodeJS HTTP Server
+ *
+ * @class NodeJS.HTTPServer
+ * @see {@link http://nodejs.org/api/http.html#http_class_http_server Node HTTP Server}
+ */
+
+/**
+ * NodeJS Socket.IO Instance
+ *
+ * @class NodeJS.SocketIO
+ * @see {@link http://socket.io/docs/server-api/ Socket.IO Docs}
+ */
+
+ /**
+  * NodeJS Express Instance
+  *
+  * @class NodeJS.Express
+  * @see {@link  http://expressjs.com/4x/api.html Express Docs}
+  */

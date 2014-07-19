@@ -62,7 +62,7 @@ module.exports.write = function(configuration){
  * @property {string} mongodb - {@link https://www.mongodb.org/|MongoDB} Server to use.
  * @property {string} auth - Authentication method to use. See the Authentication namespace.
  * @property {string} auth_admins - List of administrators.
- * @property {string} auth_idProperty - Property to use as user name identifier.
+ * @property {boolean} normalise_usernames - Boolean indicating if usernames should be normalised when authorising.
  * @property {object} auth_config - Authentification configuration passed to the correct Authentication class.
  */
 

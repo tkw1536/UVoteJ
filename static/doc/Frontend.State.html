@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: Authentication</title>
+    <title>Namespace: State</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -790,7 +790,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="Backend.Authentication.html">Class: Authentication</h1>
+        <h1 class="page-title" data-filename="Frontend.State.html">Namespace: State</h1>
         
 
 
@@ -799,9 +799,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="Backend.html">Backend</a>.</span>
+        <span class="ancestors"><a href="Frontend.html">Frontend</a>.</span>
     
-    Authentication
+    State
     </h2>
     
 </header>  
@@ -812,111 +812,10 @@
     
     
         
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="Authentication">
-            
-            <span class="type-signature ">abstract</span>new Backend.Authentication<span class="signature">(config, callback)</span>
-        </h4>
-    
+            <div class="description">The current State of the server.</div>
         
-        <div class="tag-source">
-            Backend/Authentication/index.js, line 14
-        </div>
         
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new Authentication Class. This class is supposed to be inherited by
-custom Authentication modules.
-This function is the constructor called once on startup. Should be used to
-establish a connection.
-    </div>
-    
-
-    
-    
-    
-        <h5>This:</h5>
-        <ul><li>{<a href="Backend.Authentication.html">Backend.Authentication</a>}</li></ul>
-    
-    
-    
         
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>config</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Given configuration for authentication.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Backend.Authentication.html#readyCallback">Backend.Authentication~readyCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Called once Authentication has been initalised.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
 <dl class="details">
     
         
@@ -941,20 +840,8 @@ establish a connection.
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
+        
+        
     
     </div>
     
@@ -964,16 +851,6 @@ establish a connection.
     
     
     
-    
-        <h3 class="subsection-title">Classes</h3>
-        
-        <dl>
-            <dt><a href="Backend.Authentication.Dummy.html">Dummy</a></dt>
-            <dd></dd>
-        
-            <dt><a href="Backend.Authentication.LDAP.html">LDAP</a></dt>
-            <dd></dd>
-        </dl>
     
     
     
@@ -985,7 +862,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="available"><span class="type-signature static">static</span>Backend.Authentication.available<span class="type-signature type array.<string>">Array.&lt;string></span> </h4>
+        <h4 class="name" id="AdminClientPool"><span class="type-signature static">static</span>Frontend.State.AdminClientPool<span class="type-signature type frontend.server.adminclientpool"><a href="Frontend.Server.AdminClientPool.html">Frontend.Server.AdminClientPool</a></span> </h4>
     </div>
     
     
@@ -993,7 +870,7 @@ establish a connection.
 <dd>
     
     <div class="description">
-        List of available Authentications.
+        The Server AdminClientPool.
     </div>
     
     
@@ -1030,7 +907,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="config"><span class="type-signature ">abstract,static</span>Backend.Authentication.config</h4>
+        <h4 class="name" id="app"><span class="type-signature static">static</span>Frontend.State.app<span class="type-signature type nodejs.express"><a href="NodeJS.Express.html">NodeJS.Express</a></span> </h4>
     </div>
     
     
@@ -1038,7 +915,7 @@ establish a connection.
 <dd>
     
     <div class="description">
-        Provides information about interactive config
+        The Express instance for the server.
     </div>
     
     
@@ -1075,7 +952,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="configTypes"><span class="type-signature static">static</span>Backend.Authentication.configTypes<span class="type-signature type string">string</span> </h4>
+        <h4 class="name" id="auth"><span class="type-signature static">static</span>Frontend.State.auth<span class="type-signature type backend.authentication"><a href="Backend.Authentication.html">Backend.Authentication</a></span> </h4>
     </div>
     
     
@@ -1083,7 +960,142 @@ establish a connection.
 <dd>
     
     <div class="description">
-        Available types for configuration.
+        The current Authentication instance.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="config"><span class="type-signature static">static</span>Frontend.State.config<span class="type-signature type backend.config.config"><a href="Backend.config.html#config">Backend.config.config</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current Configuration of the server. Magically written/read  to/from file.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="db"><span class="type-signature static">static</span>Frontend.State.db<span class="type-signature type nodejs.mongo.database"><a href="NodeJS.Mongo.Database.html">NodeJS.Mongo.Database</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current MONGODB Database.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="dirs"><span class="type-signature static">static</span>Frontend.State.dirs<span class="type-signature type object">object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Directory information for the server.
     </div>
     
     
@@ -1107,8 +1119,6 @@ establish a connection.
 		
 		
 		
-		<th>Default</th>
-		
 		
 		<th class="last">Description</th>
 	</tr>
@@ -1119,7 +1129,7 @@ establish a connection.
 	
         <tr>
             
-                <td class="name"><code>STR</code></td>
+                <td class="name"><code>root</code></td>
             
             
             <td class="type">
@@ -1134,21 +1144,15 @@ establish a connection.
             
             
             
-                <td class="default">
-                
-                    str
-                
-                </td>
             
-            
-            <td class="description last">String</td>
+            <td class="description last">The root directory.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>INT</code></td>
+                <td class="name"><code>static</code></td>
             
             
             <td class="type">
@@ -1163,21 +1167,15 @@ establish a connection.
             
             
             
-                <td class="default">
-                
-                    int
-                
-                </td>
             
-            
-            <td class="description last">Integer</td>
+            <td class="description last">The static/ directory.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>INT_POSITIVE</code></td>
+                <td class="name"><code>src</code></td>
             
             
             <td class="type">
@@ -1192,72 +1190,8 @@ establish a connection.
             
             
             
-                <td class="default">
-                
-                    int+
-                
-                </td>
             
-            
-            <td class="description last">Positive Integer</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>FLOAT</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    float
-                
-                </td>
-            
-            
-            <td class="description last">Float number</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>BOOL</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    bool
-                
-                </td>
-            
-            
-            <td class="description last">Boolean</td>
+            <td class="description last">The src/ directory.</td>
         </tr>
 	
 	
@@ -1295,7 +1229,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="defaults"><span class="type-signature ">abstract,static</span>Backend.Authentication.defaults<span class="type-signature type object">object</span> </h4>
+        <h4 class="name" id="io"><span class="type-signature static">static</span>Frontend.State.io<span class="type-signature type nodejs.socketio"><a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a></span> </h4>
     </div>
     
     
@@ -1303,7 +1237,187 @@ establish a connection.
 <dd>
     
     <div class="description">
-        Configuration defaults.
+        The Socket.IO instance for the server.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="logs"><span class="type-signature static">static</span>Frontend.State.logs<span class="type-signature type array.<frontend.state.log>">Array.&lt;<a href="Frontend.State.html#Log">Frontend.State.Log</a>></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        List of server logs accumulated since server start.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="server"><span class="type-signature static">static</span>Frontend.State.server<span class="type-signature type nodejs.httpserver"><a href="NodeJS.HTTPServer.html">NodeJS.HTTPServer</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The HTTPServer instance for the server.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="started"><span class="type-signature static">static</span>Frontend.State.started<span class="type-signature type date">Date</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The Time when the server was started.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="votes"><span class="type-signature static">static</span>Frontend.State.votes<span class="type-signature type backend.votedb"><a href="Backend.VoteDB.html">Backend.VoteDB</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current Databse of Votes.
     </div>
     
     
@@ -1346,14 +1460,14 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="getAll">
+        <h4 class="name" id="authReload">
             
-            <span class="type-signature ">abstract</span>getAll<span class="signature">(user, pass, callback)</span>
+            <span class="type-signature static">static</span>Frontend.State.authReload<span class="signature">(cb)</span>
         </h4>
     
         
         <div class="tag-source">
-            Backend/Authentication/index.js, line 96
+            Frontend/Run/init/03_auth.js, line 8
         </div>
         
     </div>
@@ -1364,7 +1478,7 @@ establish a connection.
     
     
     <div class="description">
-        Lists all users.
+        Reloads the Authentication as given by the current server configuration.
     </div>
     
 
@@ -1395,13 +1509,13 @@ establish a connection.
 	
         <tr>
             
-                <td class="name"><code>user</code></td>
+                <td class="name"><code>cb</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">function</span>
 
 
             
@@ -1411,215 +1525,7 @@ establish a connection.
             
             <td class="description last">
                 
-                Username of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Backend.Authentication.html#listCallback">Backend.Authentication~listCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback that handles the request.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="loginUser">
-            
-            <span class="type-signature ">abstract</span>loginUser<span class="signature">(user, pass, callback)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Backend/Authentication/index.js, line 77
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Authenticates a single user.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Username of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>pass</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Password of user to login.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Backend.Authentication.html#loginCallback">Backend.Authentication~loginCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback that handles the request.</td>
+                Callback</td>
         </tr>
 	
 	
@@ -1676,175 +1582,27 @@ establish a connection.
                 
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="listCallback">
-            
-            listCallback<span class="signature">(success, user_info)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Backend/Authentication/index.js, line 98
-        </div>
-        
+        <h4 class="name" id="Log">Frontend.State.Log<span class="type-signature type object">object</span> </h4>
     </div>
-
+    
     
 </dt>
 <dd>
     
-    
     <div class="description">
-        Callback for login Attempts.
+        A server log entry.
     </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>success</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Indicates success of the list request.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>user_info</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;object></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Array of JSON-style user information.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
     
     
     
 <dl class="details">
     
         
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-            
-                
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="loginCallback">
-            
-            loginCallback<span class="signature">(success, user_info)</span>
-        </h4>
-    
+        <h5 class="subsection-title">Properties:</h5>
         
-        <div class="tag-source">
-            Backend/Authentication/index.js, line 79
-        </div>
-        
-    </div>
+        <dl>
 
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Callback for login Attempts.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
+<table class="props">
     <thead>
 	<tr>
 		
@@ -1852,6 +1610,8 @@ establish a connection.
 		
 		
 		<th>Type</th>
+		
+		
 		
 		
 		
@@ -1864,13 +1624,13 @@ establish a connection.
 	
         <tr>
             
-                <td class="name"><code>success</code></td>
+                <td class="name"><code>level</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">string</span>
 
 
             
@@ -1878,16 +1638,39 @@ establish a connection.
             
             
             
-            <td class="description last">
-                
-                Indicates success of the login (attempt).</td>
+            
+            
+            <td class="description last">The level of the log message.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>user_info</code></td>
+                <td class="name"><code>message</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The message of the log entry.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>meta</code></td>
             
             
             <td class="type">
@@ -1901,18 +1684,38 @@ establish a connection.
             
             
             
-            <td class="description last">
+            
+            
+            <td class="description last">Meta Information</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+            
+            <td class="type">
+            
                 
-                JSON-style user information.</td>
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Time when the message was recorded.</td>
         </tr>
 	
 	
 	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
+</table></dl>
+        
     
         
     
@@ -1936,87 +1739,6 @@ establish a connection.
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-            
-                
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="readyCallback">
-            
-            readyCallback<span class="signature">()</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Backend/Authentication/index.js, line 18
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Callback for initialisation
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
     
     
 </dd>

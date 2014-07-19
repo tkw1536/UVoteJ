@@ -2,16 +2,30 @@
 var
     fs = require("fs"),
     path = require("path"),
-    config = require("../../Backend/config.js");
+    config = require("../../../Backend/config.js");
 
 
 module.exports = function(state, logger, next){
-    //the root directory
+    /**
+     * Directory information for the server.
+     *
+     * @alias Frontend.State.dirs
+     * @property {string} root - The root directory.
+     * @property {string} static - The static/ directory.
+     * @property {string} src - The src/ directory.
+     * @type {object}
+     */
     state.dirs = {};
-    state.dirs.root = path.resolve(__dirname + "/../../../")+"/";
-    state.dirs.static = state.dirs.root + "static/"
 
-    //read / write config
+    state.dirs.root = path.resolve(__dirname + "/../../../../")+"/";
+    state.dirs.static = state.dirs.root + "static/"
+    state.dirs.src = state.dirs.root + "src/"
+
+    /**
+     * Current Configuration of the server. Magically written/read  to/from file.
+     * @name Frontend.State.config
+     * @type {Backend.config.config}
+     */
     Object.defineProperty(state, "config", {
         "set": function(c){
             //write the config back

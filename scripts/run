@@ -10,6 +10,6 @@ if ! which node >/dev/null; then
     echo "Missing node. "
     exit 1
 else
-    node "$ROOTDIR/src/frontend/index.js"
+    node "$ROOTDIR/src/Frontend/Run/index.js"
     exit $?
 fi

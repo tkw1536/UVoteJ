@@ -1,8 +1,26 @@
 var logger = require("winston"),
     util = require("util");
+/**
+ * The current State of the server.
+ * @namespace Frontend.State
+ */
 
-//State
-var state = {"started": new Date(), "logs": []};
+var state = {
+    /**
+     * The Time when the server was started.
+     *
+     * @memberof Frontend.State
+     * @type {Date}
+    */
+    "started": new Date(),
+    /**
+     * List of server logs accumulated since server start.
+     *
+     * @memberof Frontend.State
+     * @type {Frontend.State.Log[]}
+     */
+    "logs": []
+};
 
 //Custom logger that stores all the logs
 var StoreLogger = logger.transports.StoreLogger = function (options) {
@@ -11,7 +29,14 @@ var StoreLogger = logger.transports.StoreLogger = function (options) {
 };
 util.inherits(StoreLogger, logger.Transport);
 StoreLogger.prototype.log = function (level, msg, meta, callback) {
-
+    /**
+     * A server log entry.
+     * @typedef {object} Frontend.State.Log
+     * @property {string} level - The level of the log message.
+     * @property {string} message - The message of the log entry.
+     * @property {object} meta - Meta Information
+     * @property {number} time - Time when the message was recorded.
+     */
     state.logs.push({
         "level": level,
         "message": msg,

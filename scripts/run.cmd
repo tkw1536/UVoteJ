@@ -7,7 +7,7 @@ cd "%rootdir%"
 
 REM Make sure we have node
 where node >nul 2>&1 && (
-    node "%ROOTDIR%/src/frontend/index.js"
+    node "%ROOTDIR%/src/Frontend/Run/index.js"
     exit /B %ERRORLEVEL%
 ) || (
     echo Missing node.
