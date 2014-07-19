@@ -167,6 +167,7 @@ PermissionNode.prototype.matches = function(user_data){
 
         }
 
+        //set the next relation
         relation = e["nextRelation"];
     })
 
@@ -187,10 +188,11 @@ PermissionNode.prototype.findMatchingUsers = function(users){
  * A single rule for matching users.
  *
  * @typedef {Object} Backend.PermissionNode.Rule
+ * @property {string} fieldName - Field to use.
  * @property {boolean} negate - Indicates if the rule should be negated or not.
  * @property {boolean} exceptionValue - Value to return in case an exception occurs while processing.
  * @property {Backend.PermissionNode.QueryRelation} fieldRelation - Type of relation between the value of the field and the query.
- * @property {*} query - Query to be related to the value in question.
+ * @property {string} query - Query to be related to the value in question.
  * @property {Backend.PermissionNode.LogicalRelation} nextRelation - Logical Relation to the next member in a PermissionNode.Rule array.
  */
 
