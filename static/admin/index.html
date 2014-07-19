@@ -23,13 +23,32 @@
 </head>
 <body>
 
-    <div class="part" id="init">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 col-md-offset-5" id="message">
-                    Nothing yet.
-                </div>
-            </div>
+    <div class="container" id="loader">
+        <div class="row">
+            <h1>Loading ...</h1>
+            <p class="lead">We are currently loading the admin page. </p>
+            <p class="loaderMessage">Give us a second. </p>
+        </div>
+    </div>
+
+    <div class="container hidden" id="login">
+        <div class="row">
+<form class="form-login" role="form">
+        <h2 class="form-login-heading">Please authenticate</h2>
+        <div>
+            <div class="alert alert-danger" role="alert"></div>
+        </div>
+        <input type="text" id="login-username" class="form-control" placeholder="Username" autofocus="" autocomplete="off">
+        <input type="password" id="login-password" class="form-control" placeholder="Password">
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
+    </form>
+        </div>
+    </div>
+
+    <div class="container hidden" id="manager">
+        <div class="row">
+            <h1>We're sorry, </h1>
+            <p class="lead">but there is nothing here yet. </p>
         </div>
     </div>
 

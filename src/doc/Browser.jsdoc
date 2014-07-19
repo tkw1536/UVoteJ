@@ -1,0 +1,11 @@
+/**
+* Namespace for all Client-side Browser functionality.
+* @namespace Browser
+*/
+
+/**
+ * A jQuery element.
+ * @external Browser.jQuery
+ * @class
+ * @see {@link http://api.jquery.com/ jQuery Documentation}
+ */

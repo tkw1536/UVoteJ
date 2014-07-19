@@ -73,43 +73,44 @@ var AdminClient = function AdminClient(socket, AdminClientPool, server_state){
     */
     this.loggedIn = false;
 
-    var init = function(){
-        me.socket.once(Protocol.ADMIN.LOGIN, function(user, password){
+    //wait for login requests
+    me.socket.on(Protocol.ADMIN.LOGIN, function(user, password){
 
-            if(me.server_state.config.normalise_usernames){
-                //normalise the username, please
-                var user = user.toLowerCase().trim();
-            }
+        //we are already logged in => we cant do that again.
+        if(me.loggedIn){
+            socket.emit(Protocol.ADMIN.LOGIN, false, "Already logged in. ");
+            return;
+        }
 
-            me.server_state.auth.loginUser(user, password, function(s, user_info){
-                if(!s){
-                    //re-init
-                    init();
-                    socket.emit(Protocol.ADMIN.LOGIN, false, "Login failed. ");
+        if(me.server_state.config.normalise_usernames){
+            //normalise the username, please
+            var user = user.toLowerCase().trim();
+        }
+
+        me.server_state.auth.loginUser(user, password, function(s, user_info){
+            if(!s){
+                logger.info("ADMIN: Failed to authenticate", me.id);
+                socket.emit(Protocol.ADMIN.LOGIN, false, "Unknown username / password. ");
+            } else {
+                if(me.server_state.config.auth_admins.indexOf(user) !== -1){
+                    me.loggedin(user, password, user_info);
+                    socket.emit(Protocol.ADMIN.LOGIN, true);
                 } else {
-                    if(me.server_state.config.auth_admins.indexOf(user) !== -1){
-                        me.loggedin(user, password, user_info);
-                        socket.emit(Protocol.ADMIN.LOGIN, true);
-                    } else {
-                        //re-init, we are not an admin
-                        init();
-                        socket.emit(Protocol.ADMIN.LOGIN, false, "User is not an administrator. ");
-                    }
+                    logger.info("ADMIN: Blocked non-admin login attempt by", me.id, "(", user, ")");
+                    socket.emit(Protocol.ADMIN.LOGIN, false, "You are not an administrator. This is the admin login. Do not try to vote here. ");
                 }
-            });
+            }
         });
-    };
+    });
 
     //register with the AdminClientPool
     this.AdminClientPool.clients[this.id] = this;
 
-    init();
-
     // All the logout events
-    me.socket.on(Protocol.ADMIN.DISCONNECT, function(){
+    this.socket.once(Protocol.ADMIN.DISCONNECT, function(){
         me.destroyed();
     });
-    me.socket.on(Protocol.ADMIN.CANCEL_LOGIN, function(){
+    this.socket.once(Protocol.ADMIN.CANCEL_LOGIN, function(){
         me.destroyed(true);
     });
 }
@@ -159,7 +160,11 @@ AdminClient.prototype.logout = function(){
  * @param {boolean} keep_socket - Boolean indicating if the connection should be kept open.
  */
 AdminClient.prototype.destroyed = function(keep_socket){
-    logger.info("ADMIN: Destroying client", this.id);
+    if (keep_socket){
+        logger.info("ADMIN: Destroying client", this.id);
+    } else {
+        logger.info("ADMIN: Destroying connection", this.id);
+    }
 
     //Delete all the information
     this.loggedIn = false;
@@ -168,7 +173,11 @@ AdminClient.prototype.destroyed = function(keep_socket){
     this.login_info = undefined;
 
     if(!keep_socket){
+        //close the connection
         this.socket.disconnect();
+    } else {
+        //no longer listen to login attempts
+        this.socket.off(Protocol.ADMIN.LOGIN);
     }
 
     //unregister from the AdminClientPool

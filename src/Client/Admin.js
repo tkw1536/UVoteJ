@@ -36,18 +36,14 @@ Client.Admin = function(){
 Client.Admin.prototype.login = function(username, password, callback){
     var me = this;
 
-    if(typeof this.socket !== "undefined" || this.isLoggedIn){
+    if(this.isLoggedIn){
         return false;
     } else {
-        this.socket = io.connect(location.protocol+"//"+location.hostname+((location.port == "")?"":":"+location.port), {reconnect: false});
-        this.socket.on(Client.Protocol.ADMIN.ADMIN_MESSAGE_BROADCAST, function(msg){
-            alert(msg);
-        });
-        this.socket.once(Client.Protocol.ADMIN.CONNECT, function(){
+        var login = function(){
+            //listen for the answer
             me.socket.once(Client.Protocol.ADMIN.LOGIN, function(s, msg){
                 if(!s){
-                    //we couldn't log in => logout everything
-                    me.logout();
+                    //we couldn't log in
                     callback(false, msg);
                 } else {
                     me.isLoggedIn = true;
@@ -55,8 +51,28 @@ Client.Admin.prototype.login = function(username, password, callback){
                 }
             })
 
+            //emit the login event
             me.socket.emit(Client.Protocol.ADMIN.LOGIN, username, password);
-        });
+        }
+
+
+        if(!this.socket){
+            //we need to make a socket first
+            this.socket = io.connect(location.protocol+"//"+location.hostname+((location.port == "")?"":":"+location.port), {reconnect: false});
+
+            //listen for the nice broadcasts
+            this.socket.on(Client.Protocol.ADMIN.ADMIN_MESSAGE_BROADCAST, function(msg){
+                alert(msg);
+            });
+
+            //once we are connected, try to login
+            this.socket.once(Client.Protocol.ADMIN.CONNECT, function(){
+                login();
+            });
+        } else {
+            //we a already have a socket, we can login immediatly
+            login();
+        }
         return true;
     }
 }
@@ -69,7 +85,7 @@ Client.Admin.prototype.login = function(username, password, callback){
 Client.Admin.prototype.logout = function(){
     //disconnect the server
     try{
-        this.socket.disconnect();
+        this.socket.close();
     } catch(e){}
 
 
