@@ -106,8 +106,8 @@
                 template.find("input[type=text]").eq(0).val(val["fieldName"]);
 
                 //set fieldRelation
-                for(var k in Client.protocol.QueryRelation){
-                    if(Client.protocol.QueryRelation[k] == val["fieldRelation"]){
+                for(var k in Client.Protocol.QueryRelation){
+                    if(Client.Protocol.QueryRelation[k] == val["fieldRelation"]){
                         template.find("select").eq(0).val(k);
                         break;
                     }
@@ -117,8 +117,8 @@
                 template.find("input[type=text]").eq(1).val(val["query"]);
 
                 //set nextRelation
-                for(var k in Client.protocol.LogicalRelation){
-                    if(Client.protocol.LogicalRelation[k] == val["nextRelation"]){
+                for(var k in Client.Protocol.LogicalRelation){
+                    if(Client.Protocol.LogicalRelation[k] == val["nextRelation"]){
                         template.find("select").eq(1).val(k);
                         break;
                     }
@@ -200,10 +200,10 @@
                 "exceptionValue": exceptionValue,
 
                 "fieldName": fname,
-                "fieldRelation": Client.protocol.QueryRelation[frelation],
+                "fieldRelation": Client.Protocol.QueryRelation[frelation],
 
                 "query": query,
-                "nextRelation": Client.protocol.LogicalRelation[lrelation]
+                "nextRelation": Client.Protocol.LogicalRelation[lrelation]
             });
         });
 
@@ -222,10 +222,10 @@
         "exceptionValue": false,
 
         "fieldName": "",
-        "fieldRelation": Client.protocol.QueryRelation.EQUALS,
+        "fieldRelation": Client.Protocol.QueryRelation.EQUALS,
 
         "query": "",
-        "nextRelation": Client.protocol.LogicalRelation.AND
+        "nextRelation": Client.Protocol.LogicalRelation.AND
     }
 
     $.fn.PermissionNodeEditor = PermissionNodeEditor;

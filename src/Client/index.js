@@ -96,13 +96,7 @@ var Client = (function(){
     * @param {function} cb - Callback to call once the client is loaded.
     */
     Client.load = function(client, cb){
-        if(!Client.Protocol){
-            //laod the protocol as well
-            loadExternalJS(["/lib/client/protocol.js", "/lib/client/"+client+".js"], cb);
-        } else {
-            //load everythiong now. 
-            loadExternalJS("/lib/client/"+client+".js", cb);
-        }
+        loadExternalJS("/lib/client/"+client+".js", cb);
         return
     }
 

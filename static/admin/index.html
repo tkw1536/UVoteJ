@@ -33,29 +33,59 @@
 
     <div class="container hidden" id="login">
         <div class="row">
-<form class="form-login" role="form">
-        <h2 class="form-login-heading">Please authenticate</h2>
-        <div>
-            <div class="alert alert-danger" role="alert"></div>
-        </div>
-        <input type="text" id="login-username" class="form-control" placeholder="Username" autofocus="" autocomplete="off">
-        <input type="password" id="login-password" class="form-control" placeholder="Password">
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
-    </form>
-        </div>
-    </div>
-
-    <div class="container hidden" id="manager">
-        <div class="row">
-            <h1>Welcome! </h1>
-            <p class="lead">Please get started by selecting one of the entries on the left. </p>
+            <form class="form-login" role="form">
+                <h2 class="form-login-heading">Please authenticate</h2>
+                <div>
+                    <div class="alert alert-danger" role="alert"></div>
+                </div>
+                <input type="text" id="login-username" class="form-control" placeholder="Username" autofocus="" autocomplete="off">
+                <input type="password" id="login-password" class="form-control" placeholder="Password">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
+            </form>
         </div>
     </div>
 
+    <div class="container hidden wrapper" id="manager">
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand"><a href="#" class="active">UVoteJ Admin Panel</a></li>
+                    <li><a href="#">Votes</a></li>
+                    <li>
+                        <ul class="sidebar-navmenu">
+                            <li><a href="#">A</a></li>
+                            <li><a href="#">B</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Config</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+            <div id="page-content-wrapper">
+                <div class="page-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Welcome! </h1>
+                                <p class="lead">Please get started by selecting one of the entries on the left. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libs -->
     <script src="/lib/jquery/jquery.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Gui & Client code -->
     <script src="/lib/client/index.js"></script>
+    <script src="/lib/client/protocol.js"></script>
+    <script src="/lib/gui/PermissionNodeEditor.js"></script>
     <script src="/lib/gui/Admin.js"></script>
 </body>
 </html>
