@@ -187,6 +187,16 @@
             
                 <li data-name="Frontend.Server.Protocol.ADMIN"><a href="Frontend.Server.Protocol.html#ADMIN">ADMIN</a></li>
             
+                <li data-name="Frontend.Server.Protocol.configTypes"><a href="Frontend.Server.Protocol.html#configTypes">configTypes</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.LogicalRelation"><a href="Frontend.Server.Protocol.html#LogicalRelation">LogicalRelation</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.QueryRelation"><a href="Frontend.Server.Protocol.html#QueryRelation">QueryRelation</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.Stage"><a href="Frontend.Server.Protocol.html#Stage">Stage</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.VoteState"><a href="Frontend.Server.Protocol.html#VoteState">VoteState</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -517,7 +527,7 @@
             
                 <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
             
-                <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
+                <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
             
                 <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
             
@@ -666,6 +676,10 @@
             
             <span class="subtitle">Methods</span>
             
+                <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
+            
+                <li data-name="Client.Admin#getVoteById"><a href="Client.Admin.html#getVoteById">getVoteById</a></li>
+            
                 <li data-name="Client.Admin#login"><a href="Client.Admin.html#login">login</a></li>
             
                 <li data-name="Client.Admin#logout"><a href="Client.Admin.html#logout">logout</a></li>
@@ -719,6 +733,10 @@
             
                 <li data-name="Frontend.Server.AdminClient#message"><a href="Frontend.Server.AdminClient.html#message">message</a></li>
             
+                <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
+            
+                <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
+            
             </ul>
             <ul class="events itemMembers">
             
@@ -762,10 +780,6 @@
             <span class="subtitle">Members</span>
             
                 <li data-name="Gui.PermissionNodeEditor.default"><a href="Gui.PermissionNodeEditor.html#default">default</a></li>
-            
-                <li data-name="Gui.PermissionNodeEditor.LogicalRelation"><a href="Gui.PermissionNodeEditor.html#LogicalRelation">LogicalRelation</a></li>
-            
-                <li data-name="Gui.PermissionNodeEditor.QueryRelation"><a href="Gui.PermissionNodeEditor.html#QueryRelation">QueryRelation</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -1210,7 +1224,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="configTypes"><span class="type-signature static">static</span>Backend.Authentication.configTypes<span class="type-signature type string">string</span> </h4>
+        <h4 class="name" id="configTypes"><span class="type-signature static">static</span>Backend.Authentication.configTypes</h4>
     </div>
     
     
@@ -1226,181 +1240,6 @@ establish a connection.
 <dl class="details">
     
         
-        <h5 class="subsection-title">Properties:</h5>
-        
-        <dl>
-
-<table class="props">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>STR</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    str
-                
-                </td>
-            
-            
-            <td class="description last">String</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>INT</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    int
-                
-                </td>
-            
-            
-            <td class="description last">Integer</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>INT_POSITIVE</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    int+
-                
-                </td>
-            
-            
-            <td class="description last">Positive Integer</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>FLOAT</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    float
-                
-                </td>
-            
-            
-            <td class="description last">Float number</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>BOOL</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    bool
-                
-                </td>
-            
-            
-            <td class="description last">Boolean</td>
-        </tr>
-	
-	
-	</tbody>
-</table></dl>
-        
-    
-        
     
     
     
@@ -1417,6 +1256,13 @@ establish a connection.
     
     
     
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Frontend.Server.Protocol.html#configTypes">Frontend.Server.Protocol.configTypes</a></li>
+        </ul>
+    </dd>
     
     
     
@@ -1488,7 +1334,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            Backend/Authentication/index.js, line 96
+            Backend/Authentication/index.js, line 84
         </div>
         
     </div>
@@ -1650,7 +1496,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            Backend/Authentication/index.js, line 77
+            Backend/Authentication/index.js, line 65
         </div>
         
     </div>
@@ -1818,7 +1664,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            Backend/Authentication/index.js, line 98
+            Backend/Authentication/index.js, line 86
         </div>
         
     </div>
@@ -1957,7 +1803,7 @@ establish a connection.
     
         
         <div class="tag-source">
-            Backend/Authentication/index.js, line 79
+            Backend/Authentication/index.js, line 67
         </div>
         
     </div>
@@ -2171,7 +2017,7 @@ establish a connection.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 19 2014 17:59:58 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 19 2014 18:59:02 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

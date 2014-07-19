@@ -50,21 +50,9 @@ Authentication.defaults = {
 
 /**
  * Available types for configuration.
- *
- * @enum {string}
+ * @see {@link Frontend.Server.Protocol.configTypes}
  */
-Authentication.configTypes = {
-    /** String */
-    STR:  "str",
-    /** Integer */
-    INT: "int",
-    /** Positive Integer */
-    INT_POSITIVE:  "int+",
-    /** Float number */
-    FLOAT: "float",
-    /** Boolean */
-    BOOL: "bool"
-};
+Authentication.configTypes = require("../../Frontend/Server/protocol.js").configTypes;
 
 /**
  * Authenticates a single user.

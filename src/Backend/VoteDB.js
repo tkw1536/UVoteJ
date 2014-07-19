@@ -16,6 +16,7 @@ var VoteDB = function VoteDB(collection, callback){
 
     /**
      * Collection of supervised votes.
+     * @type object<string,Backend.Vote>
      * @name Backend.VoteDB#votes
      */
     this.votes = {};

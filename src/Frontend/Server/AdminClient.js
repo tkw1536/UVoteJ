@@ -1,5 +1,6 @@
 var AdminClient = require("./AdminClient.js"),
     Protocol = require("./protocol.js"),
+    Vote = require("../../Backend").Vote
     logger = require("winston");
 
 /**
@@ -133,8 +134,51 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
 
     //Sending Admin Broadcasts
     this.socket.on(Protocol.ADMIN.ADMIN_MESSAGE_BROADCAST, function(msg){
-        me.AdminClientPool.message(msg);
+        if(me.loggedIn){
+            me.AdminClientPool.message(msg);
+        }
     });
+
+    //Listing UUIDs
+    this.socket.on(Protocol.ADMIN.LIST_VOTE_UUIDS, function(){
+        if(me.loggedIn){
+            me.sendUUIDs();
+        }
+    });
+}
+
+/**
+ * Sends all existing vote UUIDs to the client.
+ */
+AdminClient.prototype.sendUUIDs = function(){
+    var uuids = [];
+
+    for(uuid in this.server_state.votes.votes){
+        uuids.push(uuid);
+    }
+
+    //Log entry
+    logger.info("ADMIN: Sending UUIDs to", this.id);
+
+    //send the uuids to the client
+    this.socket.emit(Protocol.ADMIN.LIST_VOTE_UUIDS, true, uuids);
+}
+
+/**
+ * Sends information about a specific vote to the client. 
+ */
+AdminClient.prototype.sendUUIDs = function(){
+    var uuids = [];
+
+    for(uuid in this.server_state.votes.votes){
+        uuids.push(uuid);
+    }
+
+    //Log entry
+    logger.info("ADMIN: Sending UUIDs to", this.id);
+
+    //send the uuids to the client
+    this.socket.emit(Protocol.ADMIN.LIST_VOTE_UUIDS, true, uuids);
 }
 
 /**

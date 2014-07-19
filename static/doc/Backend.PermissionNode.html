@@ -187,6 +187,16 @@
             
                 <li data-name="Frontend.Server.Protocol.ADMIN"><a href="Frontend.Server.Protocol.html#ADMIN">ADMIN</a></li>
             
+                <li data-name="Frontend.Server.Protocol.configTypes"><a href="Frontend.Server.Protocol.html#configTypes">configTypes</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.LogicalRelation"><a href="Frontend.Server.Protocol.html#LogicalRelation">LogicalRelation</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.QueryRelation"><a href="Frontend.Server.Protocol.html#QueryRelation">QueryRelation</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.Stage"><a href="Frontend.Server.Protocol.html#Stage">Stage</a></li>
+            
+                <li data-name="Frontend.Server.Protocol.VoteState"><a href="Frontend.Server.Protocol.html#VoteState">VoteState</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -517,7 +527,7 @@
             
                 <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
             
-                <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
+                <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
             
                 <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
             
@@ -666,6 +676,10 @@
             
             <span class="subtitle">Methods</span>
             
+                <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
+            
+                <li data-name="Client.Admin#getVoteById"><a href="Client.Admin.html#getVoteById">getVoteById</a></li>
+            
                 <li data-name="Client.Admin#login"><a href="Client.Admin.html#login">login</a></li>
             
                 <li data-name="Client.Admin#logout"><a href="Client.Admin.html#logout">logout</a></li>
@@ -719,6 +733,10 @@
             
                 <li data-name="Frontend.Server.AdminClient#message"><a href="Frontend.Server.AdminClient.html#message">message</a></li>
             
+                <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
+            
+                <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
+            
             </ul>
             <ul class="events itemMembers">
             
@@ -762,10 +780,6 @@
             <span class="subtitle">Members</span>
             
                 <li data-name="Gui.PermissionNodeEditor.default"><a href="Gui.PermissionNodeEditor.html#default">default</a></li>
-            
-                <li data-name="Gui.PermissionNodeEditor.LogicalRelation"><a href="Gui.PermissionNodeEditor.html#LogicalRelation">LogicalRelation</a></li>
-            
-                <li data-name="Gui.PermissionNodeEditor.QueryRelation"><a href="Gui.PermissionNodeEditor.html#QueryRelation">QueryRelation</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -1097,7 +1111,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="LogicalRelation"><span class="type-signature static">static</span>Backend.PermissionNode.LogicalRelation<span class="type-signature type string">string</span> </h4>
+        <h4 class="name" id="LogicalRelation"><span class="type-signature static">static</span>Backend.PermissionNode.LogicalRelation</h4>
     </div>
     
     
@@ -1113,210 +1127,6 @@
 <dl class="details">
     
         
-        <h5 class="subsection-title">Properties:</h5>
-        
-        <dl>
-
-<table class="props">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>AND</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    and
-                
-                </td>
-            
-            
-            <td class="description last">Both values are true.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>NAND</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    nand
-                
-                </td>
-            
-            
-            <td class="description last">At most one of the values is true.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>OR</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    or
-                
-                </td>
-            
-            
-            <td class="description last">At least one value is true.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>NOR</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    nor
-                
-                </td>
-            
-            
-            <td class="description last">Both values are false.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>XOR</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    xor
-                
-                </td>
-            
-            
-            <td class="description last">Exactly one of the values is true.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>XNOR</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    xnor
-                
-                </td>
-            
-            
-            <td class="description last">Both values are equal</td>
-        </tr>
-	
-	
-	</tbody>
-</table></dl>
-        
-    
-        
     
     
     
@@ -1333,6 +1143,13 @@
     
     
     
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Frontend.Server.Protocol.html#LogicalRelation">Frontend.Server.Protocol.LogicalRelation</a></li>
+        </ul>
+    </dd>
     
     
     
@@ -1346,7 +1163,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="QueryRelation"><span class="type-signature static">static</span>Backend.PermissionNode.QueryRelation<span class="type-signature type string">string</span> </h4>
+        <h4 class="name" id="QueryRelation"><span class="type-signature static">static</span>Backend.PermissionNode.QueryRelation</h4>
     </div>
     
     
@@ -1362,268 +1179,6 @@
 <dl class="details">
     
         
-        <h5 class="subsection-title">Properties:</h5>
-        
-        <dl>
-
-<table class="props">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>EQUALS</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    equals
-                
-                </td>
-            
-            
-            <td class="description last">Query and user field are equal as strings.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>EQUALS_NO_CASE</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    equalsNoCase
-                
-                </td>
-            
-            
-            <td class="description last">Query and user field are equal as strings neglecting character cases.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>CONTAINS</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    contains
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field contains the query.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>STARTS_WITH</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    startsWith
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field starts with the query.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>ENDS_WITH</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    endsWith
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field ends with the query.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>MATCHES</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    matches
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field matches the regex given by the query.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>BIGGER_THEN</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    biggerThen
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field is bigger then the query.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>SMALLER_THEN</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-                <td class="default">
-                
-                    smallerThen
-                
-                </td>
-            
-            
-            <td class="description last">Value of the user field is smaller then the query.</td>
-        </tr>
-	
-	
-	</tbody>
-</table></dl>
-        
-    
-        
     
     
     
@@ -1640,6 +1195,13 @@
     
     
     
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Frontend.Server.Protocol.html#QueryRelation">Frontend.Server.Protocol.QueryRelation</a></li>
+        </ul>
+    </dd>
     
     
     
@@ -2601,7 +2163,7 @@ if the given user matches the PermissionNode or not.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 19 2014 17:59:58 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 19 2014 18:59:02 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

@@ -106,8 +106,8 @@
                 template.find("input[type=text]").eq(0).val(val["fieldName"]);
 
                 //set fieldRelation
-                for(var k in PermissionNodeEditor.QueryRelation){
-                    if(PermissionNodeEditor.QueryRelation[k] == val["fieldRelation"]){
+                for(var k in Client.protocol.QueryRelation){
+                    if(Client.protocol.QueryRelation[k] == val["fieldRelation"]){
                         template.find("select").eq(0).val(k);
                         break;
                     }
@@ -117,8 +117,8 @@
                 template.find("input[type=text]").eq(1).val(val["query"]);
 
                 //set nextRelation
-                for(var k in PermissionNodeEditor.LogicalRelation){
-                    if(PermissionNodeEditor.LogicalRelation[k] == val["nextRelation"]){
+                for(var k in Client.protocol.LogicalRelation){
+                    if(Client.protocol.LogicalRelation[k] == val["nextRelation"]){
                         template.find("select").eq(1).val(k);
                         break;
                     }
@@ -200,60 +200,16 @@
                 "exceptionValue": exceptionValue,
 
                 "fieldName": fname,
-                "fieldRelation": PermissionNodeEditor.QueryRelation[frelation],
+                "fieldRelation": Client.protocol.QueryRelation[frelation],
 
                 "query": query,
-                "nextRelation": PermissionNodeEditor.LogicalRelation[lrelation]
+                "nextRelation": Client.protocol.LogicalRelation[lrelation]
             });
         });
 
         //return the result Array
         return res;
     }
-
-    /**
-     * Types of relations between query and value of a user field.
-     *
-     * @enum {string}
-     */
-    PermissionNodeEditor.QueryRelation = {
-        /** Query and user field are equal as strings. */
-        EQUALS: "equals",
-        /** Query and user field are equal as strings neglecting character cases. */
-        EQUALS_NO_CASE: "equalsNoCase",
-        /** Value of the user field contains the query. */
-        CONTAINS: "contains",
-        /** Value of the user field starts with the query. */
-        STARTS_WITH: "startsWith",
-        /** Value of the user field ends with the query. */
-        ENDS_WITH: "endsWith",
-        /** Value of the user field matches the regex given by the query. */
-        MATCHES: "matches",
-        /** Value of the user field is bigger then the query. */
-        BIGGER_THEN: "biggerThen",
-        /** Value of the user field is smaller then the query. */
-        SMALLER_THEN: "smallerThen"
-    };
-
-    /**
-     * Logical relations to be used between two different values.
-     *
-     * @enum {string}
-     */
-    PermissionNodeEditor.LogicalRelation = {
-        /** Both values are true. */
-        AND: "and",
-        /** At most one of the values is true. */
-        NAND: "nand",
-        /** At least one value is true. */
-        OR: "or",
-        /** Both values are false. */
-        NOR: "nor",
-        /** Exactly one of the values is true. */
-        XOR: "xor",
-        /** Both values are equal */
-        XNOR: "xnor"
-    };
 
     /**
      * Default Rule for PermissionNodeEditors.
@@ -266,10 +222,10 @@
         "exceptionValue": false,
 
         "fieldName": "",
-        "fieldRelation": PermissionNodeEditor.QueryRelation.EQUALS,
+        "fieldRelation": Client.protocol.QueryRelation.EQUALS,
 
         "query": "",
-        "nextRelation": PermissionNodeEditor.LogicalRelation.AND
+        "nextRelation": Client.protocol.LogicalRelation.AND
     }
 
     $.fn.PermissionNodeEditor = PermissionNodeEditor;

@@ -198,46 +198,14 @@ PermissionNode.prototype.findMatchingUsers = function(users){
 
 /**
  * Types of relations between query and value of a user field.
- *
- * @enum {string}
+ * @see {@link Frontend.Server.Protocol.QueryRelation}
  */
-PermissionNode.QueryRelation = {
-    /** Query and user field are equal as strings. */
-    EQUALS: "equals",
-    /** Query and user field are equal as strings neglecting character cases. */
-    EQUALS_NO_CASE: "equalsNoCase",
-    /** Value of the user field contains the query. */
-    CONTAINS: "contains",
-    /** Value of the user field starts with the query. */
-    STARTS_WITH: "startsWith",
-    /** Value of the user field ends with the query. */
-    ENDS_WITH: "endsWith",
-    /** Value of the user field matches the regex given by the query. */
-    MATCHES: "matches",
-    /** Value of the user field is bigger then the query. */
-    BIGGER_THEN: "biggerThen",
-    /** Value of the user field is smaller then the query. */
-    SMALLER_THEN: "smallerThen"
-};
+PermissionNode.QueryRelation = require("../Frontend/Server/protocol.js").QueryRelation;
 
 /**
  * Logical relations to be used between two different values.
- *
- * @enum {string}
+ * @see {@link Frontend.Server.Protocol.LogicalRelation}
  */
-PermissionNode.LogicalRelation = {
-    /** Both values are true. */
-    AND: "and",
-    /** At most one of the values is true. */
-    NAND: "nand",
-    /** At least one value is true. */
-    OR: "or",
-    /** Both values are false. */
-    NOR: "nor",
-    /** Exactly one of the values is true. */
-    XOR: "xor",
-    /** Both values are equal */
-    XNOR: "xnor"
-};
+PermissionNode.LogicalRelation = require("../Frontend/Server/protocol.js").LogicalRelation;
 
 module.exports = PermissionNode;

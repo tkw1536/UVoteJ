@@ -96,6 +96,46 @@ Client.Admin.prototype.logout = function(){
 }
 
 /**
+ * Gets the UUIDs of all existing votes from the server.
+ *
+ * @param {Client.Admin~resultCallback} callback - Callback on results.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.getUUIDs = function(cb){
+    if(!this.isLoggedIn){
+        return false;
+    }
+
+    //Listen for the result
+    this.socket.once(Client.Protocol.ADMIN.LIST_VOTE_UUIDS, cb);
+
+    //Send the request
+    this.socket.emit(Client.Protocol.ADMIN.LIST_VOTE_UUIDS);
+
+    return true;
+}
+
+/**
+ * Grabs information about a specific vote from the server. 
+ *
+ * @param {Client.Admin~resultCallback} callback - Callback on results.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.getVoteById = function(uuid){
+    if(!this.isLoggedIn){
+        return false;
+    }
+
+    //Listen for the result
+    this.socket.once(Client.Protocol.ADMIN.GET_VOTE, cb);
+
+    //Send the request
+    this.socket.emit(Client.Protocol.ADMIN.GET_VOTE, uuid);
+
+    return true;
+}
+
+/**
  * Sends a message to all admins currently logged on.
  *
  * @param {string} msg - Message to send.

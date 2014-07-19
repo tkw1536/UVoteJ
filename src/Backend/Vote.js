@@ -410,41 +410,15 @@ Vote.prototype.vote = function(user, opinions){
 
 /**
  * Vote Stages.
- *
- * @enum {number}
- */
-Vote.Stage = {
-    /** Vote has been created and is ready to be scheduled. */
-    INIT: 0,
-    /** Vote is open and people can vote. */
-    OPEN: 1,
-    /** Voting is closed.  */
-    CLOSED: 2,
-    /** Vote is closed and results are now public. */
-    PUBLIC: 3
-};
+ * @see {@link Frontend.Server.Protocol.Stage}
+*/
+Vote.Stage = require("../Frontend/Server/protocol.js").Stage;
 
 /**
  * Status of voting.
- *
- * @enum {number}
- */
-Vote.VoteState = {
-    /** Voting was successfull. */
-    OK: 0,
-    /** Failure: User is not allowed to vote here. */
-    CANT_VOTE: 1,
-    /** Failure: User has already voted. */
-    HAS_VOTED: 2,
-    /** Failure: Voting is not open. */
-    CLOSED: 3,
-    /** Failure: Invalid number of opinions selected. */
-    INVALID_NUMBER: 4,
-    /** Failure: Unknown Opinion selected. */
-    UNKNOWN_OPINION: 5,
-    /** Failure: Some opinion was selected more than once. */
-    DOUBLE_OPINION: 6
-};
+ * @see {@link Frontend.Server.Protocol.VoteState}
+*/
+Vote.Stage = require("../Frontend/Server/protocol.js").VoteState;
 
 /**
  * A JSON-style source object of the vote. Intended to be used to store in a database.
