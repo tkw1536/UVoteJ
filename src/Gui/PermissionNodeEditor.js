@@ -46,6 +46,7 @@
      * @this {Browser.jQuery}
      * @class
      * @alias Gui.PermissionNodeEditor
+     * @extends {Browser.jQuery}
      */
     var PermissionNodeEditor = function(disabled, initial_value){
         //get the first element
@@ -56,7 +57,7 @@
 
         PermissionNodeEditor.Setter(theDiv, disabled===true, initial_value || [PermissionNodeEditor.default])
 
-        return {
+        return $.extend(this, {
             /**
              * Sets the current value of the PermissionNodeEditor.
              *
@@ -81,7 +82,7 @@
             "get": function(){
                 return PermissionNodeEditor.Getter(theDiv);
             }
-        };
+        });
     }
 
     /**

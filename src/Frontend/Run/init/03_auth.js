@@ -13,7 +13,7 @@ module.exports = function(state, logger, next){
 
         //try and load the auth
         try{
-            var auth_class = require("../../../Backend/Authentication")[auth];
+            var auth_class = require("../../../Backend/Authentication")[auth]; 
         } catch(e){
             logger.error("AUTH: Unable to load authentication, make sure it exists. ");
             process.exit(1);

@@ -555,8 +555,6 @@
             
                 <li data-name="Backend.Vote#stage"><a href="Backend.Vote.html#stage">stage</a></li>
             
-                <li data-name="Backend.Vote#userIdentifier"><a href="Backend.Vote.html#userIdentifier">userIdentifier</a></li>
-            
                 <li data-name="Backend.Vote#votePermissions"><a href="Backend.Vote.html#votePermissions">votePermissions</a></li>
             
                 <li data-name="Backend.Vote#voters"><a href="Backend.Vote.html#voters">voters</a></li>
@@ -763,6 +761,60 @@
             <span class="subtitle">Methods</span>
             
                 <li data-name="Frontend.Server.AdminClientPool#message"><a href="Frontend.Server.AdminClientPool.html#message">message</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Gui.LineEditor">
+            <span class="title">
+                <a href="Gui.LineEditor.html">Gui.LineEditor</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Gui.LineEditor#get"><a href="Gui.LineEditor.html#get">get</a></li>
+            
+                <li data-name="Gui.LineEditor#getMessageArea"><a href="Gui.LineEditor.html#getMessageArea">getMessageArea</a></li>
+            
+                <li data-name="Gui.LineEditor#set"><a href="Gui.LineEditor.html#set">set</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Gui.MarkdownEditor">
+            <span class="title">
+                <a href="Gui.MarkdownEditor.html">Gui.MarkdownEditor</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Gui.MarkdownEditor#get"><a href="Gui.MarkdownEditor.html#get">get</a></li>
+            
+                <li data-name="Gui.MarkdownEditor#getMessageArea"><a href="Gui.MarkdownEditor.html#getMessageArea">getMessageArea</a></li>
+            
+                <li data-name="Gui.MarkdownEditor#set"><a href="Gui.MarkdownEditor.html#set">set</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -1836,54 +1888,6 @@ Set to undefined if not scheduled.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="userIdentifier">userIdentifier<span class="type-signature type string">string</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Property to identifiy users on. Preferably something like 'id'.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>name</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="votePermissions">votePermissions<span class="type-signature type backend.permissionnode"><a href="Backend.PermissionNode.html">Backend.PermissionNode</a></span> </h4>
     </div>
     
@@ -1987,7 +1991,7 @@ Set to undefined if not scheduled.
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 179
+            Backend/Vote.js, line 170
         </div>
         
     </div>
@@ -2119,7 +2123,7 @@ The Vote the function was originally called on.
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 271
+            Backend/Vote.js, line 260
         </div>
         
     </div>
@@ -2199,7 +2203,7 @@ The vote this function was originally called from.
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 255
+            Backend/Vote.js, line 244
         </div>
         
     </div>
@@ -2279,7 +2283,7 @@ The vote this function was originally called from.
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 221
+            Backend/Vote.js, line 211
         </div>
         
     </div>
@@ -2354,12 +2358,12 @@ The source of this Vote.
     <div class="nameContainer">
         <h4 class="name" id="vote">
             
-            vote<span class="signature">(user, opinions)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Backend.Vote.VoteState}</span>
+            vote<span class="signature">(username, user, opinions)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Backend.Vote.VoteState}</span>
         </h4>
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 346
+            Backend/Vote.js, line 336
         </div>
         
     </div>
@@ -2397,6 +2401,29 @@ The source of this Vote.
 	</thead>
 	
 	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">stering</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Username of the user.</td>
+        </tr>
+	
 	
 	
         <tr>
@@ -2851,29 +2878,6 @@ Status of the Voting attempt.
 	
         <tr>
             
-                <td class="name"><code>userIdentifier</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Property to identifiy users on.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
                 <td class="name"><code>votePermissions</code></td>
             
             
@@ -3079,7 +3083,7 @@ Status of the Voting attempt.
     
         
         <div class="tag-source">
-            Backend/Vote.js, line 208
+            Backend/Vote.js, line 198
         </div>
         
     </div>
@@ -3152,7 +3156,7 @@ Status of the Voting attempt.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 19 2014 19:32:34 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Jul 20 2014 15:40:31 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

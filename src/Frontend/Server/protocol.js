@@ -28,8 +28,74 @@
 
         /** List all existing votes. */
         LIST_VOTE_UUIDS: "admin_list_vote_uuids",
-        /** Grabs a single vote from the server. */
-        GET_VOTE: "admin_get_vote",
+
+        /** Grabs the title of a vote from the server.  */
+        GET_VOTE_TITLE: "admin_get_vote_summary",
+
+        /** Begins Editing a specific vote */
+        BEGIN_EDIT: "admin_vote_begin_edit",
+
+        /** Ends editing a certain vote */
+        END_EDIT: "admin_vote_end_edit",
+    }
+
+    Protocol.VOTE_EDITOR = {
+
+        /** Gets the title */
+        GET_TITLE: "vote_edit_get_title",
+        /** Sets the title */
+        SET_TILE: "vote_edit_set_title",
+        /** Gets the machine name */
+        GET_MACHINE_NAME: "vote_edit_get_machine_name",
+        /** Sets the machine name */
+        SET_MACHINE_NAME: "vote_edit_set_machine_name",
+        /** Gets the description fo a vote */
+        GET_DESCRIPTION: "vote_edit_get_description",
+        /** Sets the description of a vote. */
+        SET_DESCRIPTION: "vote_edit_set_description",
+
+        /** Gets the voting PermissionNode */
+        GET_VOTING_PERMISSIONS: "vote_edit_get_voting_permissions",
+        /** Sets the voting PermissionNode */
+        SET_VOTING_PERMISSIONS: "vote_editset_voting_permissions",
+
+        /** Gets the voting PermissionNode */
+        GET_ADMIN_PERMISSIONS: "vote_edit_get_admin_permissions",
+        /** Sets the voting PermissionNode */
+        SET_ADMIN_PERMISSIONS: "vote_edit_set_admin_permissions",
+
+        /** Gets the opening time of this vote. */
+        GET_OPEN_TIME: "vote_edit_get_open_time",
+        /** Sets the opening time of this vote. */
+        SET_OPEN_TIME: "vote_edit_set_open_time",
+
+        /** Gets the opening time of this vote. */
+        GET_CLOSE_TIME: "vote_edit_get_close_time",
+        /** Sets the opening time of this vote. */
+        SET_CLOSE_TIME: "vote_edit_set_close_time",
+
+        /** Gets the minimum / maximum number of votes */
+        GET_MIMMAXVOTES: "vote_edit_get_minmax",
+        /** Sets the minimum / maximum number of votes */
+        SET_MINMAXVOTES: "vote_edit_set_minmax",
+
+        /** Gets the options of this vote */
+        GET_OPTIONS: "vote_edit_get_options",
+        /** Sets the options of this vote */
+        SET_OPTIONS: "vote_edit_set_options", 
+
+        /** Gets the current voting Stage */
+        GET_STAGE: "vote_get_stage",
+        /** Sets the current voting Stage */
+        SET_STAGE: "vote_get_stage",
+
+        /** Gets the results of the vote.  */
+        GET_RESULTS: "vote_edit_get_results",
+        /** Gets the voters */
+        GET_VOTERS: "vote_edit_get_voters",
+
+        /** Gets the current server time */
+        GET_TIME: "voted_edit_getstime"
     }
 
     /**

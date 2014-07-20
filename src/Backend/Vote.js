@@ -100,15 +100,6 @@ var Vote = function Vote(source_object){
     this.adminPermissions = new PermissionNode();
 
     /**
-    * Property to identifiy users on. Preferably something like 'id'.
-    *
-    * @name Backend.Vote#userIdentifier
-    * @type string
-    * @default name
-    */
-    this.userIdentifier = "name";
-
-    /**
     * Current Stage of the Vote.
     *
     * @name Backend.Vote#stage
@@ -188,7 +179,6 @@ Vote.prototype.fromJSON = function(source_object){
     this.options = source_object.options;
     this.minVotes = source_object.minVotes;
     this.maxVotes = source_object.maxVotes;
-    this.userIdentifier = source_object.userIdentifier;
 
     //Permissions
     this.votePermissions.fromJSON(source_object.votePermissions);
@@ -230,7 +220,6 @@ Vote.prototype.toJSON = function(){
         "options": this.options,
         "minVotes": this.minVotes,
         "maxVotes": this.maxVotes,
-        "userIdentifier": this.userIdentifier,
 
         //Permissions
         "votePermissions": this.votePermissions.toJSON(),
@@ -339,11 +328,12 @@ Vote.prototype.startStages = function(){
 /**
 * Attempts to place a vote.
 *
+* @param {stering} username - Username of the user.
 * @param {object} user - JSON-like information about the user attempting to vote.
 * @param {number[]} opinions List of indexes of options selected.
 * @return {Backend.Vote.VoteState} - Status of the Voting attempt.
 */
-Vote.prototype.vote = function(user, opinions){
+Vote.prototype.vote = function(username, user, opinions){
 
     //is the vote open?
     if(this.stage !== Vote.Stage.OPEN){
@@ -391,13 +381,12 @@ Vote.prototype.vote = function(user, opinions){
     }
 
     //have we already voted?
-    var userIdentifier = user.hasOwnProperty(this.userIdentifier)?user[this.userIdentifier]:"";
-    if(this.voters.indexOf(userIdentifier) !== -1){
+    if(this.voters.indexOf(username) !== -1){
         return this.VoteState.HAS_VOTED;
     }
 
     //ok, add me to the voters now!
-    this.voters.push(userIdentifier);
+    this.voters.push(username);
 
     //and don't forget to vote!
     for(var i=0;i<opinions.length;i++){
@@ -431,7 +420,6 @@ Vote.Stage = require("../Frontend/Server/protocol.js").VoteState;
  * @property {Backend.Vote.Option[]} options - Set of options for this vote.
  * @property {number} minVotes - Minimum number of votes required for this vote.
  * @property {number} maxVotes - Maximum number of votes allowed for this vote.
- * @property {string} userIdentifier - Property to identifiy users on.
  * @property {Backend.PermissionNode.Rule[]} votePermissions - PermissionNode for users being able to vote on this vote.
  * @property {Backend.PermissionNode.Rule[]} adminPermissions - PermissionNode for users being able to vote on this vote.
  * @property {number[]} results - List of results for this Vote.
