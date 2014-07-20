@@ -1,4 +1,4 @@
-var AdminClient = require("./AdminClient.js"),
+var VoteEditorClient = require("./VoteEditorClient.js"),
     Protocol = require("./protocol.js"),
     Vote = require("../../Backend").Vote
     logger = require("winston");
@@ -74,6 +74,13 @@ var AdminClient = function AdminClient(socket, AdminClientPool, server_state){
     */
     this.loggedIn = false;
 
+    /**
+    * Current VoteEditorClient (if appicable).
+    * @alias Frontend.Server.AdminClient#loggedIn
+    * @type {Frontend.Server.VoteEditorClient}
+    */
+    this.editVoteClient = undefined;
+
     //wait for login requests
     me.socket.on(Protocol.ADMIN.LOGIN, function(user, password){
 
@@ -145,6 +152,40 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
             me.sendUUIDs();
         }
     });
+
+    //Listening to edits
+    this.socket.on(Protocol.ADMIN.BEGIN_EDIT, function(u){
+
+        //we are already editing a vote
+        if(me.editVoteClient){
+            me.socket.emit(Protocol.ADMIN.BEGIN_EDIT, false, "Already editing a vote. ");
+            return;
+        }
+
+        var vote = me.server_state.votes.votes[u];
+
+        if(!u){
+            me.socket.emit(Protocol.ADMIN.BEGIN_EDIT, false, "Unknown Vote UUID. ");
+            return;
+        }
+
+        //create the vote client
+        me.editVoteClient = new VoteEditorClient(me.socket, vote, user, password, me.server_state);
+
+        me.socket.emit(Protocol.ADMIN.BEGIN_EDIT, true);
+    });
+
+    //Listening to edits
+    this.socket.on(Protocol.ADMIN.END_EDIT, function(){
+
+        if(me.editVoteClient){
+            //we are editing something.
+            me.editVoteClient.close();
+            me.editVoteClient = undefined;
+        }
+
+        me.socket.emit(Protocol.ADMIN.END_EDIT, true);
+    });
 }
 
 /**
@@ -165,7 +206,7 @@ AdminClient.prototype.sendUUIDs = function(){
 }
 
 /**
- * Sends information about a specific vote to the client. 
+ * Sends information about a specific vote to the client.
  */
 AdminClient.prototype.sendUUIDs = function(){
     var uuids = [];
@@ -208,6 +249,10 @@ AdminClient.prototype.destroyed = function(keep_socket){
         logger.info("ADMIN: Destroying client", this.id);
     } else {
         logger.info("ADMIN: Destroying connection", this.id);
+    }
+
+    if(this.editVoteClient){
+        this.editVoteClient.close();
     }
 
     //Delete all the information

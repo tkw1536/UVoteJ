@@ -13,13 +13,22 @@ var
 var PermissionNode = function PermissionNode(source_object){
 
     /**
-    * JSON-style source for the permissionNode.
+    * JSON-style source for the permissionNode. 
     *
     * @private
     * @name Backend.PermissionNode#_data
     * @type Backend.PermissionNode
     */
-    this._data = [];
+    this._data = [{
+        "negate": false,
+        "exceptionValue": false,
+
+        "fieldName": "",
+        "fieldRelation": PermissionNode.QueryRelation.EQUALS,
+
+        "query": "",
+        "nextRelation": PermissionNode.LogicalRelation.AND
+    }];
 
     if(typeof source_object !== "undefined"){
         this.fromJSON(source_object);

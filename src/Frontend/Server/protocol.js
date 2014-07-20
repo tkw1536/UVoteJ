@@ -70,33 +70,28 @@
         SET_MINMAXVOTES: "vote_edit_set_minmax",
 
 
-        /** Gets the opening time of this vote. */
-        GET_OPEN_TIME: "vote_edit_get_open_time",
-        /** Sets the opening time of this vote. */
-        SET_OPEN_TIME: "vote_edit_set_open_time",
-
-        /** Gets the opening time of this vote. */
-        GET_CLOSE_TIME: "vote_edit_get_close_time",
-        /** Sets the opening time of this vote. */
-        SET_CLOSE_TIME: "vote_edit_set_close_time",
-
-        /** Gets the options of this vote */
-        GET_OPTIONS: "vote_edit_get_options",
-        /** Sets the options of this vote */
-        SET_OPTIONS: "vote_edit_set_options",
+        /** Gets the current server time */
+        GET_TIME: "vote_edit_getstime",
+        /** Gets the opening / closing time of this vote. */
+        GET_OPENCLOSE_TIME: "vote_edit_get_openclose_time",
+        /** Sets the opening / closing time of this vote. */
+        SET_OPENCLOSE_TIME: "vote_edit_set_openclose_time",
 
         /** Gets the current voting Stage */
         GET_STAGE: "vote_get_stage",
         /** Sets the current voting Stage */
         SET_STAGE: "vote_get_stage",
 
+        /** Gets the options of this vote */
+        GET_OPTIONS: "vote_edit_get_options",
+        /** Sets the options of this vote */
+        SET_OPTIONS: "vote_edit_set_options",
+
         /** Gets the results of the vote.  */
         GET_RESULTS: "vote_edit_get_results",
-        /** Gets the voters */
-        GET_VOTERS: "vote_edit_get_voters",
 
-        /** Gets the current server time */
-        GET_TIME: "vote_edit_getstime",
+        /** Gets the voters */
+        GET_VOTER_STATS: "vote_edit_get_voter_stats",
 
         /** Notifies the client that the vote has been updated. */
         VOTE_UPDATED: "vote_edit_updated"

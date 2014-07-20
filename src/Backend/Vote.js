@@ -50,9 +50,12 @@ var Vote = function Vote(source_object){
     *
     * @name Backend.Vote#options
     * @type Backend.Vote.Option[]
-    * @default []
     */
-    this.options = [];
+    this.options = [{
+        "title": "Option",
+        "short_description": "This is an option for this vote. ",
+        "markdown_description": "**Please change it using the vote editor**"
+    }];
 
     /**
     * Id of this vote. Automatically assigned by other classes.
@@ -407,7 +410,7 @@ Vote.Stage = require("../Frontend/Server/protocol.js").Stage;
  * Status of voting.
  * @see {@link Frontend.Server.Protocol.VoteState}
 */
-Vote.Stage = require("../Frontend/Server/protocol.js").VoteState;
+Vote.VoteState = require("../Frontend/Server/protocol.js").VoteState;
 
 /**
  * A JSON-style source object of the vote. Intended to be used to store in a database.

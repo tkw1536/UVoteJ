@@ -1,5 +1,18 @@
 var logger = require("winston"),
     util = require("util");
+
+//Handle errors which aren't caught. 
+process.on('uncaughtException', function(err) {
+    try{
+        logger.error("ERROR: ", err.toString());
+        logger.error(err.stack);
+    } catch(e){
+        logger.error("ERROR: Error handling error. ");
+        logger.error("ERROR: Exiting. ");
+        process.exit(1);
+    }
+});
+
 /**
  * The current State of the server.
  * @namespace Frontend.State

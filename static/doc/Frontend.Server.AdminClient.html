@@ -527,7 +527,7 @@
             
                 <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
             
-                <li data-name="Backend.Vote.Stage"><a href="Backend.Vote.html#Stage">Stage</a></li>
+                <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
                 <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
             
@@ -707,6 +707,8 @@
             
                 <li data-name="Frontend.Server.AdminClient#loggedIn"><a href="Frontend.Server.AdminClient.html#loggedIn">loggedIn</a></li>
             
+                <li data-name="Frontend.Server.AdminClient#loggedIn"><a href="Frontend.Server.AdminClient.html#loggedIn">loggedIn</a></li>
+            
                 <li data-name="Frontend.Server.AdminClient#login_info"><a href="Frontend.Server.AdminClient.html#login_info">login_info</a></li>
             
                 <li data-name="Frontend.Server.AdminClient#login_password"><a href="Frontend.Server.AdminClient.html#login_password">login_password</a></li>
@@ -781,9 +783,13 @@
             
                 <li data-name="Frontend.Server.VoteEditorClient#id"><a href="Frontend.Server.VoteEditorClient.html#id">id</a></li>
             
+                <li data-name="Frontend.Server.VoteEditorClient#pass"><a href="Frontend.Server.VoteEditorClient.html#pass">pass</a></li>
+            
                 <li data-name="Frontend.Server.VoteEditorClient#socket"><a href="Frontend.Server.VoteEditorClient.html#socket">socket</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#state"><a href="Frontend.Server.VoteEditorClient.html#state">state</a></li>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#user"><a href="Frontend.Server.VoteEditorClient.html#user">user</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#vote"><a href="Frontend.Server.VoteEditorClient.html#vote">vote</a></li>
             
@@ -802,6 +808,14 @@
                 <li data-name="Frontend.Server.VoteEditorClient#description"><a href="Frontend.Server.VoteEditorClient.html#description">description</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#machine_name"><a href="Frontend.Server.VoteEditorClient.html#machine_name">machine_name</a></li>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#minmax_votes"><a href="Frontend.Server.VoteEditorClient.html#minmax_votes">minmax_votes</a></li>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#options"><a href="Frontend.Server.VoteEditorClient.html#options">options</a></li>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#stage"><a href="Frontend.Server.VoteEditorClient.html#stage">stage</a></li>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#time"><a href="Frontend.Server.VoteEditorClient.html#time">time</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#title"><a href="Frontend.Server.VoteEditorClient.html#title">title</a></li>
             
@@ -1376,6 +1390,51 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="loggedIn">loggedIn<span class="type-signature type frontend.server.voteeditorclient"><a href="Frontend.Server.VoteEditorClient.html">Frontend.Server.VoteEditorClient</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current VoteEditorClient (if appicable).
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="login_info">login_info<span class="type-signature type object">object</span> <span class="type-signature type undefined">undefined</span> </h4>
     </div>
     
@@ -1614,7 +1673,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 206
+            Frontend/Server/AdminClient.js, line 247
         </div>
         
     </div>
@@ -1730,7 +1789,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 126
+            Frontend/Server/AdminClient.js, line 133
         </div>
         
     </div>
@@ -1892,7 +1951,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 196
+            Frontend/Server/AdminClient.js, line 237
         </div>
         
     </div>
@@ -1963,7 +2022,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 188
+            Frontend/Server/AdminClient.js, line 229
         </div>
         
     </div>
@@ -2079,7 +2138,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 153
+            Frontend/Server/AdminClient.js, line 211
         </div>
         
     </div>
@@ -2090,7 +2149,7 @@
     
     
     <div class="description">
-        Sends all existing vote UUIDs to the client.
+        Sends information about a specific vote to the client.
     </div>
     
 
@@ -2150,7 +2209,7 @@
     
         
         <div class="tag-source">
-            Frontend/Server/AdminClient.js, line 170
+            Frontend/Server/AdminClient.js, line 194
         </div>
         
     </div>
@@ -2161,7 +2220,7 @@
     
     
     <div class="description">
-        Sends information about a specific vote to the client.
+        Sends all existing vote UUIDs to the client.
     </div>
     
 
@@ -2227,7 +2286,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Jul 20 2014 19:45:05 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Jul 20 2014 21:15:07 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
