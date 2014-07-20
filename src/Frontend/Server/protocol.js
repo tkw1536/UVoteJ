@@ -57,12 +57,18 @@
         /** Gets the voting PermissionNode */
         GET_VOTING_PERMISSIONS: "vote_edit_get_voting_permissions",
         /** Sets the voting PermissionNode */
-        SET_VOTING_PERMISSIONS: "vote_editset_voting_permissions",
+        SET_VOTING_PERMISSIONS: "vote_edit_set_voting_permissions",
 
         /** Gets the voting PermissionNode */
         GET_ADMIN_PERMISSIONS: "vote_edit_get_admin_permissions",
         /** Sets the voting PermissionNode */
         SET_ADMIN_PERMISSIONS: "vote_edit_set_admin_permissions",
+
+        /** Gets the minimum / maximum number of votes */
+        GET_MIMMAXVOTES: "vote_edit_get_minmax",
+        /** Sets the minimum / maximum number of votes */
+        SET_MINMAXVOTES: "vote_edit_set_minmax",
+
 
         /** Gets the opening time of this vote. */
         GET_OPEN_TIME: "vote_edit_get_open_time",
@@ -74,15 +80,10 @@
         /** Sets the opening time of this vote. */
         SET_CLOSE_TIME: "vote_edit_set_close_time",
 
-        /** Gets the minimum / maximum number of votes */
-        GET_MIMMAXVOTES: "vote_edit_get_minmax",
-        /** Sets the minimum / maximum number of votes */
-        SET_MINMAXVOTES: "vote_edit_set_minmax",
-
         /** Gets the options of this vote */
         GET_OPTIONS: "vote_edit_get_options",
         /** Sets the options of this vote */
-        SET_OPTIONS: "vote_edit_set_options", 
+        SET_OPTIONS: "vote_edit_set_options",
 
         /** Gets the current voting Stage */
         GET_STAGE: "vote_get_stage",
@@ -95,7 +96,10 @@
         GET_VOTERS: "vote_edit_get_voters",
 
         /** Gets the current server time */
-        GET_TIME: "voted_edit_getstime"
+        GET_TIME: "vote_edit_getstime",
+
+        /** Notifies the client that the vote has been updated. */
+        VOTE_UPDATED: "vote_edit_updated"
     }
 
     /**

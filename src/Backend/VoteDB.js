@@ -141,6 +141,22 @@ VoteDB.prototype.removeVote = function(vote, cb){
 }
 
 /**
+ * Gets the uuid of a vote given its machine_name
+ *
+ * @param {string} machine_name - Machine name to look for.
+ * @return {string} - UUID of the vote in question or the empty string. 
+ */
+VoteDB.prototype.machine_to_uuid = function(machine_name){
+    for(var key in this.votes){
+        if(this.votes[key].machine_name == machine_name){
+            return key;
+        }
+    }
+
+    return "";
+}
+
+/**
  * Updates a vote in the database
  *
  * @param {Backend.Vote} vote - Vote to update.
