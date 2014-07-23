@@ -164,7 +164,7 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
 
         var vote = me.server_state.votes.votes[u];
 
-        if(!u){
+        if(!vote){
             me.socket.emit(Protocol.ADMIN.BEGIN_EDIT, false, "Unknown Vote UUID. ");
             return;
         }

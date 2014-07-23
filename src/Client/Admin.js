@@ -20,6 +20,13 @@ Client.Admin = function(){
     this.isLoggedIn = false;
 
     /**
+    * Current VoteEditor (if applicable)
+    * @name Client.Admin#voteEditor
+    * @type {Client.VoteEditor}
+    */
+    this.voteEditor = undefined;
+
+    /**
     * The current Votes.
     */
     this.votes = {}
@@ -30,7 +37,7 @@ Client.Admin = function(){
  *
  * @param {string} username - Username to use for logging in.
  * @param {string} password - Password to use for logging in.
- * @param {Client.Admin~resultCallback} callback - Callback on login.
+ * @param {Client~resultCallback} callback - Callback on login.
  * @return {boolean} - indicating if the request has been started.
  */
 Client.Admin.prototype.login = function(username, password, callback){
@@ -49,10 +56,13 @@ Client.Admin.prototype.login = function(username, password, callback){
                     me.isLoggedIn = true;
                     callback(true);
                 }
-            })
+            });
 
-            //emit the login event
-            me.socket.emit(Client.Protocol.ADMIN.LOGIN, username, password);
+            Client.load("VoteEditor", function(){
+                //emit the login event
+                me.socket.emit(Client.Protocol.ADMIN.LOGIN, username, password);
+            });
+
         }
 
 
@@ -98,7 +108,7 @@ Client.Admin.prototype.logout = function(){
 /**
  * Gets the UUIDs of all existing votes from the server.
  *
- * @param {Client.Admin~resultCallback} callback - Callback on results.
+ * @param {Client~resultCallback} callback - Callback on results.
  * @return {boolean} - indicating if the request has been started.
  */
 Client.Admin.prototype.getUUIDs = function(cb){
@@ -116,21 +126,36 @@ Client.Admin.prototype.getUUIDs = function(cb){
 }
 
 /**
- * Grabs information about a specific vote from the server. 
+ * Starts the editing on a given vote.
  *
- * @param {Client.Admin~resultCallback} callback - Callback on results.
+ * @param {Client~resultCallback} callback - Callback on results.
  * @return {boolean} - indicating if the request has been started.
  */
-Client.Admin.prototype.getVoteById = function(uuid){
+Client.Admin.prototype.editVote = function(uuid, callback){
     if(!this.isLoggedIn){
         return false;
     }
 
-    //Listen for the result
-    this.socket.once(Client.Protocol.ADMIN.GET_VOTE, cb);
+    var me = this;
 
-    //Send the request
-    this.socket.emit(Client.Protocol.ADMIN.GET_VOTE, uuid);
+    //end the editing
+    this.socket.once(Client.Protocol.ADMIN.END_EDIT, function(){
+        me.voteEditor = undefined;
+        me.socket.once(Client.Protocol.ADMIN.BEGIN_EDIT, function(r){
+            if(!r){
+                //we couldn't start editing
+                callback.apply(me, arguments);
+            } else {
+                //we can start editing
+                me.voteEditor = new Client.VoteEditor(me.socket);
+                callback.call(me, true, me.voteEditor);
+            }
+        });
+
+        me.socket.emit(Client.Protocol.ADMIN.BEGIN_EDIT, uuid); 
+    });
+
+    this.socket.emit(Client.Protocol.ADMIN.END_EDIT);
 
     return true;
 }
@@ -148,10 +173,3 @@ Client.Admin.prototype.message = function(msg){
 
     this.socket.emit(Client.Protocol.ADMIN.ADMIN_MESSAGE_BROADCAST, msg);
 }
-
-/**
- * Callback for server results.
- * @callback Client.Admin~resultCallback
- * @param {boolean} success - A boolean repsenting if the opertaion suceeded.
- * @param {object|string|undefined} result - The result of the request or an optional error message.
- */

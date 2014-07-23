@@ -96,9 +96,27 @@ var Client = (function(){
     * @param {function} cb - Callback to call once the client is loaded.
     */
     Client.load = function(client, cb){
-        loadExternalJS("/lib/client/"+client+".js", cb);
-        return
+        if(!Client[client]){
+            return loadExternalJS("/lib/client/"+client+".js", cb);
+        } else {
+            return cb([]);
+        }
     }
+
+    /**
+     * Callback for server results.
+     * @callback Client~resultCallback
+     * @param {boolean} success - A boolean repsenting if the opertaion suceeded.
+     * @param {object|string|undefined} result - The result of the request or an optional error message.
+     */
+
+     /**
+      * Callback for server results.
+      * @callback Client~editCallback
+      * @param {boolean} success - A boolean repsenting if the opertaion suceeded.
+      * @param {*} value - Current value of the setting in question.
+      * @param {string} [error_message] - Error message, if any.
+      */
 
     return Client;
 })();

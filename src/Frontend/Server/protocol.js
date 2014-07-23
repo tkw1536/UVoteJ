@@ -93,6 +93,9 @@
         /** Gets the voters */
         GET_VOTER_STATS: "vote_edit_get_voter_stats",
 
+        /** Gets the vote Id */
+        GET_VOTE_ID: "vote_edit_get_vote_id",
+
         /** Notifies the client that the vote has been updated. */
         VOTE_UPDATED: "vote_edit_updated"
     }

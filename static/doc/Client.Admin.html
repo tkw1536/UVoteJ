@@ -119,6 +119,12 @@
             </ul>
             <ul class="typedefs itemMembers">
             
+            <span class="subtitle">Typedefs</span>
+            
+                <li data-name="Client~editCallback"><a href="Client.html#editCallback">editCallback</a></li>
+            
+                <li data-name="Client~resultCallback"><a href="Client.html#resultCallback">resultCallback</a></li>
+            
             </ul>
             <ul class="methods itemMembers">
             
@@ -664,27 +670,78 @@
             
                 <li data-name="Client.Admin#socket"><a href="Client.Admin.html#socket">socket</a></li>
             
+                <li data-name="Client.Admin#voteEditor"><a href="Client.Admin.html#voteEditor">voteEditor</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
-            
-            <span class="subtitle">Typedefs</span>
-            
-                <li data-name="Client.Admin~resultCallback"><a href="Client.Admin.html#resultCallback">resultCallback</a></li>
             
             </ul>
             <ul class="methods itemMembers">
             
             <span class="subtitle">Methods</span>
             
-                <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
+                <li data-name="Client.Admin#editVote"><a href="Client.Admin.html#editVote">editVote</a></li>
             
-                <li data-name="Client.Admin#getVoteById"><a href="Client.Admin.html#getVoteById">getVoteById</a></li>
+                <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
             
                 <li data-name="Client.Admin#login"><a href="Client.Admin.html#login">login</a></li>
             
                 <li data-name="Client.Admin#logout"><a href="Client.Admin.html#logout">logout</a></li>
             
                 <li data-name="Client.Admin#message"><a href="Client.Admin.html#message">message</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Client.VoteEditor">
+            <span class="title">
+                <a href="Client.VoteEditor.html">Client.VoteEditor</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Client.VoteEditor#id"><a href="Client.VoteEditor.html#id">id</a></li>
+            
+                <li data-name="Client.VoteEditor#socket"><a href="Client.VoteEditor.html#socket">socket</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Client.VoteEditor#admin_permissions"><a href="Client.VoteEditor.html#admin_permissions">admin_permissions</a></li>
+            
+                <li data-name="Client.VoteEditor#description"><a href="Client.VoteEditor.html#description">description</a></li>
+            
+                <li data-name="Client.VoteEditor#grabAll"><a href="Client.VoteEditor.html#grabAll">grabAll</a></li>
+            
+                <li data-name="Client.VoteEditor#machine_name"><a href="Client.VoteEditor.html#machine_name">machine_name</a></li>
+            
+                <li data-name="Client.VoteEditor#minmax"><a href="Client.VoteEditor.html#minmax">minmax</a></li>
+            
+                <li data-name="Client.VoteEditor#name"><a href="Client.VoteEditor.html#name">name</a></li>
+            
+                <li data-name="Client.VoteEditor#openclose"><a href="Client.VoteEditor.html#openclose">openclose</a></li>
+            
+                <li data-name="Client.VoteEditor#options"><a href="Client.VoteEditor.html#options">options</a></li>
+            
+                <li data-name="Client.VoteEditor#results"><a href="Client.VoteEditor.html#results">results</a></li>
+            
+                <li data-name="Client.VoteEditor#server_time"><a href="Client.VoteEditor.html#server_time">server_time</a></li>
+            
+                <li data-name="Client.VoteEditor#stage"><a href="Client.VoteEditor.html#stage">stage</a></li>
+            
+                <li data-name="Client.VoteEditor#stats"><a href="Client.VoteEditor.html#stats">stats</a></li>
+            
+                <li data-name="Client.VoteEditor#voting_permissions"><a href="Client.VoteEditor.html#voting_permissions">voting_permissions</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -800,6 +857,8 @@
             <ul class="methods itemMembers">
             
             <span class="subtitle">Methods</span>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#_id"><a href="Frontend.Server.VoteEditorClient.html#_id">_id</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#admin_permissions"><a href="Frontend.Server.VoteEditorClient.html#admin_permissions">admin_permissions</a></li>
             
@@ -1250,6 +1309,51 @@
     
 </dd>
 
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="voteEditor">voteEditor<span class="type-signature type client.voteeditor"><a href="Client.VoteEditor.html">Client.VoteEditor</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Current VoteEditor (if applicable)
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
         </dl>
     
     
@@ -1260,14 +1364,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="getUUIDs">
+        <h4 class="name" id="editVote">
             
-            getUUIDs<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
+            editVote<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
         </h4>
     
         
         <div class="tag-source">
-            Client/Admin.js, line 104
+            Client/Admin.js, line 134
         </div>
         
     </div>
@@ -1278,7 +1382,7 @@
     
     
     <div class="description">
-        Gets the UUIDs of all existing votes from the server.
+        Starts the editing on a given vote.
     </div>
     
 
@@ -1315,7 +1419,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Client.Admin.html#resultCallback">Client.Admin~resultCallback</a></span>
+<span class="param-type"><a href="Client.html#resultCallback">Client~resultCallback</a></span>
 
 
             
@@ -1385,14 +1489,14 @@ indicating if the request has been started.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="getVoteById">
+        <h4 class="name" id="getUUIDs">
             
-            getVoteById<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
+            getUUIDs<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
         </h4>
     
         
         <div class="tag-source">
-            Client/Admin.js, line 124
+            Client/Admin.js, line 114
         </div>
         
     </div>
@@ -1403,7 +1507,7 @@ indicating if the request has been started.
     
     
     <div class="description">
-        Grabs information about a specific vote from the server.
+        Gets the UUIDs of all existing votes from the server.
     </div>
     
 
@@ -1440,7 +1544,7 @@ indicating if the request has been started.
             <td class="type">
             
                 
-<span class="param-type"><a href="Client.Admin.html#resultCallback">Client.Admin~resultCallback</a></span>
+<span class="param-type"><a href="Client.html#resultCallback">Client~resultCallback</a></span>
 
 
             
@@ -1517,7 +1621,7 @@ indicating if the request has been started.
     
         
         <div class="tag-source">
-            Client/Admin.js, line 36
+            Client/Admin.js, line 43
         </div>
         
     </div>
@@ -1611,7 +1715,7 @@ indicating if the request has been started.
             <td class="type">
             
                 
-<span class="param-type"><a href="Client.Admin.html#resultCallback">Client.Admin~resultCallback</a></span>
+<span class="param-type"><a href="Client.html#resultCallback">Client~resultCallback</a></span>
 
 
             
@@ -1688,7 +1792,7 @@ indicating if the request has been started.
     
         
         <div class="tag-source">
-            Client/Admin.js, line 85
+            Client/Admin.js, line 95
         </div>
         
     </div>
@@ -1768,7 +1872,7 @@ indicating if the logout was successfull.
     
         
         <div class="tag-source">
-            Client/Admin.js, line 144
+            Client/Admin.js, line 169
         </div>
         
     </div>
@@ -1886,155 +1990,6 @@ indicating if the sending was.
     
     
     
-        <h3 class="subsection-title">Type Definitions</h3>
-        
-        <dl>
-                
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="resultCallback">
-            
-            resultCallback<span class="signature">(success, result)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Client/Admin.js, line 152
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Callback for server results.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>success</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                A boolean repsenting if the opertaion suceeded.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>result</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-|
-
-<span class="param-type">string</span>
-|
-
-<span class="param-type">undefined</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The result of the request or an optional error message.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-            </dl>
-    
     
     
 </article>
@@ -2048,7 +2003,7 @@ indicating if the sending was.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Jul 20 2014 21:15:07 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Wed Jul 23 2014 13:33:52 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

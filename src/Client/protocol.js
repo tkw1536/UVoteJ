@@ -1,1 +1,1 @@
-/** Served by Frontend/SocketClient/Protocol.js */
+/** Served by Frontend/Server/Protocol.js */

@@ -77,6 +77,7 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
 
     //Listen for all the events.
     this
+    ._id()
     .title()
     .machine_name()
     .description()
@@ -85,9 +86,28 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
     .minmax_votes()
     .stage()
     .options()
+    .time()
     .results();
 
 };
+
+/**
+ * Exposes the vote id to the client.
+ * @return {Frontend.Server.VoteEditorClient} - for chaining
+ */
+VoteEditorClient.prototype._id = function(){
+
+    var vote = this.vote;
+    var socket = this.socket;
+
+    socket
+    .on(Protocol.VOTE_EDITOR.GET_VOTE_ID, function(){
+        //send id to the client.
+        socket.emit(Protocol.VOTE_EDITOR.GET_VOTE_ID, true, vote.id);
+    });
+
+    return this;
+}
 
 /**
  * Makes the title editable.
@@ -203,7 +223,7 @@ VoteEditorClient.prototype.voting_permissions = function(){
         //send name to the client.
         socket.emit(Protocol.VOTE_EDITOR.GET_VOTING_PERMISSIONS, true, vote.votePermissions.toJSON());
     })
-    .on(Protocol.VOTE_EDITOR.GET_VOTING_PERMISSIONS, function(voting_node){
+    .on(Protocol.VOTE_EDITOR.SET_VOTING_PERMISSIONS, function(voting_node){
         if(vote.stage !== Protocol.Stage.INIT){
             socket.emit(Protocol.VOTE_EDITOR.SET_VOTING_PERMISSIONS, false, vote.votePermissions.toJSON(), "Cannot edit vote while in non-init stage. ");
         } else {
@@ -259,7 +279,16 @@ VoteEditorClient.prototype.minmax_votes = function(){
         //send name to the client.
         socket.emit(Protocol.VOTE_EDITOR.GET_MIMMAXVOTES, true, [vote.minVotes, vote.maxVotes]);
     })
-    .on(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, function(min, max){
+    .on(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, function(v){
+
+        try{
+            var min = v[0];
+            var max = v[1];
+        } catch(e){
+            var min = NaN;
+            var max = NaN;
+        }
+
         if(vote.stage !== Protocol.Stage.INIT){
             socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Cannot edit vote while in non-init stage. ");
             return;
@@ -319,7 +348,16 @@ VoteEditorClient.prototype.time = function(){
     .on(Protocol.VOTE_EDITOR.GET_OPENCLOSE_TIME, function(){
         socket.emit(Protocol.VOTE_EDITOR.GET_OPENCLOSE_TIME, true, [vote.open_time, vote.close_time]);
     })
-    .on(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME, function(open, close){
+    .on(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME, function(v){
+        try{
+            var open = v[0];
+            var close = v[1];
+        } catch(e){
+            var open = NaN;
+            var close = NaN;
+        }
+
+
         if(vote.stage !== Protocol.Stage.INIT){
             if(typeof open !== "undefined" && typeof close !== "undefined"){
                 socket.emit(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME, false, [vote.open_time, vote.close_time], "Cannot edit vote while in non-init stage. ");
@@ -392,6 +430,8 @@ VoteEditorClient.prototype.time = function(){
         socket.emit(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME, true, [vote.open_time, vote.close_time]);
     });
 
+    return this;
+
 };
 
 
@@ -440,6 +480,8 @@ VoteEditorClient.prototype.stage = function(){
             socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, true, vote.stage);
         }
     });
+
+    return this;
 };
 
 /**
@@ -474,6 +516,8 @@ VoteEditorClient.prototype.options = function(){
 
         socket.emit(Protocol.VOTE_EDITOR.SET_OPTIONS, true, vote.options);
     });
+
+    return this;
 };
 
 VoteEditorClient.prototype.results = function(){
@@ -486,7 +530,6 @@ VoteEditorClient.prototype.results = function(){
 
     socket
     .on(Protocol.VOTE_EDITOR.GET_RESULTS, function(){
-
         if(vote.stage == Protocol.Stage.CLOSED || vote.stage == Protocol.Stage.PUBLIC ){
             socket.emit(Protocol.VOTE_EDITOR.GET_RESULTS, true, vote.results);
         } else {
@@ -497,7 +540,7 @@ VoteEditorClient.prototype.results = function(){
     .on(Protocol.VOTE_EDITOR.GET_VOTER_STATS, function(){
 
         if(vote.stage == Protocol.Stage.CLOSED || vote.stage == Protocol.Stage.PUBLIC ){
-
+            logger.info("VOTE_EDIT: Getting all users from auth for ", this.id);
             //get all users
             state.auth.getAll(user, pass, function(s, res){
                 if(!s){
@@ -508,10 +551,12 @@ VoteEditorClient.prototype.results = function(){
                 }
             })
         } else {
-            socket.emit(Protocol.VOTE_EDITOR.GET_VOTER_STATS, false, [], "Voter stats are not yet available because voting has not been completed. ");
+            socket.emit(Protocol.VOTE_EDITOR.GET_VOTER_STATS, false, {}, "Voter stats are not yet available because voting has not been completed. ");
         }
 
     })
+
+    return this;
 }
 
 
@@ -525,6 +570,7 @@ VoteEditorClient.prototype.close = function(){
 
     //unbind all the socket events
     this.socket
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTE_ID)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_TITLE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_TILE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_MACHINE_NAME)
