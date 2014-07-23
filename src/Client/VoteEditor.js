@@ -2,13 +2,14 @@
  * The client-side counterpart to {@link Frontend.Server.VoteEditorClient}
  *
  * @param {NodeJS.SocketIO} socket - Socket to listen on.
- * @param {Client~editCallback} - Callback once we are ready. Will return the vote id as value.
+ * @param {Client~editCallback} callback - Callback once we are ready. Will return the vote id as value.
+ * @param {function} close_callback - Callback to be called once the voteEditor has to be closed.
  * @alias Client.VoteEditor
  * @this {Client.VoteEditor}
  * @class
  */
 
-Client.VoteEditor = function(socket, callback){
+Client.VoteEditor = function(socket, callback, close_callback){
     var me = this;
 
     /**
@@ -25,6 +26,13 @@ Client.VoteEditor = function(socket, callback){
      */
     this.id = undefined;
 
+    /**
+     * Callback to trigger when the Vote Editor is closed.
+     * @name Client.VoteEditor#close_callback
+     * @type {function}
+     */
+    this.close_callback = close_callback;
+
 
     this.socket
     .once(Client.Protocol.VOTE_EDITOR.GET_ID, function(res, value, msg){
@@ -35,6 +43,9 @@ Client.VoteEditor = function(socket, callback){
             me.id = value;
             callback(true, value, msg);
         }
+    })
+    .once(Client.Protocol.VOTE_EDITOR.VOTE_DELETED, function(){
+
     })
     .emit(Client.Protocol.VOTE_EDITOR.GET_ID);
 }
@@ -358,6 +369,17 @@ Client.VoteEditor.prototype.grabAll = function(callback){
             });
         }).call(this, things[i]);
     }
+
+    return this;
+}
+
+/**
+ * Closes this vote editor. 
+ *
+ * @return {Client.VoteEditor} - for chaining
+ */
+Client.VoteEditor.prototype.close = function(){
+    this.close_callback();
 
     return this;
 }

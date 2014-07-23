@@ -126,9 +126,13 @@ VoteDB.prototype.removeVote = function(vote, cb){
     var id = vote.id;
     this.logger.info("MONGO: Deleting", id);
 
+    //tell everyone we are deleting
+    vote.trigger("delete");
+
     //Stop the stages
     vote.stopStages();
     vote.removeAllListeners("update");
+
 
     //delete the object & the vote itself
     delete this.votes[id];
@@ -175,7 +179,7 @@ VoteDB.prototype.updateVote = function(vote, cb){
     this.collection.update({
         "id": id
     }, {"$set": doc}, function(){
-        cb();
+        cb(id);
     });
 }
 

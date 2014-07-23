@@ -186,27 +186,49 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
 
         me.socket.emit(Protocol.ADMIN.END_EDIT, true);
     });
+
+    //get title of a vote
+    this.socket.on(Protocol.ADMIN.GET_VOTE_SUMMARY, function(uuid){
+        var vote = me.server_state.votes.votes[uuid];
+        if(!vote){
+            me.socket.emit(Protocol.ADMIN.GET_VOTE_SUMMARY, false, "Unknown Vote UUID. ");
+            return;
+        }
+
+        //send info about the vote
+        me.socket.emit(Protocol.ADMIN.GET_VOTE_SUMMARY, true, {
+            "uuid": uuid,
+            "name": vote.name,
+            "machine_name": vote.machine_name,
+            "description": vote.description
+        });
+    });
+
+    //create a new vote, return the new UUID
+    this.socket.on(Protocol.ADMIN.CREATE_VOTE, function(){
+        me.server_state.votes.createVote(undefined, function(id){
+            me.socket.emit(Protocol.ADMIN.CREATE_VOTE, id);
+        });
+    });
+
+    //delete a vote
+    this.socket.on(Protocol.ADMIN.DELETE_VOTE, function(uuid){
+        var vote = me.server_state.votes.votes[uuid];
+
+        if(!vote){
+            return me.socket.emit(Protocol.ADMIN.DELETE_VOTE, false, "Unknown Vote UUID. ");
+        }
+
+        //Delete the vote.
+        me.server_state.votes.removeVote(vote, function(){
+            me.socket.emit(Protocol.ADMIN.DELETE_VOTE, true);
+        });
+    });
+
 }
 
 /**
  * Sends all existing vote UUIDs to the client.
- */
-AdminClient.prototype.sendUUIDs = function(){
-    var uuids = [];
-
-    for(uuid in this.server_state.votes.votes){
-        uuids.push(uuid);
-    }
-
-    //Log entry
-    logger.info("ADMIN: Sending UUIDs to", this.id);
-
-    //send the uuids to the client
-    this.socket.emit(Protocol.ADMIN.LIST_VOTE_UUIDS, true, uuids);
-}
-
-/**
- * Sends information about a specific vote to the client.
  */
 AdminClient.prototype.sendUUIDs = function(){
     var uuids = [];

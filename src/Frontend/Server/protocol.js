@@ -30,13 +30,19 @@
         LIST_VOTE_UUIDS: "admin_list_vote_uuids",
 
         /** Grabs the title of a vote from the server.  */
-        GET_VOTE_TITLE: "admin_get_vote_summary",
+        GET_VOTE_SUMMARY: "admin_get_vote_summary",
 
         /** Begins Editing a specific vote */
         BEGIN_EDIT: "admin_vote_begin_edit",
 
         /** Ends editing a certain vote */
         END_EDIT: "admin_vote_end_edit",
+
+        /** Creates a new (empty) vote. */
+        CREATE_VOTE: "admin_add_vote",
+
+        /** Deletes a vote. */
+        DELETE_VOTE: "admin_delete_vote"
     }
 
     Protocol.VOTE_EDITOR = {
@@ -97,7 +103,10 @@
         GET_VOTE_ID: "vote_edit_get_vote_id",
 
         /** Notifies the client that the vote has been updated. */
-        VOTE_UPDATED: "vote_edit_updated"
+        VOTE_UPDATED: "vote_edit_updated",
+
+        /** Vote is being deleted and you should stop editing */
+        VOTE_DELETED: "vote_edit_deleted"
     }
 
     /**

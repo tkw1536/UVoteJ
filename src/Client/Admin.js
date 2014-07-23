@@ -126,12 +126,62 @@ Client.Admin.prototype.getUUIDs = function(cb){
 }
 
 /**
- * Starts the editing on a given vote.
- *
+ * Gets the summary of all votes currently on the server.
  * @param {Client~resultCallback} callback - Callback on results.
  * @return {boolean} - indicating if the request has been started.
  */
-Client.Admin.prototype.editVote = function(uuid, callback){
+Client.Admin.prototype.getSummaries = function(cb){
+    if(!this.isLoggedIn){
+        return false;
+    }
+
+    var me = this;
+
+    //Listen for the result
+    this.socket.once(Client.Protocol.ADMIN.LIST_VOTE_UUIDS, function(s, votes){
+        if(!s){
+            return cb.apply(this, arguments);
+        }
+
+        var result = [];
+
+        //get info on a per element basis
+        var get_info = function(i){
+            if(i < votes.length){
+                me.socket.once(Client.Protocol.ADMIN.GET_VOTE_SUMMARY, votes[i], function(s, r){
+
+                    //error
+                    if(!s){
+                        return cb.apply(me, arguments);
+                    }
+
+                    result.push(r);
+
+                    get_info(i+1);
+                });
+            } else {
+                return cb(true, result);
+            }
+        };
+
+        get_info(0);
+
+    });
+
+    //Send the request
+    this.socket.emit(Client.Protocol.ADMIN.LIST_VOTE_UUIDS);
+
+    return true;
+}
+
+/**
+ * Starts the editing on a given vote.
+ *
+ * @param {Client~resultCallback} callback - Callback on results.
+ * @param {function} close_callback - Callback to call when the editor is closed.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.editVote = function(uuid, callback, close_callback){
     if(!this.isLoggedIn){
         return false;
     }
@@ -140,6 +190,9 @@ Client.Admin.prototype.editVote = function(uuid, callback){
 
     //end the editing
     this.socket.once(Client.Protocol.ADMIN.END_EDIT, function(){
+        try{
+            me.voteEditor.close(); //close the vote editor
+        } catch(e){}
         me.voteEditor = undefined;
         me.socket.once(Client.Protocol.ADMIN.BEGIN_EDIT, function(r){
             if(!r){
@@ -147,15 +200,53 @@ Client.Admin.prototype.editVote = function(uuid, callback){
                 callback.apply(me, arguments);
             } else {
                 //we can start editing
-                me.voteEditor = new Client.VoteEditor(me.socket);
-                callback.call(me, true, me.voteEditor);
+                me.voteEditor = new Client.VoteEditor(me.socket, function(){
+                    callback.call(me, true, me.voteEditor);
+                }, close_callback);
             }
         });
 
-        me.socket.emit(Client.Protocol.ADMIN.BEGIN_EDIT, uuid); 
+        me.socket.emit(Client.Protocol.ADMIN.BEGIN_EDIT, uuid);
     });
 
     this.socket.emit(Client.Protocol.ADMIN.END_EDIT);
+
+    return true;
+}
+
+/**
+ * Creates a new vote.
+ *
+ * @param {Client~resultCallback} callback - Callback on results.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.createVote = function(cb){
+    if(!this.isLoggedIn){
+        return false;
+    }
+
+    //listen for event and then try to create one.
+    this.socket.once(Client.Protocol.ADMIN.CREATE_VOTE, cb);
+    this.socket.emit(Client.Protocol.ADMIN.CREATE_VOTE);
+
+    return true;
+}
+
+/**
+ * Deletes a vote.
+ *
+ * @param {string} uuid - UUID of vote to delete.
+ * @param {Client~resultCallback} callback - Callback on results.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.deleteVote = function(uuid, cb){
+    if(!this.isLoggedIn){
+        return false;
+    }
+
+    //listen for event and then try to create one.
+    this.socket.once(Client.Protocol.ADMIN.DELETE_VOTE, cb);
+    this.socket.emit(Client.Protocol.ADMIN.DELETE_VOTE, uuid);
 
     return true;
 }

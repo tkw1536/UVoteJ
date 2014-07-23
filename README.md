@@ -20,34 +20,17 @@ scripts/install # Interactive setup routine
 scripts/run # Run the script
 ```
 
-or on Windows:
-
-```
-cd UVoteJ
-scripts\install
-REM Edit config\config.json and set yourself as admin.
-scripts\run
-```
-
 The scripts/install routine will write a configuration file to config/config.json
 which can also be manually edited.
 
 
-## Documentation
+## API Documentation
 Can be found in "static/doc". To update documentation:
 
 ```bash
 cd UVoteJ # Directory the repository was cloned into.
 scripts/devel # Make sure everything is set up for development
 scripts/doc # Update the documentation
-```
-
-or on Windows:
-
-```
-cd UVoteJ
-scripts\devel
-scripts\doc
 ```
 
 ## License

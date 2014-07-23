@@ -65,6 +65,11 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
     vote.on("update."+this.id, function(){
         me.socket.emit(Protocol.VOTE_EDITOR.VOTE_UPDATED);
     });
+    //Listen for updates on the vote
+    vote.on("delete."+this.id, function(){
+        me.socket.emit(Protocol.VOTE_EDITOR.VOTE_DELETED);
+        me.close(); 
+    });
 
 
     //Check for disconnect
@@ -567,6 +572,7 @@ VoteEditorClient.prototype.close = function(){
 
     //unlisten for Vote Updates.
     this.vote.removeAllListeners("update."+this.id);
+    this.vote.removeAllListeners("delete."+this.id);
 
     //unbind all the socket events
     this.socket
