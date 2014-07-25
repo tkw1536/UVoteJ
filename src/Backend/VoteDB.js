@@ -72,7 +72,9 @@ var VoteDB = function VoteDB(collection, callback){
 VoteDB.prototype.createVote = function(source_object, cb){
     var me = this;
     var v = new VoteAPI(source_object);
-    me.addVote(v, cb);
+    me.addVote(v, function(){
+        cb(v.id);
+    });
 }
 
 /**
@@ -127,7 +129,7 @@ VoteDB.prototype.removeVote = function(vote, cb){
     this.logger.info("MONGO: Deleting", id);
 
     //tell everyone we are deleting
-    vote.trigger("delete");
+    vote.emit("delete");
 
     //Stop the stages
     vote.stopStages();

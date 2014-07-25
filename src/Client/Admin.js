@@ -148,8 +148,7 @@ Client.Admin.prototype.getSummaries = function(cb){
         //get info on a per element basis
         var get_info = function(i){
             if(i < votes.length){
-                me.socket.once(Client.Protocol.ADMIN.GET_VOTE_SUMMARY, votes[i], function(s, r){
-
+                me.socket.once(Client.Protocol.ADMIN.GET_VOTE_SUMMARY, function(s, r){
                     //error
                     if(!s){
                         return cb.apply(me, arguments);
@@ -159,6 +158,9 @@ Client.Admin.prototype.getSummaries = function(cb){
 
                     get_info(i+1);
                 });
+
+                //emit the event
+                me.socket.emit(Client.Protocol.ADMIN.GET_VOTE_SUMMARY, votes[i]);
             } else {
                 return cb(true, result);
             }

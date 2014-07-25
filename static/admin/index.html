@@ -48,10 +48,86 @@
     <div class="container hidden" id="manager">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <h1>Welcome</h1>
-                <p class="lead">to the UVoteJ Admin Panel. </p>
-                <div>
-                    (In the future there will be options here. )
+                <br />
+                <div id="manager-manager">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#">VoteJ - Admin</a>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#" id="manager-new">Create new vote</a></li>
+                                    <li><a href="#" id="manager-refresh">Reload votes</a></li>
+                                    <li><a href="#"><span class="navbar-right" id="manager-msg-area"></span></a></li>
+                                </ul>
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="#">Vote Overview</a></li>
+                                    <li class="disabled"><a href="#">Vote Editor</a></li>
+                                    <li><a href="#" class="manager-logout">Logout</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div><!--/.container-fluid -->
+                    </div>
+                    <p>
+                        <div class="list-group" id="manager-votelist"></div>
+                    </p>
+                </div>
+                <div id="manager-editor" class="hidden">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#">VoteJ - Admin</a>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li id="manager-back"><a href="#">Vote Overview</a></li>
+                                    <li class="active"><a href="#">Vote Editor</a></li>
+                                    <li><a href="#" class="manager-logout">Logout</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div><!--/.container-fluid -->
+                    </div>
+                    <p id="manager-editor-p">
+                        (the vote editor will go here. )
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm delete Vote Dialog -->
+    <div class="modal fade hidden" id="manager-confirm-delete-vote" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>You are about to delete the vote: <span class="label label-default">(Title goes here)</span></p>
+                    <p>Deleting a vote deletes all results from the server and cannot be undone.</p>
+                    <p>Do you want really want to confinue?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger danger">Yes, really delete the vote</a>
                 </div>
             </div>
         </div>
@@ -61,11 +137,14 @@
     <script src="/lib/jquery/jquery.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/lib/markdown/markdown.js"></script>
 
     <!-- Gui & Client code -->
     <script src="/lib/client/index.js"></script>
     <script src="/lib/client/protocol.js"></script>
     <script src="/lib/gui/PermissionNodeEditor.js"></script>
+    <script src="/lib/gui/LineEditor.js"></script>
+    <script src="/lib/gui/MarkdownEditor.js"></script>
     <script src="/lib/gui/Admin.js"></script>
 </body>
 </html>

@@ -306,6 +306,8 @@
             
                 <li data-name="Gui.Admin.components"><a href="Gui.Admin.html#components">components</a></li>
             
+                <li data-name="Gui.Admin.editor"><a href="Gui.Admin.html#editor">editor</a></li>
+            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -319,6 +321,12 @@
                 <li data-name="Gui.Admin.readyLogin"><a href="Gui.Admin.html#readyLogin">readyLogin</a></li>
             
                 <li data-name="Gui.Admin.readyLogin"><a href="Gui.Admin.html#readyLogin">readyLogin</a></li>
+            
+                <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
+            
+                <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
+            
+                <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -535,8 +543,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -638,25 +644,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Client.Admin">
             <span class="title">
                 <a href="Client.Admin.html">Client.Admin</a>
@@ -680,7 +667,13 @@
             
             <span class="subtitle">Methods</span>
             
+                <li data-name="Client.Admin#createVote"><a href="Client.Admin.html#createVote">createVote</a></li>
+            
+                <li data-name="Client.Admin#deleteVote"><a href="Client.Admin.html#deleteVote">deleteVote</a></li>
+            
                 <li data-name="Client.Admin#editVote"><a href="Client.Admin.html#editVote">editVote</a></li>
+            
+                <li data-name="Client.Admin#getSummaries"><a href="Client.Admin.html#getSummaries">getSummaries</a></li>
             
                 <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
             
@@ -705,6 +698,8 @@
             
             <span class="subtitle">Members</span>
             
+                <li data-name="Client.VoteEditor#close_callback"><a href="Client.VoteEditor.html#close_callback">close_callback</a></li>
+            
                 <li data-name="Client.VoteEditor#id"><a href="Client.VoteEditor.html#id">id</a></li>
             
                 <li data-name="Client.VoteEditor#socket"><a href="Client.VoteEditor.html#socket">socket</a></li>
@@ -718,6 +713,8 @@
             <span class="subtitle">Methods</span>
             
                 <li data-name="Client.VoteEditor#admin_permissions"><a href="Client.VoteEditor.html#admin_permissions">admin_permissions</a></li>
+            
+                <li data-name="Client.VoteEditor#close"><a href="Client.VoteEditor.html#close">close</a></li>
             
                 <li data-name="Client.VoteEditor#description"><a href="Client.VoteEditor.html#description">description</a></li>
             
@@ -791,8 +788,6 @@
                 <li data-name="Frontend.Server.AdminClient#logout"><a href="Frontend.Server.AdminClient.html#logout">logout</a></li>
             
                 <li data-name="Frontend.Server.AdminClient#message"><a href="Frontend.Server.AdminClient.html#message">message</a></li>
-            
-                <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
             
                 <li data-name="Frontend.Server.AdminClient#sendUUIDs"><a href="Frontend.Server.AdminClient.html#sendUUIDs">sendUUIDs</a></li>
             
@@ -973,25 +968,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1071,25 +1047,6 @@
         <li class="item" data-name="NodeJS.SocketIO">
             <span class="title">
                 <a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -1213,7 +1170,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Wed Jul 23 2014 13:33:52 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Fri Jul 25 2014 15:03:55 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

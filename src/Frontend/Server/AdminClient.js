@@ -187,8 +187,9 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
         me.socket.emit(Protocol.ADMIN.END_EDIT, true);
     });
 
-    //get title of a vote
+    //get summary of a vote
     this.socket.on(Protocol.ADMIN.GET_VOTE_SUMMARY, function(uuid){
+
         var vote = me.server_state.votes.votes[uuid];
         if(!vote){
             me.socket.emit(Protocol.ADMIN.GET_VOTE_SUMMARY, false, "Unknown Vote UUID. ");

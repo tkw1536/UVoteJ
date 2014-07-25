@@ -92,6 +92,40 @@ Gui.Admin.readyLogin = function(message){
  * @alias Gui.Admin.readyLogin
  */
 Gui.Admin.readyManager = function(){
+
+    //Logout
+    $(".manager-logout").off("click").click(function(){
+        location.reload();
+    });
+
+    //register the create new vote thing
+    $("#manager-new").off("click").click(function(){
+        $("#manager-msg-area").show().text("Creating vote ... ");
+        Gui.Admin.client.createVote(function(m){
+            //created the vote m
+            Gui.Admin.refreshVoteList(function(){
+                Gui.Admin.editVote(m);
+            });
+        });
+    });
+
+    $("#manager-refresh").off("click").click(function(){
+        Gui.Admin.refreshVoteList();
+    });
+
+    $("#manager-back").off("click").click(function(){
+        if(Gui.Admin.editor){
+            Gui.Admin.editor.close();
+        }
+
+        //refresh the vote list
+        Gui.Admin.refreshVoteList();
+
+        //return to the manager
+        $("#manager-manager").removeClass("hidden");
+        $("#manager-editor").addClass("hidden");
+    }).click();
+
     //register a disconnect handler
     Gui.Admin.client.socket.once("disconnect", function(){
         //logout
@@ -104,6 +138,105 @@ Gui.Admin.readyManager = function(){
         Gui.Admin.readyLogin("You have been disconnected from the server. ");
     });
 }
+
+/**
+ * Called to load all existing votes from the server.
+ * @property {function} [cb] - Callback once ready.
+ * @alias Gui.Admin.refreshVoteList
+ */
+Gui.Admin.refreshVoteList = function(cb){
+    $("#manager-msg-area").show().text("Reloading votes ...");
+
+    var voteList = $("#manager-votelist").empty();
+    Gui.Admin.client.getSummaries(function(s, res){
+        if(!s || res.length == 0){
+            voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
+        } else {
+            for(var i=0;i<res.length;i++){
+                (function(i){
+                    voteList.append(
+                        $('<a href="#" class="list-group-item"></a>')
+                        .append(
+                            $('<h4 class="list-group-item-heading">').text(res[i].name).append(
+                                $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete Vote</span>').click(function(e){
+                                    e.stopPropagation();
+                                    Gui.Admin.deleteVote(res[i].uuid, res[i].name);
+                                })
+                            ),
+                            $('<h5 class="pull-right">').text(res[i].uuid),
+                            $('<p class="list-group-item-text">').html(Markdown.toHTML(res[i].description))
+                        ).click(function(){
+                            //start editing a vote.
+                            Gui.Admin.editVote(res[i].uuid);
+                        })
+                    );
+                })(i);
+            }
+
+        }
+
+        $("#manager-msg-area").show().text("Done. ").fadeOut();
+
+        if(typeof cb == "function"){cb(); }
+    })
+}
+
+/**
+ * Deletes a vote form the server.
+ * @property {string} uuid - UUID of vote to delete
+ * @property {string} title - Title of vote to delete.
+ * @alias Gui.Admin.refreshVoteList
+ */
+Gui.Admin.deleteVote = function(uuid, title){
+    var box = $("#manager-confirm-delete-vote");
+    box.find("span.label-default").text(title);
+
+    var doDelete = false;
+    var button = box.find(".btn.btn-danger.danger");
+
+    button.off("click").on("click", function(){
+        doDelete = true; //we really want to delete something.
+        box.modal("hide");
+    });
+
+    box.one("hidden.bs.modal", function(){
+        button.off("click");
+
+        if(doDelete){
+            $("#manager-msg-area").show().text("Deleting vote ...");
+
+            Gui.Admin.client.deleteVote(uuid, function(s, m){
+                if(!s){
+                    $("#manager-msg-area").text("Did not delete vote. ").fadeOut();
+                } else {
+                    Gui.Admin.refreshVoteList();
+                }
+            });
+        }
+
+    }).removeClass("hidden").modal();
+}
+
+/**
+ * Starts editing a vote.
+ * @property {string} uuid - UUID of vote to delete
+ * @property {string} title - Title of vote to delete.
+ * @alias Gui.Admin.refreshVoteList
+ */
+Gui.Admin.editVote = function(uuid){
+    //go to the editor
+    $("#manager-manager").addClass("hidden");
+    $("#manager-editor").removeClass("hidden");
+
+    $("#manager-editor-p").text("Editing "+uuid)
+
+    /**
+     * Current Gui Vote Editor (if applicable).
+     * @type {*}
+     * @alias Gui.Admin.editor
+     */
+    Gui.Admin.editor = undefined;
+};
 
 $(function(){
     /**
