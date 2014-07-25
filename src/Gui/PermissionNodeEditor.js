@@ -134,6 +134,9 @@
 
                     //and set it correctly
                     PermissionNodeEditor.Setter(theDiv, disabled, now);
+
+                    //we changed something
+                    theDiv.parent().trigger("PermissionNodeEditor.update", now);
                 });
 
 
@@ -151,6 +154,9 @@
 
                         //and set it correctly
                         PermissionNodeEditor.Setter(theDiv, disabled, now);
+
+                        //we removed something
+                        theDiv.parent().trigger("PermissionNodeEditor.update", now);
                     });
                 }
 

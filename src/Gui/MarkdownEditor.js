@@ -147,7 +147,7 @@
              * Sets the current value of the MarkdownEditor.
              *
              * @param {string} v - Value to set the editor to.
-             * @param {boolean} [disabled] - If set to true, the MarkdownEditor is disabled and can not be edited. If set to false, it will not be disabled. If not set, remains unchanged. 
+             * @param {boolean} [disabled] - If set to true, the MarkdownEditor is disabled and can not be edited. If set to false, it will not be disabled. If not set, remains unchanged.
              * @instance
              * @memberof Gui.MarkdownEditor
              * @function
