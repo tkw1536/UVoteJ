@@ -155,6 +155,11 @@
         //we cant move the first one up and the last one down
         theDiv.find(".move-up").eq(0).prop("disabled", true);
         theDiv.find(".move-down").last().prop("disabled", true);
+
+        if(disabled === true){
+            //Disable everything. 
+            theDiv.find("button").prop("disabled", true);
+        }
     }
 
     /**
