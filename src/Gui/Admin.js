@@ -43,6 +43,8 @@ Gui.Admin.readyLogin = function(message){
     Gui.Admin.components.loaderPart.hide();
     Gui.Admin.components.managerPart.hide();
 
+    $(".modal").hide();
+
     //and show this one
     Gui.Admin.components.loginPart.show();
 
@@ -116,14 +118,15 @@ Gui.Admin.readyManager = function(){
     $("#manager-back").off("click").click(function(){
         if(Gui.Admin.editor){
             Gui.Admin.editor.close();
+        } else {
+
+            //refresh the vote list
+            Gui.Admin.refreshVoteList();
+
+            //return to the manager
+            $("#manager-manager").removeClass("hidden");
+            $("#manager-editor").addClass("hidden");
         }
-
-        //refresh the vote list
-        Gui.Admin.refreshVoteList();
-
-        //return to the manager
-        $("#manager-manager").removeClass("hidden");
-        $("#manager-editor").addClass("hidden");
     }).click();
 
     //register a disconnect handler
@@ -158,16 +161,21 @@ Gui.Admin.refreshVoteList = function(cb){
                         $('<a href="#" class="list-group-item"></a>')
                         .append(
                             $('<h4 class="list-group-item-heading">').text(res[i].name).append(
-                                $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete Vote</span>').click(function(e){
+                                $('<span class="btn btn-xs btn-primary" style="margin-left: 5px; ">Edit</span>').click(function(e){
+                                    e.stopPropagation();
+                                    Gui.Admin.editVote(res[i].uuid);
+                                }),
+                                $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
                                     e.stopPropagation();
                                     Gui.Admin.deleteVote(res[i].uuid, res[i].name);
                                 })
                             ),
                             $('<h5 class="pull-right">').text(res[i].uuid),
                             $('<p class="list-group-item-text">').html(Markdown.toHTML(res[i].description))
-                        ).click(function(){
-                            //start editing a vote.
-                            Gui.Admin.editVote(res[i].uuid);
+                        ).click(function(e){
+                            //show the links for this vote.
+                            Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
+                            return false;
                         })
                     );
                 })(i);
@@ -214,7 +222,7 @@ Gui.Admin.deleteVote = function(uuid, title){
             });
         }
 
-    }).removeClass("hidden").modal();
+    }).show().removeClass("hidden").modal();
 }
 
 /**
@@ -246,7 +254,7 @@ Gui.Admin.editVote = function(uuid){
         Gui.Admin.editor = new Gui.VoteEditor(editArea, editor);
 
         Gui.Admin.editor.init(); //init the editor.
-    }, function(){
+    }, function(msg){
         $(".manager-msg-area").text(msg).fadeOut(function(){
             //refresh the vote list
             Gui.Admin.refreshVoteList();
@@ -258,6 +266,31 @@ Gui.Admin.editVote = function(uuid){
     });
 
 };
+
+/**
+ * Shows a copy-links dialog.
+ *
+ * @property {string} title - Title of the vote.
+ * @property {string} machine_name - Machine name of the vote.
+ * @property {string} uuid - UUID of the vote.
+ * @alias Gui.Admin.refreshVoteList
+ */
+Gui.Admin.copyLinkDialog = function(title, machine_name, uuid){
+    var box = $("#manager-links");
+    box.find("h4").eq(0).text("Links for "+title);
+
+    var inputs = box.find("input")
+
+    //Nice urls
+    inputs.eq(0).val(Client.resolve("/vote/"+encodeURIComponent(machine_name)));
+    inputs.eq(1).val(Client.resolve("/vote/"+encodeURIComponent(machine_name)+"/edit"));
+
+    //Ugly urls
+    inputs.eq(2).val(Client.resolve("/vote/"+encodeURIComponent(uuid)));
+    inputs.eq(3).val(Client.resolve("/vote/"+encodeURIComponent(uuid)+"/edit"));
+
+    box.show().removeClass("hidden").modal();
+}
 
 $(function(){
     /**

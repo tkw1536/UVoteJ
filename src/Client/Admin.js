@@ -195,7 +195,9 @@ Client.Admin.prototype.editVote = function(uuid, callback, close_callback){
         try{
             me.voteEditor.close(); //close the vote editor
         } catch(e){}
+
         me.voteEditor = undefined;
+
         me.socket.once(Client.Protocol.ADMIN.BEGIN_EDIT, function(r){
             if(!r){
                 //we couldn't start editing
@@ -206,7 +208,11 @@ Client.Admin.prototype.editVote = function(uuid, callback, close_callback){
                     if(r){
                         callback.call(me, true, me.voteEditor);
                     }
-                }, close_callback);
+                }, function(msg){
+                    //we are closed now, so we are undefined!
+                    me.voteEditor = undefined;
+                    close_callback(msg);
+                });
             }
         });
 

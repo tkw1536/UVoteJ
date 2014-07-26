@@ -103,6 +103,38 @@ var Client = (function(){
         }
     }
 
+    /*
+     * Resolves a relative url
+     * @param {string} url - Url to resolve
+     * @param {string} [base] - Base url to use.
+     * @param {boolean} [isDir] - If set to true, will return a directory name ending with a slash.
+    */
+    Client.resolve = function(url, base, isDir){
+
+        var resolveWithBase = false;
+        var baseUrl, oldBase, newBase;
+
+        if(typeof base == "string"){
+        	resolveWithBase = true;
+        	baseUrl = arguments.callee(base, true);
+        	oldBase = jQuery("base").detach();
+        	newBase = jQuery("<base>").attr("href", baseUrl).appendTo("head");
+        }
+
+        var el= document.createElement('div');
+        el.innerHTML= '<a href="'+jQuery('<span/>').text(url).html()+'">x</a>';
+        var url = el.firstChild.href;
+
+        if(resolveWithBase){
+        	newBase.remove();
+        	oldBase.appendTo("head");
+        }
+
+        if( (base === true || isDir === true ) && url[url.length - 1] != "/"){url = url + "/"; }
+
+        return url;
+    }
+
     /**
      * Callback for server results.
      * @callback Client~resultCallback

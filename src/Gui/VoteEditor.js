@@ -30,8 +30,12 @@ Gui.VoteEditor = function VoteEditor(element, voteEditor){
 * Initialises the GUI.
 */
 Gui.VoteEditor.prototype.init = function(){
+    //TODO: Set up widgets here! 
+    this.reload();
+}
+
+Gui.VoteEditor.prototype.reload = function(){
     this.element.text("Editing "+this.voteEnd.id);
-    //TODO: Add all the stuffs here
 }
 
 /**

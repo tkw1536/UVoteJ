@@ -72,7 +72,7 @@
                 var medit = $("<div class='row-medit' style='margin-top: 3px; '>").MarkdownEditor(val.markdown_description, disabled).on("MarkdownEditor.update", updateHandler);
 
                 fs.append(
-                    $("<div class='row'></div>").append(
+                    $("<div class='row well'></div>").append(
                         $("<p class='lead'></p>").text("Option #"+(i+1)).append(
                             $("<div class='btn-group' style='margin-left: 3px; '>").append(
                                     $("<button class='btn btn-default move-up'>Up</button>").click(function(e){
@@ -157,7 +157,7 @@
         theDiv.find(".move-down").last().prop("disabled", true);
 
         if(disabled === true){
-            //Disable everything. 
+            //Disable everything.
             theDiv.find("button").prop("disabled", true);
         }
     }

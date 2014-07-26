@@ -1,11 +1,11 @@
 {
     "port": 3000,
     "mongodb": "mongodb://localhost:27017/UVoteJ",
-    "auth": "dummy",
+    "auth": "dummy", 
     "auth_admins": [
         "root"
     ],
-    "normalise_usernames": true, 
+    "normalise_usernames": true,
     "auth_config": {
         "nameField": "name"
     }
