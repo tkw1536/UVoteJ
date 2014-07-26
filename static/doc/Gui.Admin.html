@@ -262,6 +262,10 @@
             
                 <li data-name="Frontend.State.authReload"><a href="Frontend.State.html#authReload">authReload</a></li>
             
+                <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
+            
+                <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
+            
             </ul>
             <ul class="events itemMembers">
             
@@ -321,6 +325,8 @@
                 <li data-name="Gui.Admin.readyLogin"><a href="Gui.Admin.html#readyLogin">readyLogin</a></li>
             
                 <li data-name="Gui.Admin.readyLogin"><a href="Gui.Admin.html#readyLogin">readyLogin</a></li>
+            
+                <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
             
                 <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
             
@@ -1793,7 +1799,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 94
+            Gui/Admin.js, line 96
         </div>
         
     </div>
@@ -1918,7 +1924,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 226
+            Gui/Admin.js, line 278
         </div>
         
     </div>
@@ -1929,7 +1935,307 @@
     
     
     <div class="description">
-        Starts editing a vote.
+        Shows a copy-links dialog.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Title of the vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>machine_name</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Machine name of the vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>uuid</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">UUID of the vote.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="refreshVoteList">
+            
+            <span class="type-signature static">static</span>Gui.Admin.refreshVoteList<span class="signature">()</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Gui/Admin.js, line 150
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Called to load all existing votes from the server.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Argument</th>
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">Callback once ready.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="refreshVoteList">
+            
+            <span class="type-signature static">static</span>Gui.Admin.refreshVoteList<span class="signature">()</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Gui/Admin.js, line 198
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Deletes a vote form the server.
     </div>
     
 
@@ -2063,7 +2369,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 147
+            Gui/Admin.js, line 234
         </div>
         
     </div>
@@ -2074,139 +2380,7 @@
     
     
     <div class="description">
-        Called to load all existing votes from the server.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-        <h5 class="subsection-title">Properties:</h5>
-        
-        <dl>
-
-<table class="props">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Argument</th>
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>cb</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-                    
-                
-                </td>
-            
-            
-            
-            
-            <td class="description last">Callback once ready.</td>
-        </tr>
-	
-	
-	</tbody>
-</table></dl>
-        
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="refreshVoteList">
-            
-            <span class="type-signature static">static</span>Gui.Admin.refreshVoteList<span class="signature">()</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Gui/Admin.js, line 190
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Deletes a vote form the server.
+        Starts editing a vote.
     </div>
     
 
@@ -2346,7 +2520,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 10:56:48 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 14:06:11 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
