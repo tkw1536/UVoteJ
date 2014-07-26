@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Namespace: config</title>
+    <title>Class: VoteEditor</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -1189,7 +1189,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="Backend.config.html">Namespace: config</h1>
+        <h1 class="page-title" data-filename="Gui.VoteEditor.html">Class: VoteEditor</h1>
         
 
 
@@ -1198,9 +1198,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="Backend.html">Backend</a>.</span>
+        <span class="ancestors"><a href="Gui.html">Gui</a>.</span>
     
-    config
+    VoteEditor
     </h2>
     
 </header>  
@@ -1211,64 +1211,16 @@
     
     
         
-        
-        
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-        
-        
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Methods</h3>
-        
-        <dl>
-            
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="read">
+        <h4 class="name" id="VoteEditor">
             
-            <span class="type-signature static">static</span>Backend.config.read<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Backend.config.html#config">Backend.config.config</a>}</span>
+            new Gui.VoteEditor<span class="signature">(element, voteEditor, close_callback)</span>
         </h4>
     
         
         <div class="tag-source">
-            Backend/config.js, line 19
+            Gui/VoteEditor.js, line 10
         </div>
         
     </div>
@@ -1279,87 +1231,7 @@
     
     
     <div class="description">
-        Reads configuration data from the config file or from cache.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-The configuration.
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="write">
-            
-            <span class="type-signature static">static</span>Backend.config.write<span class="signature">(configuration)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Backend.config.html#config">Backend.config.config</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Backend/config.js, line 39
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Writes Configuration data to the config File.
+        Votte Editor GUI
     </div>
     
 
@@ -1390,13 +1262,13 @@ The configuration.
 	
         <tr>
             
-                <td class="name"><code>configuration</code></td>
+                <td class="name"><code>element</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
 
 
             
@@ -1406,7 +1278,53 @@ The configuration.
             
             <td class="description last">
                 
-                Configuration to write to the file.</td>
+                Element to bind the Vote Editor to.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>voteEditor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Client.VoteEditor.html">Client.VoteEditor</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Vote Editor to use.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>close_callback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Callback when the editor has to be closed unexpectedly.</td>
         </tr>
 	
 	
@@ -1451,28 +1369,29 @@ The configuration.
     
     
     
-
-
-<h5>Returns:</h5>
-The configuration.
-<br />
-
-    
-    
-    
 </dd>
 
-        </dl>
+    
+    </div>
     
     
     
-        <h3 class="subsection-title">Type Definitions</h3>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
         
         <dl>
-                
+            
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="config">Backend.config.config<span class="type-signature type object">object</span> </h4>
+        <h4 class="name" id="element">element<span class="type-signature type browser.jquery"><a href="Browser.jQuery.html">Browser.jQuery</a></span> </h4>
     </div>
     
     
@@ -1480,181 +1399,12 @@ The configuration.
 <dd>
     
     <div class="description">
-        Configuration Object for UVoteJ.
+        The element this Vote Editor is bound to.
     </div>
     
     
     
 <dl class="details">
-    
-        
-        <h5 class="subsection-title">Properties:</h5>
-        
-        <dl>
-
-<table class="props">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>port</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Port or adress to use for the HTTP Server.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>mongodb</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"><a href="https://www.mongodb.org/">MongoDB</a> Server to use.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>auth</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Authentication method to use. See the Authentication namespace.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>auth_admins</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">List of administrators.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>normalise_usernames</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Boolean indicating if usernames should be normalised when authorising.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>auth_config</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Authentification configuration passed to the correct Authentication class.</td>
-        </tr>
-	
-	
-	</tbody>
-</table></dl>
-        
     
         
     
@@ -1682,7 +1432,202 @@ The configuration.
     
 </dd>
 
-            </dl>
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="voteEnd">voteEnd<span class="type-signature type client.voteeditor"><a href="Client.VoteEditor.html">Client.VoteEditor</a></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The VoteEditor associated to this GUI.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="close">
+            
+            close<span class="signature">()</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Gui/VoteEditor.js, line 40
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Closes the VoteEditor.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="init">
+            
+            init<span class="signature">()</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Gui/VoteEditor.js, line 32
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Initialises the GUI.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
     
     
     
@@ -1697,7 +1642,7 @@ The configuration.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 10:56:47 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 10:56:48 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

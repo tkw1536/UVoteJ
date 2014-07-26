@@ -202,8 +202,10 @@ Client.Admin.prototype.editVote = function(uuid, callback, close_callback){
                 callback.apply(me, arguments);
             } else {
                 //we can start editing
-                me.voteEditor = new Client.VoteEditor(me.socket, function(){
-                    callback.call(me, true, me.voteEditor);
+                me.voteEditor = new Client.VoteEditor(me.socket, function(r, s, m){
+                    if(r){
+                        callback.call(me, true, me.voteEditor);
+                    }
                 }, close_callback);
             }
         });

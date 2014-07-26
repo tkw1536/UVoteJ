@@ -68,12 +68,12 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
     //Listen for updates on the vote
     vote.on("delete."+this.id, function(){
         me.socket.emit(Protocol.VOTE_EDITOR.VOTE_DELETED);
-        me.close(); 
+        me.close();
     });
 
 
     //Check for disconnect
-    this.socket.on("disconnect", function(){
+    this.socket.on("disconnect."+this.id, function(){
         logger.info("VOTE_EDIT:", this.id, "stopped editing", vote.id);
         me.close();
     });
@@ -82,7 +82,7 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
 
     //Listen for all the events.
     this
-    ._id()
+    .idable()
     .title()
     .machine_name()
     .description()
@@ -100,7 +100,7 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
  * Exposes the vote id to the client.
  * @return {Frontend.Server.VoteEditorClient} - for chaining
  */
-VoteEditorClient.prototype._id = function(){
+VoteEditorClient.prototype.idable = function(){
 
     var vote = this.vote;
     var socket = this.socket;
@@ -573,6 +573,8 @@ VoteEditorClient.prototype.close = function(){
     //unlisten for Vote Updates.
     this.vote.removeAllListeners("update."+this.id);
     this.vote.removeAllListeners("delete."+this.id);
+    this.vote.removeAllListeners("disconnect."+this.id);
+
 
     //unbind all the socket events
     this.socket

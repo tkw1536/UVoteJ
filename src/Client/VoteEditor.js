@@ -34,20 +34,24 @@ Client.VoteEditor = function(socket, callback, close_callback){
     this.close_callback = close_callback;
 
 
-    this.socket
-    .once(Client.Protocol.VOTE_EDITOR.GET_ID, function(res, value, msg){
+    this.socket.once(Client.Protocol.VOTE_EDITOR.GET_VOTE_ID, function(res, value, msg){
         if(!res){
             //we aren't ready
-            callback(false, value, msg);
+            callback(false);
         } else {
             me.id = value;
-            callback(true, value, msg);
+            callback(true);
         }
-    })
-    .once(Client.Protocol.VOTE_EDITOR.VOTE_DELETED, function(){
+    });
 
-    })
-    .emit(Client.Protocol.VOTE_EDITOR.GET_ID);
+    //Send the id request
+    this.socket.emit(Client.Protocol.VOTE_EDITOR.GET_VOTE_ID);
+
+    //Listen to delete events.
+    this.socket.once(Client.Protocol.VOTE_EDITOR.VOTE_DELETED, function(){
+        //We close everything
+        me.close();
+    });
 }
 
 /**
@@ -374,12 +378,13 @@ Client.VoteEditor.prototype.grabAll = function(callback){
 }
 
 /**
- * Closes this vote editor. 
+ * Closes this vote editor.
  *
+ * @param {string} [msg] - The reason why this vote has been deleted.
  * @return {Client.VoteEditor} - for chaining
  */
-Client.VoteEditor.prototype.close = function(){
-    this.close_callback();
+Client.VoteEditor.prototype.close = function(msg){
+    this.close_callback(msg);
 
     return this;
 }

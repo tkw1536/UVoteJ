@@ -100,7 +100,7 @@ Gui.Admin.readyManager = function(){
 
     //register the create new vote thing
     $("#manager-new").off("click").click(function(){
-        $("#manager-msg-area").show().text("Creating vote ... ");
+        $(".manager-msg-area").show().text("Creating vote ... ");
         Gui.Admin.client.createVote(function(m){
             //created the vote m
             Gui.Admin.refreshVoteList(function(){
@@ -145,7 +145,7 @@ Gui.Admin.readyManager = function(){
  * @alias Gui.Admin.refreshVoteList
  */
 Gui.Admin.refreshVoteList = function(cb){
-    $("#manager-msg-area").show().text("Reloading votes ...");
+    $(".manager-msg-area").show().text("Reloading votes ...");
 
     var voteList = $("#manager-votelist").empty();
     Gui.Admin.client.getSummaries(function(s, res){
@@ -175,7 +175,7 @@ Gui.Admin.refreshVoteList = function(cb){
 
         }
 
-        $("#manager-msg-area").show().text("Done. ").fadeOut();
+        $(".manager-msg-area").show().text("Done. ").fadeOut();
 
         if(typeof cb == "function"){cb(); }
     })
@@ -203,11 +203,11 @@ Gui.Admin.deleteVote = function(uuid, title){
         button.off("click");
 
         if(doDelete){
-            $("#manager-msg-area").show().text("Deleting vote ...");
+            $(".manager-msg-area").show().text("Deleting vote ...");
 
             Gui.Admin.client.deleteVote(uuid, function(s, m){
                 if(!s){
-                    $("#manager-msg-area").text("Did not delete vote. ").fadeOut();
+                    $(".manager-msg-area").text("Did not delete vote. ").fadeOut();
                 } else {
                     Gui.Admin.refreshVoteList();
                 }
@@ -228,14 +228,35 @@ Gui.Admin.editVote = function(uuid){
     $("#manager-manager").addClass("hidden");
     $("#manager-editor").removeClass("hidden");
 
-    $("#manager-editor-p").text("Editing "+uuid)
+    var editArea = $("#manager-editor-p");
+    editArea.text("(Editor loading)");
 
-    /**
-     * Current Gui Vote Editor (if applicable).
-     * @type {*}
-     * @alias Gui.Admin.editor
-     */
-    Gui.Admin.editor = undefined;
+    Gui.Admin.client.editVote(uuid, function(r, editor){
+
+        if(!r){
+            editArea.text("Could not start to edit vote. Please check the server connection. ");
+            return;
+        }
+
+        /**
+         * Current Gui Vote Editor (if applicable).
+         * @type {*}
+         * @alias Gui.Admin.editor
+         */
+        Gui.Admin.editor = new Gui.VoteEditor(editArea, editor);
+
+        Gui.Admin.editor.init(); //init the editor.
+    }, function(){
+        $(".manager-msg-area").text(msg).fadeOut(function(){
+            //refresh the vote list
+            Gui.Admin.refreshVoteList();
+
+            //return to the manager
+            $("#manager-manager").removeClass("hidden");
+            $("#manager-editor").addClass("hidden");
+        });
+    });
+
 };
 
 $(function(){
