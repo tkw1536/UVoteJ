@@ -43,8 +43,23 @@ module.exports = function(state, logger, next){
         res.end("This will handle the editing with uuid "+uuid)
     };
 
-    //Vote Editing
-    state.app.use("/vote/:name/edit", function(req, res, next){
+    /**
+    * Handles the result displaying on a specific vote.
+    *
+    * @param {string} uuid - UUID of vote to handle.
+    * @param {string} type - Result type. One of "json", "xml", "csv" and "html"
+    * @param {*} req
+    * @param {*} res
+    * @alias Frontend.State.handleVoteRes
+    * @function
+    */
+    state.handleVoteRes = function(uuid, type, req, res){
+        res.end("This will handle the voting with uuid "+uuid+"of type"+type)
+    };
+
+    //Edit URLs, for administrators so that they can edit the vote.
+    //Always available even once vote is closed / public.
+    state.app.use("/edit/:name", function(req, res, next){
         var voteDB = state.votes;
 
         //Check if we can handle this with a uuid
@@ -64,7 +79,8 @@ module.exports = function(state, logger, next){
         next();
     });
 
-    //Voting
+    //Vote URLs, for the public so that they can vote.
+    //URLs will show a link to the results page once the vote is closed.
     state.app.use("/vote/:name", function(req, res, next){
         var voteDB = state.votes;
 
@@ -85,9 +101,104 @@ module.exports = function(state, logger, next){
         next();
     });
 
-    //User-friendly top-elevel aliases. These redirtect.
+    // JSON Result URLs, for the public so that they can view results
+    //Will result in a 404 if the results are not yet available.
+    state.app.use("/results/:name/json", function(req, res, next){
+        var voteDB = state.votes;
+
+        //Check if we can handle this with a uuid
+        if(voteDB.votes.hasOwnProperty(req.params.name)){
+            state.handleVoteRes(req.params.name, "json", req, res);
+            return;
+        }
+
+        //Try and resolve the machine name
+        var tryUUID = voteDB.machine_to_uuid(req.params.name);
+
+        if(tryUUID !== ""){
+            state.handleVoteRes(tryUUID, "json", req, res);
+            return;
+        }
+
+        next();
+    });
+
+    // XML Result URLs, for the public so that they can view results
+    //Will result in a 404 if the results are not yet available.
+    state.app.use("/results/:name/xml", function(req, res, next){
+        var voteDB = state.votes;
+
+        //Check if we can handle this with a uuid
+        if(voteDB.votes.hasOwnProperty(req.params.name)){
+            state.handleVoteRes(req.params.name, "xml", req, res);
+            return;
+        }
+
+        //Try and resolve the machine name
+        var tryUUID = voteDB.machine_to_uuid(req.params.name);
+
+        if(tryUUID !== ""){
+            state.handleVoteRes(tryUUID, "xml", req, res);
+            return;
+        }
+
+        next();
+    });
+
+    // CSV Result URLs, for the public so that they can view results
+    //Will result in a 404 if the results are not yet available.
+    state.app.use("/results/:name/csv", function(req, res, next){
+        var voteDB = state.votes;
+
+        //Check if we can handle this with a uuid
+        if(voteDB.votes.hasOwnProperty(req.params.name)){
+            state.handleVoteRes(req.params.name, "csv", req, res);
+            return;
+        }
+
+        //Try and resolve the machine name
+        var tryUUID = voteDB.machine_to_uuid(req.params.name);
+
+        if(tryUUID !== ""){
+            state.handleVoteRes(tryUUID, "csv", req, res);
+            return;
+        }
+
+        next();
+    });
+
+    // HTML Result URLs, for the public so that they can view results
+    //Will result in a 404 if the results are not yet available.
+    state.app.use("/results/:name", function(req, res, next){
+        var voteDB = state.votes;
+
+        //Check if we can handle this with a uuid
+        if(voteDB.votes.hasOwnProperty(req.params.name)){
+            state.handleVoteRes(req.params.name, "html", req, res);
+            return;
+        }
+
+        //Try and resolve the machine name
+        var tryUUID = voteDB.machine_to_uuid(req.params.name);
+
+        if(tryUUID !== ""){
+            state.handleVoteRes(tryUUID, "html", req, res);
+            return;
+        }
+
+        next();
+    });
+
+
+
+    //Public URLs, these redirect either to /vote/:name or /results/:nam
+    //dependening on the state of the vote.
     state.app.use("/:name", function(req, res, next){
         //Handles the top-level urls. These might be disabled in the future.
+        //TODO: Check whic state the vote is in and redirect to either the result or the vote
+        //TODO: Make these links onnthe admin page also.
+        //Note: These redirects are 303 because they should nt be cached
+        //as the vote state might change.
 
         var voteDB = state.votes;
 
@@ -108,6 +219,7 @@ module.exports = function(state, logger, next){
 
         next();
     });
+
 
     // 404 Page
     state.app.use("/", function(req, res){

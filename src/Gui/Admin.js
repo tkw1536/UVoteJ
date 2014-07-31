@@ -282,12 +282,16 @@ Gui.Admin.copyLinkDialog = function(title, machine_name, uuid){
     var inputs = box.find("input")
 
     //Nice urls
-    inputs.eq(0).val(Client.resolve("/vote/"+encodeURIComponent(machine_name)));
-    inputs.eq(1).val(Client.resolve("/vote/"+encodeURIComponent(machine_name)+"/edit"));
+    inputs.eq(0).val(Client.resolve("/"+encodeURIComponent(machine_name)));
+    inputs.eq(1).val(Client.resolve("/vote/"+encodeURIComponent(machine_name)));
+    inputs.eq(2).val(Client.resolve("/results/"+encodeURIComponent(machine_name)));
+    inputs.eq(3).val(Client.resolve("/edit/"+encodeURIComponent(machine_name)));
 
     //Ugly urls
-    inputs.eq(2).val(Client.resolve("/vote/"+encodeURIComponent(uuid)));
-    inputs.eq(3).val(Client.resolve("/vote/"+encodeURIComponent(uuid)+"/edit"));
+    inputs.eq(4).val(Client.resolve("/"+encodeURIComponent(uuid)));
+    inputs.eq(5).val(Client.resolve("/vote/"+encodeURIComponent(uuid)));
+    inputs.eq(6).val(Client.resolve("/results/"+encodeURIComponent(uuid)));
+    inputs.eq(7).val(Client.resolve("/edit/"+encodeURIComponent(uuid)));
 
     box.show().removeClass("hidden").modal();
 }
