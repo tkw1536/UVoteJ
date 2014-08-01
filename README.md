@@ -21,8 +21,15 @@ scripts/run # Run the script
 ```
 
 The scripts/install routine will write a configuration file to config/config.json
-which can also be manually edited.
+which can should be manually edited.
 
+The only thing that is not configured by the install script is:
+
+* ```auth_admins```: List of admin usernames. The admin interface can be found under /admin.
+
+## Getting started
+
+Get started by going to http://localhost:3000/admin and log in.
 
 ## API Documentation
 Can be found in "static/doc". To update documentation:
@@ -32,6 +39,17 @@ cd UVoteJ # Directory the repository was cloned into.
 scripts/devel # Make sure everything is set up for development
 scripts/doc # Update the documentation
 ```
+
+# TODO
+
+- [ ] Admin Edit GUI
+    - [ ] Phases
+    - [ ] Options
+- [ ] Client Editing
+- [ ] Vote GUI
+- [ ] Results
+- [ ] OpenJUB auth
+- [ ] End-user help
 
 ## License
 
