@@ -72,7 +72,7 @@ Client.VoteEditor.prototype.name = function(value, callback){
     } else {
         //Assume we want to set the value.
         var callback = (typeof callback == "function")?callback:function(){};
-
+        
         this.socket
         .once(Client.Protocol.VOTE_EDITOR.SET_TITLE, callback)
         .emit(Client.Protocol.VOTE_EDITOR.SET_TITLE, value);

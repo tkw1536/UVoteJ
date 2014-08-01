@@ -53,7 +53,7 @@
         /** Gets the title */
         GET_TITLE: "vote_edit_get_title",
         /** Sets the title */
-        SET_TILE: "vote_edit_set_title",
+        SET_TITLE: "vote_edit_set_title",
         /** Gets the machine name */
         GET_MACHINE_NAME: "vote_edit_get_machine_name",
         /** Sets the machine name */

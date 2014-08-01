@@ -177,7 +177,6 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
 
     //Listening to edits
     this.socket.on(Protocol.ADMIN.END_EDIT, function(){
-
         if(me.editVoteClient){
             //we are editing something.
             me.editVoteClient.close();

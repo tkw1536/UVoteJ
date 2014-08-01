@@ -102,11 +102,10 @@ Gui.Admin.clock = function(){
     var where = $(".manager-time");
 
     var second = 0;
-    var syncInterval = 600; //sync time with the server every 10 minutes. 
+    var syncInterval = 600; //sync time with the server every 10 minutes.
 
     Gui.Admin.client.getTime(function(r, t){
         var t = t;
-        console.log(t);
 
         var displayClock = function(){
 
@@ -290,6 +289,7 @@ Gui.Admin.editVote = function(uuid){
     editArea.text("(Editor loading)");
 
     Gui.Admin.client.editVote(uuid, function(r, editor){
+        console.log("Started to edit vote! ", editor.id);
 
         if(!r){
             editArea.text("Could not start to edit vote. Please check the server connection. ");

@@ -165,18 +165,24 @@ VoteEditorClient.prototype.machine_name = function(){
         } else {
 
             //Check if we have another vote with the given machine_id
-            var thatId = state.db.machine_to_uuid(machine_name);
+            var thatId = state.votes.machine_to_uuid(machine_name);
 
             if(thatId != "" && thatId != vote.id){
                 //we already have a machine_id like that from someone who is not me.
                 socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Specefied machine_name already taken by another vote. ");
+            } else if(! /^[a-zA-Z0-9_\-]+$/.test(machine_name)){
+                //we cant have some of the characters.
+                socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "The machine_name may only have letters, numbers, underscores and -. ");
+            } else if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(machine_name)){
+                //we acn't be a uuid.
+                socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "The machine_name may not be a UUID. ");
             } else {
                 //we updated the vote
                 vote.machine_name = machine_name;
                 vote.emit("update");
 
                 //send that to the client.
-                socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, true, vote.name);
+                socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, true, vote.machine_name);
             }
         }
     });
@@ -566,6 +572,8 @@ VoteEditorClient.prototype.results = function(){
  */
 VoteEditorClient.prototype.close = function(){
 
+    logger.info("VOTE_EDIT:", this.id, "stopped editing", this.vote.id);
+
     //unlisten for Vote Updates.
     this.vote.removeAllListeners("update."+this.id);
     this.vote.removeAllListeners("delete."+this.id);
@@ -576,8 +584,9 @@ VoteEditorClient.prototype.close = function(){
     this.socket
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTE_ID)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_TITLE)
-    .removeAllListeners(Protocol.VOTE_EDITOR.SET_TILE)
+    .removeAllListeners(Protocol.VOTE_EDITOR.SET_TITLE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_MACHINE_NAME)
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_MACHINE_NAME)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_DESCRIPTION)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_DESCRIPTION)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTING_PERMISSIONS)
@@ -595,7 +604,7 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_RESULTS)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS); 
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS);
 }
 
 module.exports = VoteEditorClient;
