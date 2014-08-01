@@ -13,7 +13,7 @@
         </div>\n\
     </div>';
 
-    var previewRow1 = '<div class="row">\n\
+    var previewRow1 = '<div class="row well">\n\
         <div class="pull-left" style="width: 45%; ">\n\
             <textarea style="width: 100%; "></textarea>\n\
         </div>\n\
@@ -50,7 +50,7 @@
         }
 
         //the row which shows the preview
-        showRow = $("<div class='row'>").appendTo(this);
+        showRow = $("<div class='row well'>").appendTo(this);
 
         //append the edit button
         editButtonRow = $(buttonRow1).appendTo(this).find("button").click(function(e){

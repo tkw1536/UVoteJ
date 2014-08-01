@@ -37,8 +37,10 @@ Gui.VoteEditor.prototype.init = function(){
      * @type {Gui.LineEditor}
      * @alias Gui.VoteEditor#TitleEditor
      */
-    this.TitleEditor = $("<div>").LineEditor("Name", "", true);
+    this.TitleEditor = $("<div class='row'>").LineEditor("Name", "", true);
     this.TitleEditor.getMessageArea().show().text("Loading ...");
+
+
 
     /**
      * A LineEditor representing the machine_name.
@@ -46,14 +48,54 @@ Gui.VoteEditor.prototype.init = function(){
      * @type {Gui.LineEditor}
      * @alias Gui.VoteEditor#MachineEditor
      */
-    this.MachineEditor = $("<div>").LineEditor("Machine name", "", true);
+    this.MachineEditor = $("<div class='row'>").LineEditor("Machine name", "", true);
     this.MachineEditor.getMessageArea().show().text("Loading ...");
 
-    //empty the element.
+    /**
+     * A MarkdownEditor representing the description.
+     *
+     * @type {Gui.LineEditor}
+     * @alias Gui.VoteEditor#DescEditor
+     */
+    this.DescEditor = $("<div>").MarkdownEditor("Name", "", true);
+    this.DescEditor.getMessageArea().show().text("Loading ...");
+
+    /**
+     * A PermissionNodeEditor representing the voting Permissions.
+     *
+     * @type {Gui.PermissionNodeEditor}
+     * @alias Gui.VoteEditor#PEditor1
+     */
+    this.PEditor1 = $("<div>").PermissionNodeEditor([], true);
+
+    /**
+     * A PermissionNodeEditor representing the admin Permissions.
+     *
+     * @type {Gui.PermissionNodeEditor}
+     * @alias Gui.VoteEditor#PEditor2
+     */
+    this.PEditor2 = $("<div>").PermissionNodeEditor([], true);
+
+    //add all this stuff.
     this.element.empty().append(
-        $("<h3>"),
+        $("<div class='row'>").append($("<h3>")),
+        $("<div class='row'>").append($("<h4>").text("Name & Description")),
         this.TitleEditor,
-        this.MachineEditor
+        "<br />",
+        this.MachineEditor,
+        "<br />",
+        $("<div class='row'>").append($("<b>").text("Description: ")),
+        "<br />",
+        this.DescEditor,
+        $("<div class='row'>").append($("<h4>").text("Permissions")),
+        $("<div class='row'>").append($("<b>").text("Voting Permissions: ")),
+        "<br />",
+        this.PEditor1,
+        $("<div class='row'>").append($("<b>").text("Edit Permissions: ")),
+        "<br />",
+        this.PEditor2,
+        $("<div class='row'>").append($("<h4>").text("Staging")),
+        $("<div class='row'>").append($("<h4>").text("Voting Options"))
     );
 
     this.reload();
@@ -149,6 +191,112 @@ Gui.VoteEditor.prototype.reload = function(){
                     });
                 })
                 .getMessageArea().text("Done. ").fadeOut();
+            })();
+
+            /*
+                description
+            */
+            (function(){
+                var updating = false;
+
+                me.DescEditor.set(r.description[1], !isInitStage);
+
+                me.DescEditor
+                .off("MarkdownEditor.update")
+                .on("MarkdownEditor.update", function(e, v){
+                    if(updating){
+                        return;
+                    }
+
+                    //we are now updating, so block
+                    updating = true;
+                    me.DescEditor.set(v, true);
+                    me.DescEditor.getMessageArea().show().text("Saving ...");
+
+
+                    //and try to save on the server
+                    me.voteEnd.description(v, function(s, v, m){
+                        me.DescEditor.set(v, !isInitStage);
+                        if(s){
+                            me.DescEditor.getMessageArea().text("Done. ").fadeOut();
+                        } else {
+                            //error occured
+                            me.DescEditor.getMessageArea().text(m);
+                        }
+
+                        //we are no longer updating.
+                        updating = false;
+                    });
+                })
+                .getMessageArea().text("Done. ").fadeOut();
+            })();
+
+            /*
+                Voting Permissions
+            */
+            (function(){
+                var updating = false;
+
+                me.PEditor1.set(!isInitStage, r.voting_permissions[1]);
+
+                me.PEditor1
+                .off("PermissionNodeEditor.update")
+                .on("PermissionNodeEditor.update", function(e, w){
+
+                    var v = me.PEditor1.get(); //get the current value!
+
+                    if(updating){
+                        return;
+                    }
+
+                    //we are now updating, so block
+                    updating = true;
+                    me.PEditor1.set(true, v);
+
+
+                    //and try to save on the server
+                    me.voteEnd.voting_permissions(v, function(s, v, m){
+                        //set it.
+                        me.PEditor1.set(!isInitStage, v);
+
+                        //we are no longer updating.
+                        updating = false;
+                    });
+                });
+            })();
+
+            /*
+                Admin Permissions
+            */
+            (function(){
+                var updating = false;
+
+                me.PEditor2.set(false, r.admin_permissions[1]);
+
+                me.PEditor2
+                .off("PermissionNodeEditor.update")
+                .on("PermissionNodeEditor.update", function(e, w){
+
+                    var v = me.PEditor2.get(); //get the current value!
+
+                    if(updating){
+                        return;
+                    }
+
+                    //we are now updating, so block
+                    updating = true;
+                    me.PEditor2.set(true, v);
+
+
+                    //and try to save on the server
+                    me.voteEnd.admin_permissions(v, function(s, v, m){
+                        //set it.
+                        me.PEditor2.set(false, v);
+
+                        //we are no longer updating.
+                        updating = false;
+                    });
+                });
             })();
         } catch(e){
             console.error(e);

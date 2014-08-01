@@ -136,7 +136,7 @@
                     PermissionNodeEditor.Setter(theDiv, disabled, now);
 
                     //we changed something
-                    theDiv.parent().trigger("PermissionNodeEditor.update", now);
+                    theDiv.parent().trigger("PermissionNodeEditor.update", PermissionNodeEditor.Getter(theDiv));
                 });
 
 
@@ -156,7 +156,7 @@
                         PermissionNodeEditor.Setter(theDiv, disabled, now);
 
                         //we removed something
-                        theDiv.parent().trigger("PermissionNodeEditor.update", now);
+                        theDiv.parent().trigger("PermissionNodeEditor.update", PermissionNodeEditor.Getter(theDiv));
                     });
                 }
 
@@ -175,6 +175,19 @@
 
             })(value[i], i);
         }
+
+        //Listen for update events
+        theDiv.find("select, input[type=checkbox]").on("change", function(){
+            theDiv.parent().trigger("PermissionNodeEditor.update", PermissionNodeEditor.Getter(theDiv));
+        }).end().find("input[type=text]").on("change keyup", (function(){
+            var timer = 0;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    theDiv.parent().trigger("PermissionNodeEditor.update", PermissionNodeEditor.Getter(theDiv));
+                }, 1000);
+            }
+        })())
     }
 
     /**

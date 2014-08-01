@@ -220,7 +220,7 @@ Gui.Admin.refreshVoteList = function(cb){
                                 })
                             ),
                             $('<h5 class="pull-right">').text(res[i].uuid),
-                            $('<p class="list-group-item-text">').html(Markdown.toHTML(res[i].description))
+                            $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
                         ).click(function(e){
                             //show the links for this vote.
                             Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
@@ -289,7 +289,6 @@ Gui.Admin.editVote = function(uuid){
     editArea.text("(Editor loading)");
 
     Gui.Admin.client.editVote(uuid, function(r, editor){
-        console.log("Started to edit vote! ", editor.id);
 
         if(!r){
             editArea.text("Could not start to edit vote. Please check the server connection. ");
