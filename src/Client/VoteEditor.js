@@ -219,20 +219,6 @@ Client.VoteEditor.prototype.minmax = function(value, callback){
 }
 
 /**
- * Gets the current server time.
- *
- * @param {Client~editCallback} callback - Callback on return.
- * @return {Client.VoteEditor} - for chaining
- */
-Client.VoteEditor.prototype.server_time = function(callback){
-    this.socket
-    .once(Client.Protocol.VOTE_EDITOR.GET_TIME, callback)
-    .emit(Client.Protocol.VOTE_EDITOR.GET_TIME);
-
-    return this;
-}
-
-/**
  * Gets or sets the open and close times.
  *
  * @param {number[]} [value] - Value to set the opening and closing times to. Should be an array containing two numbers. If omitted, gets the value.
@@ -354,7 +340,7 @@ Client.VoteEditor.prototype.stats = function(callback){
  * @return {Client.VoteEditor} - for chaining
  */
 Client.VoteEditor.prototype.grabAll = function(callback){
-    var things = ["server_time", "name", "machine_name", "description", "voting_permissions", "admin_permissions", "minmax", "openclose", "stage", "options", "results", "stats"];
+    var things = ["name", "machine_name", "description", "voting_permissions", "admin_permissions", "minmax", "openclose", "stage", "options", "results", "stats"];
     var counter = 0;
     var res = {}
 

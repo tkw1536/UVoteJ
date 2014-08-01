@@ -187,6 +187,11 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
         me.socket.emit(Protocol.ADMIN.END_EDIT, true);
     });
 
+    //send the time to the client.
+    this.socket.on(Protocol.ADMIN.GET_TIME, function(){
+        me.socket.emit(Protocol.ADMIN.GET_TIME, true, (new Date()).getTime());
+    })
+
     //get summary of a vote
     this.socket.on(Protocol.ADMIN.GET_VOTE_SUMMARY, function(uuid){
 

@@ -1,7 +1,7 @@
 var logger = require("winston"),
     util = require("util");
 
-//Handle errors which aren't caught. 
+//Handle errors which aren't caught.
 process.on('uncaughtException', function(err) {
     try{
         logger.error("ERROR: ", err.toString());
@@ -80,6 +80,7 @@ var files = [
 
     //methods
     "mongo/init",
+    "http/handlers", 
     "http/routes",
     "socket/init",
 

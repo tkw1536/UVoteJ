@@ -126,6 +126,23 @@ Client.Admin.prototype.getUUIDs = function(cb){
 }
 
 /**
+ * Gets the current server time in milliseconds.
+ *
+ * @param {Client~resultCallback} callback - Callback on results.
+ * @return {boolean} - indicating if the request has been started.
+ */
+Client.Admin.prototype.getTime = function(cb){
+
+    //Listen for the result
+    this.socket.once(Client.Protocol.ADMIN.GET_TIME, cb);
+
+    //Send the request
+    this.socket.emit(Client.Protocol.ADMIN.GET_TIME);
+
+    return true;
+}
+
+/**
  * Gets the summary of all votes currently on the server.
  * @param {Client~resultCallback} callback - Callback on results.
  * @return {boolean} - indicating if the request has been started.

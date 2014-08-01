@@ -346,10 +346,6 @@ VoteEditorClient.prototype.time = function(){
     var socket = this.socket;
 
     socket
-    .on(Protocol.VOTE_EDITOR.GET_TIME, function(){
-        //send the server time to the client.
-        socket.emit(Protocol.VOTE_EDITOR.GET_TIME, true, (new Date()).getTime());
-    })
     .on(Protocol.VOTE_EDITOR.GET_OPENCLOSE_TIME, function(){
         socket.emit(Protocol.VOTE_EDITOR.GET_OPENCLOSE_TIME, true, [vote.open_time, vote.close_time]);
     })
@@ -599,8 +595,7 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_RESULTS)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_TIME);
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS); 
 }
 
 module.exports = VoteEditorClient;

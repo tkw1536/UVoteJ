@@ -42,7 +42,10 @@
         CREATE_VOTE: "admin_add_vote",
 
         /** Deletes a vote. */
-        DELETE_VOTE: "admin_delete_vote"
+        DELETE_VOTE: "admin_delete_vote",
+
+        /** Gets the current server time */
+        GET_TIME: "admin_get_time"
     }
 
     Protocol.VOTE_EDITOR = {
@@ -75,9 +78,6 @@
         /** Sets the minimum / maximum number of votes */
         SET_MINMAXVOTES: "vote_edit_set_minmax",
 
-
-        /** Gets the current server time */
-        GET_TIME: "vote_edit_getstime",
         /** Gets the opening / closing time of this vote. */
         GET_OPENCLOSE_TIME: "vote_edit_get_openclose_time",
         /** Sets the opening / closing time of this vote. */

@@ -17,45 +17,6 @@ module.exports = function(state, logger, next){
     //GET /admin
     state.app.use("/admin", express.static(state.dirs.static+"admin"));
 
-    /**
-    * Handles the voting on a specific vote.
-    *
-    * @param {string} uuid - UUID of vote to handle.
-    * @param {*} req
-    * @param {*} res
-    * @alias Frontend.State.handleVoteVote
-    * @function
-    */
-    state.handleVoteVote = function(uuid, req, res){
-        res.end("This will handle the voting with uuid "+uuid)
-    };
-
-    /**
-    * Handles the editing on a specific vote.
-    *
-    * @param {string} uuid - UUID of vote to handle.
-    * @param {*} req
-    * @param {*} res
-    * @alias Frontend.State.handleVoteVote
-    * @function
-    */
-    state.handleVoteEdit = function(uuid, req, res){
-        res.end("This will handle the editing with uuid "+uuid)
-    };
-
-    /**
-    * Handles the result displaying on a specific vote.
-    *
-    * @param {string} uuid - UUID of vote to handle.
-    * @param {string} type - Result type. One of "json", "xml", "csv" and "html"
-    * @param {*} req
-    * @param {*} res
-    * @alias Frontend.State.handleVoteRes
-    * @function
-    */
-    state.handleVoteRes = function(uuid, type, req, res){
-        res.end("This will handle the voting with uuid "+uuid+"of type"+type)
-    };
 
     //Edit URLs, for administrators so that they can edit the vote.
     //Always available even once vote is closed / public.
@@ -204,6 +165,7 @@ module.exports = function(state, logger, next){
 
         //Check if we can handle this with a uuid
         if(voteDB.votes.hasOwnProperty(req.params.name)){
+            voteDB.votes[req.params.name]
             res.redirect(303, "/vote/"+req.params.name);
             return;
         }

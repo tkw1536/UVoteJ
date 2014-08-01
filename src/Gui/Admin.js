@@ -89,11 +89,61 @@ Gui.Admin.readyLogin = function(message){
 };
 
 /**
+ * Called to display a clock.
+ * @alias Gui.Admin.clock
+ */
+Gui.Admin.clock = function(){
+
+    //we are not logged in => cancel
+    if(!Gui.Admin.client.isLoggedIn){
+        return;
+    }
+
+    var where = $(".manager-time");
+
+    var second = 0;
+    var syncInterval = 600; //sync time with the server every 10 minutes. 
+
+    Gui.Admin.client.getTime(function(r, t){
+        var t = t;
+        console.log(t);
+
+        var displayClock = function(){
+
+            if(!Gui.Admin.client.isLoggedIn){
+                return;
+            }
+
+            t+=1000; //increase the time
+            second++; //increase the second
+
+            //write the time
+            where.text(new Date(t).toLocaleString())
+
+            if(second == syncInterval){
+                //reset and start the clock
+                return Gui.Admin.clock();
+            }
+
+            //call the next one in a second.
+            setTimeout(displayClock, 1000);
+        }
+
+        //Lets go ahead and show it.
+        displayClock();
+    });
+
+}
+
+/**
  * Called to intialise the LoginForm.
  * @property {string|undefined} message - Message to display.
  * @alias Gui.Admin.readyLogin
  */
 Gui.Admin.readyManager = function(){
+
+    //start the clock
+    Gui.Admin.clock();
 
     //Logout
     $(".manager-logout").off("click").click(function(){

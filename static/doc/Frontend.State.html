@@ -262,6 +262,8 @@
             
                 <li data-name="Frontend.State.authReload"><a href="Frontend.State.html#authReload">authReload</a></li>
             
+                <li data-name="Frontend.State.handleVoteRes"><a href="Frontend.State.html#handleVoteRes">handleVoteRes</a></li>
+            
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
             
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
@@ -319,6 +321,8 @@
             <ul class="methods itemMembers">
             
             <span class="subtitle">Methods</span>
+            
+                <li data-name="Gui.Admin.clock"><a href="Gui.Admin.html#clock">clock</a></li>
             
                 <li data-name="Gui.Admin.ready"><a href="Gui.Admin.html#ready">ready</a></li>
             
@@ -702,6 +706,8 @@
             
                 <li data-name="Client.Admin#getSummaries"><a href="Client.Admin.html#getSummaries">getSummaries</a></li>
             
+                <li data-name="Client.Admin#getTime"><a href="Client.Admin.html#getTime">getTime</a></li>
+            
                 <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
             
                 <li data-name="Client.Admin#login"><a href="Client.Admin.html#login">login</a></li>
@@ -758,8 +764,6 @@
                 <li data-name="Client.VoteEditor#options"><a href="Client.VoteEditor.html#options">options</a></li>
             
                 <li data-name="Client.VoteEditor#results"><a href="Client.VoteEditor.html#results">results</a></li>
-            
-                <li data-name="Client.VoteEditor#server_time"><a href="Client.VoteEditor.html#server_time">server_time</a></li>
             
                 <li data-name="Client.VoteEditor#stage"><a href="Client.VoteEditor.html#stage">stage</a></li>
             
@@ -1981,14 +1985,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="handleVoteVote">
+        <h4 class="name" id="handleVoteRes">
             
-            <span class="type-signature static">static</span>Frontend.State.handleVoteVote<span class="signature">(uuid, req, res)</span>
+            <span class="type-signature static">static</span>Frontend.State.handleVoteRes<span class="signature">(uuid, type, req, res)</span>
         </h4>
     
         
         <div class="tag-source">
-            Frontend/Run/http/routes.js, line 29
+            Frontend/Run/http/handlers.js, line 38
         </div>
         
     </div>
@@ -1999,7 +2003,192 @@
     
     
     <div class="description">
-        Handles the voting on a specific vote.
+        Handles the result displaying on a specific vote.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>uuid</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                UUID of vote to handle.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Result type. One of "json", "xml", "csv" and "html"</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="handleVoteVote">
+            
+            <span class="type-signature static">static</span>Frontend.State.handleVoteVote<span class="signature">(uuid, req, res)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Frontend/Run/http/handlers.js, line 24
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handles the editing on a specific vote.
     </div>
     
 
@@ -2150,7 +2339,7 @@
     
         
         <div class="tag-source">
-            Frontend/Run/http/routes.js, line 42
+            Frontend/Run/http/handlers.js, line 11
         </div>
         
     </div>
@@ -2161,7 +2350,7 @@
     
     
     <div class="description">
-        Handles the editing on a specific vote.
+        Handles the voting on a specific vote.
     </div>
     
 
@@ -2487,7 +2676,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 14:06:11 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Fri Aug 01 2014 10:23:27 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

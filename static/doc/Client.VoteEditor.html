@@ -262,6 +262,8 @@
             
                 <li data-name="Frontend.State.authReload"><a href="Frontend.State.html#authReload">authReload</a></li>
             
+                <li data-name="Frontend.State.handleVoteRes"><a href="Frontend.State.html#handleVoteRes">handleVoteRes</a></li>
+            
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
             
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
@@ -319,6 +321,8 @@
             <ul class="methods itemMembers">
             
             <span class="subtitle">Methods</span>
+            
+                <li data-name="Gui.Admin.clock"><a href="Gui.Admin.html#clock">clock</a></li>
             
                 <li data-name="Gui.Admin.ready"><a href="Gui.Admin.html#ready">ready</a></li>
             
@@ -702,6 +706,8 @@
             
                 <li data-name="Client.Admin#getSummaries"><a href="Client.Admin.html#getSummaries">getSummaries</a></li>
             
+                <li data-name="Client.Admin#getTime"><a href="Client.Admin.html#getTime">getTime</a></li>
+            
                 <li data-name="Client.Admin#getUUIDs"><a href="Client.Admin.html#getUUIDs">getUUIDs</a></li>
             
                 <li data-name="Client.Admin#login"><a href="Client.Admin.html#login">login</a></li>
@@ -758,8 +764,6 @@
                 <li data-name="Client.VoteEditor#options"><a href="Client.VoteEditor.html#options">options</a></li>
             
                 <li data-name="Client.VoteEditor#results"><a href="Client.VoteEditor.html#results">results</a></li>
-            
-                <li data-name="Client.VoteEditor#server_time"><a href="Client.VoteEditor.html#server_time">server_time</a></li>
             
                 <li data-name="Client.VoteEditor#stage"><a href="Client.VoteEditor.html#stage">stage</a></li>
             
@@ -1708,7 +1712,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 386
+            Client/VoteEditor.js, line 372
         </div>
         
     </div>
@@ -2000,7 +2004,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 356
+            Client/VoteEditor.js, line 342
         </div>
         
     </div>
@@ -2605,7 +2609,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 242
+            Client/VoteEditor.js, line 228
         </div>
         
     </div>
@@ -2765,7 +2769,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 296
+            Client/VoteEditor.js, line 282
         </div>
         
     </div>
@@ -2925,7 +2929,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 322
+            Client/VoteEditor.js, line 308
         </div>
         
     </div>
@@ -3043,131 +3047,6 @@ for chaining
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="server_time">
-            
-            server_time<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Client.VoteEditor.html">Client.VoteEditor</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Client/VoteEditor.js, line 227
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Gets the current server time.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Client.html#editCallback">Client~editCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback on return.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-for chaining
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="stage">
             
             stage<span class="signature">(<span class="optional">value</span>, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Client.VoteEditor.html">Client.VoteEditor</a>}</span>
@@ -3175,7 +3054,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 269
+            Client/VoteEditor.js, line 255
         </div>
         
     </div>
@@ -3335,7 +3214,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 339
+            Client/VoteEditor.js, line 325
         </div>
         
     </div>
@@ -3626,7 +3505,7 @@ for chaining
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Jul 26 2014 14:06:11 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Fri Aug 01 2014 10:23:27 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
