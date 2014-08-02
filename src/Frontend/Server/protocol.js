@@ -74,7 +74,7 @@
         SET_ADMIN_PERMISSIONS: "vote_edit_set_admin_permissions",
 
         /** Gets the minimum / maximum number of votes */
-        GET_MIMMAXVOTES: "vote_edit_get_minmax",
+        GET_MINMAXVOTES: "vote_edit_get_minmax",
         /** Sets the minimum / maximum number of votes */
         SET_MINMAXVOTES: "vote_edit_set_minmax",
 

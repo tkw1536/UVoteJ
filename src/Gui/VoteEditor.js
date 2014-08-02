@@ -76,6 +76,32 @@ Gui.VoteEditor.prototype.init = function(){
      */
     this.PEditor2 = $("<div>").PermissionNodeEditor([], true);
 
+    /**
+     * A jQuery element representing the minimum number of votes required.
+     *
+     * @type {Browser.jQuery}
+     * @alias Gui.VoteEditor#minVotes
+     */
+    this.minVotes = $("<input type='number' min='1' disabled='disabled' class='form-control'>");
+
+    /**
+     * A jQuery element representing the maximum number of votes required.
+     *
+     * @type {Browser.jQuery}
+     * @alias Gui.VoteEditor#maxVotes
+     */
+    this.maxVotes = $("<input type='number' disabled='disabled'  class='form-control'>");
+
+    try{
+        /**
+         * An OptionEditor handling option editing.
+         *
+         * @type {Gui.OptionEditor}
+         * @alias Gui.VoteEditor#Options
+         */
+        this.Options = $("<div>").OptionEditor();
+    } catch(e){console.log(e); }
+
     //add all this stuff.
     this.element.empty().append(
         $("<div class='row'>").append($("<h3>")),
@@ -95,7 +121,11 @@ Gui.VoteEditor.prototype.init = function(){
         "<br />",
         this.PEditor2,
         $("<div class='row'>").append($("<h4>").text("Staging")),
-        $("<div class='row'>").append($("<h4>").text("Voting Options"))
+        $("<div class='row'>").append($("<h4>").text("Voting Options")),
+        $("<div class='row'>").html("<form class='form-inline'><b>Minimum # of options to select: </b><span style='margin-left: 3px; '></span></form>").find("span").before(this.minVotes).end(),
+        "<br />",
+        $("<div class='row'>").html("<form class='form-inline'><b>Maximum # of options to select: </b><span style='margin-left: 3px; '></span></form>").find("span").before(this.maxVotes).end(),
+        this.Options
     );
 
     this.reload();
@@ -298,6 +328,148 @@ Gui.VoteEditor.prototype.reload = function(){
                     });
                 });
             })();
+
+            /*
+                (Min|Max)? Options
+            */
+            (function(){
+                var updating = false;
+
+                me.Options.set(!isInitStage, r.options[1]);
+
+                me.Options
+                .off("OptionEditor.update")
+                .on("OptionEditor.update", function(e, w){
+                    if(updating){
+                        return;
+                    }
+
+                    updating = true;
+
+                    var v = me.Options.get();
+
+                    //Disable
+                    me.minVotes.prop("disabled", true);
+                    me.maxVotes.prop("disabled", true);
+                    me.Options.set(true, me.Options.get());
+
+                    me.voteEnd.options(v, function(s, v, m){
+                        //TODO: Have an error handler.
+
+                        if(!s){
+                            console.log(m); 
+                        }
+
+                        //set the options
+                        me.Options.set(!isInitStage, v);
+
+                        //re-enable the other stuff.
+                        me.minVotes.prop("disabled", !isInitStage);
+                        me.maxVotes.prop("disabled", !isInitStage);
+
+                        updating = false;
+                    });
+                });
+
+                me.minVotes
+                .val(r.minmax[1][0])
+                .prop("disabled", !isInitStage)
+                .off('keyup mouseup change')
+                .on('keyup mouseup change', (function() {
+                    var timer = 0;
+                    return function(){
+                        clearTimeout(timer);
+                        timer = setTimeout(function(){
+                            if(updating){
+                                return;
+                            }
+
+                            updating = true;
+
+                            var value = me.minVotes.val();
+                            var msgArea = me.minVotes.parent().parent().find("span");
+
+                            msgArea.show().text("Saving ...");
+
+                            //Disable
+                            me.minVotes.prop("disabled", true);
+                            me.maxVotes.prop("disabled", true);
+                            me.Options.set(true, me.Options.get());
+
+                            //Set the other minimum correctly.
+                            me.maxVotes.prop("min", value);
+
+                            //Try and save
+                            me.voteEnd.minmax([me.minVotes.val(), me.maxVotes.val()], function(s, v, m){
+                                if(!s){
+                                    me.minVotes.val(v[0]);
+                                    me.maxVotes.val(v[1]);
+                                    msgArea.show().text(m);
+                                } else {
+                                    msgArea.show().text("Done. ").fadeOut();
+                                }
+
+                                //Enable again?
+                                me.minVotes.prop("disabled", !isInitStage);
+                                me.maxVotes.prop("disabled", !isInitStage);
+                                me.Options.set(!isInitStage, me.Options.get());
+
+                                updating = false;
+                            });
+                        }, 1000);
+                    };
+                })());
+
+
+                me.maxVotes
+                .val(r.minmax[1][1])
+                .prop("disabled", !isInitStage)
+                .prop("min", r.minmax[1][0])
+                .off('keyup mouseup change')
+                .on('keyup mouseup change', (function() {
+                    var timer = 0;
+                    return function(){
+                        clearTimeout(timer);
+                        timer = setTimeout(function(){
+
+                            if(updating){
+                                return;
+                            }
+
+                            updating = true;
+
+                            var value = me.maxVotes.val();
+                            var msgArea = me.maxVotes.parent().parent().find("span");
+
+                            msgArea.show().text("Saving ...");
+
+                            //Disable
+                            me.minVotes.prop("disabled", true);
+                            me.maxVotes.prop("disabled", true);
+                            me.Options.set(true, me.Options.get());
+
+                            //Try and save
+                            me.voteEnd.minmax([me.minVotes.val(), me.maxVotes.val()], function(s, v, m){
+                                if(!s){
+                                    me.minVotes.val(v[0]);
+                                    me.maxVotes.val(v[1]);
+                                    msgArea.show().text(m);
+                                } else {
+                                    msgArea.show().text("Done. ").fadeOut();
+                                }
+
+                                //Enable again?
+                                me.minVotes.prop("disabled", !isInitStage);
+                                me.maxVotes.prop("disabled", !isInitStage);
+                                me.Options.set(!isInitStage, me.Options.get());
+
+                                updating = false;
+                            });
+                        }, 1000);
+                    };
+                })());
+            })();
+
         } catch(e){
             console.error(e);
         }

@@ -72,7 +72,7 @@ Client.VoteEditor.prototype.name = function(value, callback){
     } else {
         //Assume we want to set the value.
         var callback = (typeof callback == "function")?callback:function(){};
-        
+
         this.socket
         .once(Client.Protocol.VOTE_EDITOR.SET_TITLE, callback)
         .emit(Client.Protocol.VOTE_EDITOR.SET_TITLE, value);
@@ -204,15 +204,16 @@ Client.VoteEditor.prototype.minmax = function(value, callback){
         var callback = (typeof value == "function")?value:function(){};
 
         this.socket
-        .once(Client.Protocol.VOTE_EDITOR.GET_MIMMAXVOTES, callback)
-        .emit(Client.Protocol.VOTE_EDITOR.GET_MIMMAXVOTES);
+        .once(Client.Protocol.VOTE_EDITOR.GET_MINMAXVOTES, callback)
+        .emit(Client.Protocol.VOTE_EDITOR.GET_MINMAXVOTES);
     } else {
+        
         //Assume we want to set the value.
         var callback = (typeof callback == "function")?callback:function(){};
 
         this.socket
-        .once(Client.Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, callback)
-        .emit(Client.Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, value);
+        .once(Client.Protocol.VOTE_EDITOR.SET_MINMAXVOTES, callback)
+        .emit(Client.Protocol.VOTE_EDITOR.SET_MINMAXVOTES, value);
     }
 
     return this;

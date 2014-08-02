@@ -286,11 +286,11 @@ VoteEditorClient.prototype.minmax_votes = function(){
     var socket = this.socket;
 
     socket
-    .on(Protocol.VOTE_EDITOR.GET_MIMMAXVOTES, function(){
+    .on(Protocol.VOTE_EDITOR.GET_MINMAXVOTES, function(){
         //send name to the client.
-        socket.emit(Protocol.VOTE_EDITOR.GET_MIMMAXVOTES, true, [vote.minVotes, vote.maxVotes]);
+        socket.emit(Protocol.VOTE_EDITOR.GET_MINMAXVOTES, true, [vote.minVotes, vote.maxVotes]);
     })
-    .on(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, function(v){
+    .on(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, function(v){
 
         try{
             var min = v[0];
@@ -301,33 +301,33 @@ VoteEditorClient.prototype.minmax_votes = function(){
         }
 
         if(vote.stage !== Protocol.Stage.INIT){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Cannot edit vote while in non-init stage. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Cannot edit vote while in non-init stage. ");
             return;
         }
 
         //Check for all the constraints.
         if(!isFinite(min) || !isFinite(max)){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum and Maximum Number of votes have to be finite. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum and Maximum Number of votes have to be finite. ");
             return;
         }
 
         if(min % 1 !== 0 || max % 1 !== 0){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum and Maximum Number of votes have to be integers. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum and Maximum Number of votes have to be integers. ");
             return;
         }
 
         if(max <= 0 || min < 0){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum number of votes has to be at least zero and maximum must be postive. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum number of votes has to be at least zero and maximum must be postive. ");
             return;
         }
 
         if(min > max){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum has to be less than maximum. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "Minimum has to be less than maximum. ");
             return;
         }
 
         if(min > vote.options.length){
-            socket.emit(Protocol.VOTE_EDITOR.SET_MIMMAXVOTES, false, [vote.minVotes, vote.maxVotes], "It has to be possible to vote on this vote. Add more options to increase the minimum. ");
+            socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, false, [vote.minVotes, vote.maxVotes], "It has to be possible to vote on this vote. Add more options to increase the minimum. ");
             return;
         }
 
@@ -337,7 +337,7 @@ VoteEditorClient.prototype.minmax_votes = function(){
         vote.emit("update");
 
         //send that to the client.
-        socket.emit(Protocol.VOTE_EDITOR.SET_ADMIN_PERMISSIONS, true, [vote.minVotes, vote.maxVotes]);
+        socket.emit(Protocol.VOTE_EDITOR.SET_MINMAXVOTES, true, [vote.minVotes, vote.maxVotes]);
     });
 
     return this;
@@ -512,8 +512,8 @@ VoteEditorClient.prototype.options = function(){
             return;
         }
 
-        if(options.length > vote.minVotes || options.length == 0){
-            socket.emit(Protocol.VOTE_EDITOR.SET_OPTIONS, false, vote.options, "Settings these options makes the vote impossible. ");
+        if(options.length < vote.minVotes || options.length == 0){
+            socket.emit(Protocol.VOTE_EDITOR.SET_OPTIONS, false, vote.options, "Setting these options makes the vote impossible. ");
             return;
         }
 
@@ -597,7 +597,7 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_CLOSE_TIME)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_CLOSE_TIME)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_MIMMAXVOTES)
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_MINMAXVOTES)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_MINMAXVOTES)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_OPTIONS)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_OPTIONS)

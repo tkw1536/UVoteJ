@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -11,6 +10,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- BS datetime picker -->
+    <link href="/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/lib/bootstrap/custom/admin.css" rel="stylesheet">
@@ -22,7 +24,6 @@
     <![endif]-->
 </head>
 <body>
-
     <div class="container" id="loader">
         <div class="row">
             <h1>Loading ...</h1>
@@ -76,9 +77,9 @@
                             </div><!--/.nav-collapse -->
                         </div><!--/.container-fluid -->
                     </div>
-                    <p>
+                    <div>
                         <div class="list-group" id="manager-votelist"></div>
-                    </p>
+                    </div>
                 </div>
                 <div id="manager-editor" class="hidden">
                     <div class="navbar navbar-default" role="navigation">
@@ -200,16 +201,22 @@
 
     <!-- Libs -->
     <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/lib/moment/moment.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/markdown/markdown.js"></script>
 
     <!-- Gui & Client code -->
     <script src="/lib/client/index.js"></script>
     <script src="/lib/client/protocol.js"></script>
+
+    <!-- Editors -->
     <script src="/lib/gui/PermissionNodeEditor.js"></script>
     <script src="/lib/gui/LineEditor.js"></script>
     <script src="/lib/gui/MarkdownEditor.js"></script>
+    <script src="/lib/gui/OptionEditor.js"></script>
+
     <script src="/lib/gui/Admin.js"></script>
     <script src="/lib/gui/VoteEditor.js"></script>
 </body>

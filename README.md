@@ -44,7 +44,7 @@ scripts/doc # Update the documentation
 
 - [ ] Admin Edit GUI
     - [ ] Phases
-    - [ ] Options
+    - [x] Options
 - [ ] Client Editing
 - [ ] Vote GUI
 - [ ] Results
