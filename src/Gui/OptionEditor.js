@@ -72,70 +72,69 @@
                 var medit = $("<div class='row-medit' style='margin-top: 3px; '>").MarkdownEditor(val.markdown_description, disabled).on("MarkdownEditor.update", updateHandler);
 
                 fs.append(
-                    $("<div class='row well'></div>").append(
-                        $("<p class='lead'></p>").text("Option #"+(i+1)).append(
-                            $("<div class='btn-group' style='margin-left: 3px; '>").append(
-                                    $("<button class='btn btn-default move-up'>Up</button>").click(function(e){
-                                        //prevent the default
-                                        e.preventDefault();
+                    $("<div class='row'></div>").append(
+                        $("<h5>").text("Option #"+(i+1)),
+                        $("<div class='btn-group' style='margin-left: 3px; '>").append(
+                                $("<button class='btn btn-default move-up'>Up</button>").click(function(e){
+                                    //prevent the default
+                                    e.preventDefault();
 
-                                        //get the current value
-                                        var now = OptionEditor.Getter(theDiv);
+                                    //get the current value
+                                    var now = OptionEditor.Getter(theDiv);
 
-                                        //move the item from i to i-1
-                                        now.splice(i-1, 0, now.splice(i, 1)[0]);
+                                    //move the item from i to i-1
+                                    now.splice(i-1, 0, now.splice(i, 1)[0]);
 
-                                        OptionEditor.Setter(theDiv, disabled, now);
+                                    OptionEditor.Setter(theDiv, disabled, now);
 
-                                        // update stuffs
-                                        updateHandler();
-                                    }),
-                                    $("<button class='btn btn-default move-down'>Down</button>").click(function(e){
-                                        //prevent the default
-                                        e.preventDefault();
+                                    // update stuffs
+                                    updateHandler();
+                                }),
+                                $("<button class='btn btn-default move-down'>Down</button>").click(function(e){
+                                    //prevent the default
+                                    e.preventDefault();
 
-                                        //get the current value
-                                        var now = OptionEditor.Getter(theDiv);
+                                    //get the current value
+                                    var now = OptionEditor.Getter(theDiv);
 
-                                        //move the item from i to i+1
-                                        now.splice(i+1, 0, now.splice(i, 1)[0]);
+                                    //move the item from i to i+1
+                                    now.splice(i+1, 0, now.splice(i, 1)[0]);
 
-                                        OptionEditor.Setter(theDiv, disabled, now);
+                                    OptionEditor.Setter(theDiv, disabled, now);
 
-                                        // update stuffs
-                                        updateHandler();
-                                    }),
-                                    $("<button class='btn btn-default btn-primary'>+</button>").click(function(e){
-                                        //prevent the default
-                                        e.preventDefault();
+                                    // update stuffs
+                                    updateHandler();
+                                }),
+                                $("<button class='btn btn-default btn-primary'>+</button>").click(function(e){
+                                    //prevent the default
+                                    e.preventDefault();
 
-                                        //get the current value
-                                        var now = OptionEditor.Getter(theDiv);
+                                    //get the current value
+                                    var now = OptionEditor.Getter(theDiv);
 
-                                        //add a new item
-                                        now.splice(i+1, 0, OptionEditor.default);
+                                    //add a new item
+                                    now.splice(i+1, 0, OptionEditor.default);
 
-                                        OptionEditor.Setter(theDiv, disabled, now);
+                                    OptionEditor.Setter(theDiv, disabled, now);
 
-                                        // update stuffs
-                                        updateHandler();
-                                    }),
-                                    $("<button class='btn btn-default btn-danger delete'>-</button>").click(function(e){
-                                        //prevent the default
-                                        e.preventDefault();
+                                    // update stuffs
+                                    updateHandler();
+                                }),
+                                $("<button class='btn btn-default btn-danger delete'>-</button>").click(function(e){
+                                    //prevent the default
+                                    e.preventDefault();
 
-                                        //get the current value
-                                        var now = OptionEditor.Getter(theDiv);
+                                    //get the current value
+                                    var now = OptionEditor.Getter(theDiv);
 
-                                        //add a new item
-                                        now.splice(i, 1);
+                                    //add a new item
+                                    now.splice(i, 1);
 
-                                        OptionEditor.Setter(theDiv, disabled, now);
+                                    OptionEditor.Setter(theDiv, disabled, now);
 
-                                        // update stuffs
-                                        updateHandler();
-                                    })
-                            )
+                                    // update stuffs
+                                    updateHandler();
+                                })
                         )
                     ),
                     tedit.data("OptionEditor.editor", tedit),
