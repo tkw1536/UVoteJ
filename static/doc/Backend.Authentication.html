@@ -201,6 +201,8 @@
             
                 <li data-name="Frontend.Server.Protocol.Stage"><a href="Frontend.Server.Protocol.html#Stage">Stage</a></li>
             
+                <li data-name="Frontend.Server.Protocol.VOTE_EDITOR"><a href="Frontend.Server.Protocol.html#VOTE_EDITOR">VOTE_EDITOR</a></li>
+            
                 <li data-name="Frontend.Server.Protocol.VoteState"><a href="Frontend.Server.Protocol.html#VoteState">VoteState</a></li>
             
             </ul>
@@ -553,8 +555,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -649,25 +649,6 @@
                 <li data-name="Backend.VoteDB#removeVote"><a href="Backend.VoteDB.html#removeVote">removeVote</a></li>
             
                 <li data-name="Backend.VoteDB#updateVote"><a href="Backend.VoteDB.html#updateVote">updateVote</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
             
             </ul>
             <ul class="events itemMembers">
@@ -1079,25 +1060,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1193,25 +1155,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
     </ul>
 </div>
     <div class="main">
@@ -1241,7 +1184,7 @@
     <div class="nameContainer">
         <h4 class="name" id="Authentication">
             
-            <span class="type-signature ">abstract</span>new Backend.Authentication<span class="signature">(config, callback)</span>
+            <span class="type-signature ">virtual</span>new Backend.Authentication<span class="signature">(config, callback)</span>
         </h4>
     
         
@@ -1410,7 +1353,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="available"><span class="type-signature static">static</span>Backend.Authentication.available<span class="type-signature type array.<string>">Array.&lt;string></span> </h4>
+        <h4 class="name" id="available"><span class="type-signature static">static</span>Backend.Authentication.available<span class="type-signature type string[]">string[]</span> </h4>
     </div>
     
     
@@ -1455,7 +1398,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="config"><span class="type-signature ">abstract,static</span>Backend.Authentication.config</h4>
+        <h4 class="name" id="config"><span class="type-signature ">virtual,static</span>Backend.Authentication.config</h4>
     </div>
     
     
@@ -1552,7 +1495,7 @@ establish a connection.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="defaults"><span class="type-signature ">abstract,static</span>Backend.Authentication.defaults<span class="type-signature type object">object</span> </h4>
+        <h4 class="name" id="defaults"><span class="type-signature ">virtual,static</span>Backend.Authentication.defaults<span class="type-signature type object">object</span> </h4>
     </div>
     
     
@@ -1605,7 +1548,7 @@ establish a connection.
     <div class="nameContainer">
         <h4 class="name" id="getAll">
             
-            <span class="type-signature ">abstract</span>getAll<span class="signature">(user, pass, callback)</span>
+            <span class="type-signature ">virtual</span>getAll<span class="signature">(user, pass, callback)</span>
         </h4>
     
         
@@ -1767,7 +1710,7 @@ establish a connection.
     <div class="nameContainer">
         <h4 class="name" id="loginUser">
             
-            <span class="type-signature ">abstract</span>loginUser<span class="signature">(user, pass, callback)</span>
+            <span class="type-signature ">virtual</span>loginUser<span class="signature">(user, pass, callback)</span>
         </h4>
     
         
@@ -2011,7 +1954,7 @@ establish a connection.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;object></span>
+<span class="param-type">object[]</span>
 
 
             
@@ -2293,7 +2236,7 @@ establish a connection.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Aug 02 2014 13:40:57 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Tue Aug 05 2014 10:47:00 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

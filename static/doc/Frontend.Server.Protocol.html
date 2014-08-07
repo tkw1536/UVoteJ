@@ -201,6 +201,8 @@
             
                 <li data-name="Frontend.Server.Protocol.Stage"><a href="Frontend.Server.Protocol.html#Stage">Stage</a></li>
             
+                <li data-name="Frontend.Server.Protocol.VOTE_EDITOR"><a href="Frontend.Server.Protocol.html#VOTE_EDITOR">VOTE_EDITOR</a></li>
+            
                 <li data-name="Frontend.Server.Protocol.VoteState"><a href="Frontend.Server.Protocol.html#VoteState">VoteState</a></li>
             
             </ul>
@@ -553,8 +555,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -649,25 +649,6 @@
                 <li data-name="Backend.VoteDB#removeVote"><a href="Backend.VoteDB.html#removeVote">removeVote</a></li>
             
                 <li data-name="Backend.VoteDB#updateVote"><a href="Backend.VoteDB.html#updateVote">updateVote</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
             
             </ul>
             <ul class="events itemMembers">
@@ -1079,25 +1060,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1177,25 +1139,6 @@
         <li class="item" data-name="NodeJS.SocketIO">
             <span class="title">
                 <a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -2677,6 +2620,748 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="VOTE_EDITOR"><span class="type-signature static">static</span>Frontend.Server.Protocol.VOTE_EDITOR<span class="type-signature type string">string</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Vote Editor Protocol Events.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_TITLE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_title
+                
+                </td>
+            
+            
+            <td class="description last">Gets the title</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_TITLE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_title
+                
+                </td>
+            
+            
+            <td class="description last">Sets the title</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_MACHINE_NAME</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_machine_name
+                
+                </td>
+            
+            
+            <td class="description last">Gets the machine name</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_MACHINE_NAME</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_machine_name
+                
+                </td>
+            
+            
+            <td class="description last">Sets the machine name</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_DESCRIPTION</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_description
+                
+                </td>
+            
+            
+            <td class="description last">Gets the description fo a vote</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_DESCRIPTION</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_description
+                
+                </td>
+            
+            
+            <td class="description last">Sets the description of a vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_VOTING_PERMISSIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_voting_permissions
+                
+                </td>
+            
+            
+            <td class="description last">Gets the voting PermissionNode</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_VOTING_PERMISSIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_voting_permissions
+                
+                </td>
+            
+            
+            <td class="description last">Sets the voting PermissionNode</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_ADMIN_PERMISSIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_admin_permissions
+                
+                </td>
+            
+            
+            <td class="description last">Gets the voting PermissionNode</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_ADMIN_PERMISSIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_admin_permissions
+                
+                </td>
+            
+            
+            <td class="description last">Sets the voting PermissionNode</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_MINMAXVOTES</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_minmax
+                
+                </td>
+            
+            
+            <td class="description last">Gets the minimum / maximum number of votes</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_MINMAXVOTES</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_minmax
+                
+                </td>
+            
+            
+            <td class="description last">Sets the minimum / maximum number of votes</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_OPENCLOSE_TIME</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_openclose_time
+                
+                </td>
+            
+            
+            <td class="description last">Gets the opening / closing time of this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_OPENCLOSE_TIME</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_openclose_time
+                
+                </td>
+            
+            
+            <td class="description last">Sets the opening / closing time of this vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_STAGE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_get_stage
+                
+                </td>
+            
+            
+            <td class="description last">Gets the current voting Stage</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_STAGE</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_get_stage
+                
+                </td>
+            
+            
+            <td class="description last">Sets the current voting Stage</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_OPTIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_options
+                
+                </td>
+            
+            
+            <td class="description last">Gets the options of this vote</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>SET_OPTIONS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_set_options
+                
+                </td>
+            
+            
+            <td class="description last">Sets the options of this vote</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_RESULTS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_results
+                
+                </td>
+            
+            
+            <td class="description last">Gets the results of the vote.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_VOTER_STATS</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_voter_stats
+                
+                </td>
+            
+            
+            <td class="description last">Gets the voters</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>GET_VOTE_ID</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_get_vote_id
+                
+                </td>
+            
+            
+            <td class="description last">Gets the vote Id</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>VOTE_UPDATED</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_updated
+                
+                </td>
+            
+            
+            <td class="description last">Notifies the client that the vote has been updated.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>VOTE_DELETED</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    vote_edit_deleted
+                
+                </td>
+            
+            
+            <td class="description last">Vote is being deleted and you should stop editing</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="VoteState"><span class="type-signature static">static</span>Frontend.Server.Protocol.VoteState<span class="type-signature type number">number</span> </h4>
     </div>
     
@@ -2970,7 +3655,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Aug 02 2014 13:40:57 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Tue Aug 05 2014 10:47:00 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

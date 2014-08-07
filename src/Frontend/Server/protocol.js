@@ -48,6 +48,12 @@
         GET_TIME: "admin_get_time"
     }
 
+    /**
+    * Vote Editor Protocol Events.
+    * @memberof Frontend.Server.Protocol
+    * @alias Frontend.Server.Protocol.VOTE_EDITOR
+    * @enum {string}
+    */
     Protocol.VOTE_EDITOR = {
 
         /** Gets the title */

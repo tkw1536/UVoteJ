@@ -201,6 +201,8 @@
             
                 <li data-name="Frontend.Server.Protocol.Stage"><a href="Frontend.Server.Protocol.html#Stage">Stage</a></li>
             
+                <li data-name="Frontend.Server.Protocol.VOTE_EDITOR"><a href="Frontend.Server.Protocol.html#VOTE_EDITOR">VOTE_EDITOR</a></li>
+            
                 <li data-name="Frontend.Server.Protocol.VoteState"><a href="Frontend.Server.Protocol.html#VoteState">VoteState</a></li>
             
             </ul>
@@ -553,8 +555,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -649,25 +649,6 @@
                 <li data-name="Backend.VoteDB#removeVote"><a href="Backend.VoteDB.html#removeVote">removeVote</a></li>
             
                 <li data-name="Backend.VoteDB#updateVote"><a href="Backend.VoteDB.html#updateVote">updateVote</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
             
             </ul>
             <ul class="events itemMembers">
@@ -1079,25 +1060,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1177,25 +1139,6 @@
         <li class="item" data-name="NodeJS.SocketIO">
             <span class="title">
                 <a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -1368,7 +1311,7 @@
         <h3 class="subsection-title">Extends</h3>
         
         <ul>
-            <li><a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a></li>
+            <li>NodeJS.EventEmitter</li>
         </ul>
     
     
@@ -1478,54 +1421,6 @@
             <li><a href="Frontend.Server.Protocol.html#VoteState">Frontend.Server.Protocol.VoteState</a></li>
         </ul>
     </dd>
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="id">id<span class="type-signature type string">string</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Id of this vote. Automatically assigned by other classes.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>undefined</li></ul></dd>
-    
-    
-    
-    
     
     
     
@@ -1971,7 +1866,7 @@ Set to undefined if not scheduled.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="options">options<span class="type-signature type array.<backend.vote.option>">Array.&lt;<a href="Backend.Vote.html#Option">Backend.Vote.Option</a>></span> </h4>
+        <h4 class="name" id="options">options<span class="type-signature type backend.vote.option[]">Backend.Vote.Option[]</span> </h4>
     </div>
     
     
@@ -2016,7 +1911,7 @@ Set to undefined if not scheduled.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="results">results<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="results">results<span class="type-signature type number[]">number[]</span> </h4>
     </div>
     
     
@@ -2154,7 +2049,7 @@ Set to undefined if not scheduled.
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="voters">voters<span class="type-signature type array.<string>">Array.&lt;string></span> </h4>
+        <h4 class="name" id="voters">voters<span class="type-signature type string[]">string[]</span> </h4>
     </div>
     
     
@@ -2678,7 +2573,7 @@ The source of this Vote.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">number[]</span>
 
 
             
@@ -3036,7 +2931,7 @@ Status of the Voting attempt.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;<a href="Backend.Vote.html#Option">Backend.Vote.Option</a>></span>
+<span class="param-type">Backend.Vote.Option[]</span>
 
 
             
@@ -3105,7 +3000,7 @@ Status of the Voting attempt.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;<a href="Backend.PermissionNode.html#Rule">Backend.PermissionNode.Rule</a>></span>
+<span class="param-type">Backend.PermissionNode.Rule[]</span>
 
 
             
@@ -3128,7 +3023,7 @@ Status of the Voting attempt.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;<a href="Backend.PermissionNode.html#Rule">Backend.PermissionNode.Rule</a>></span>
+<span class="param-type">Backend.PermissionNode.Rule[]</span>
 
 
             
@@ -3151,7 +3046,7 @@ Status of the Voting attempt.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">number[]</span>
 
 
             
@@ -3174,7 +3069,7 @@ Status of the Voting attempt.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">string[]</span>
 
 
             
@@ -3377,7 +3272,7 @@ Status of the Voting attempt.
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sat Aug 02 2014 13:40:57 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Tue Aug 05 2014 10:47:00 GMT+0200 (CEST)
         </footer>
     </div>
 </div>
