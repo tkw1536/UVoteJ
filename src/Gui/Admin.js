@@ -196,49 +196,70 @@ Gui.Admin.readyManager = function(){
  * @property {function} [cb] - Callback once ready.
  * @alias Gui.Admin.refreshVoteList
  */
-Gui.Admin.refreshVoteList = function(cb){
-    $(".manager-msg-area").show().text("Reloading votes ...");
+Gui.Admin.refreshVoteList = (function(){
+
+    // we have a timer and an old callback
+    var timer = null;
+    var oldCB = null;
 
 
-    Gui.Admin.client.getSummaries(function(s, res){
-        var voteList = $("#manager-votelist").empty();
+    return function(cb){
+        $(".manager-msg-area").show().text("Reloading votes ...");
 
-        if(!s || res.length == 0){
-            voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
-        } else {
-            for(var i=0;i<res.length;i++){
-                (function(i){
-                    voteList.append(
-                        $('<a href="#" class="list-group-item"></a>')
-                        .append(
-                            $('<h4 class="list-group-item-heading">').text(res[i].name).append(
-                                $('<span class="btn btn-xs btn-primary" style="margin-left: 5px; ">Edit</span>').click(function(e){
-                                    e.stopPropagation();
-                                    Gui.Admin.editVote(res[i].uuid);
-                                }),
-                                $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
-                                    e.stopPropagation();
-                                    Gui.Admin.deleteVote(res[i].uuid, res[i].name);
+        //clear the timeout and try and call the old callback
+        clearTimeout(timer);
+        try{
+            oldCB();
+
+        } catch(e){}
+
+        oldCB = cb; //store new callback
+
+        timer = setTimeout(function(){
+
+            oldCB = function(){};
+
+            Gui.Admin.client.getSummaries(function(s, res){
+                var voteList = $("#manager-votelist").empty();
+
+                if(!s || res.length == 0){
+                    voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
+                } else {
+                    for(var i=0;i<res.length;i++){
+                        (function(i){
+                            voteList.append(
+                                $('<a href="#" class="list-group-item"></a>')
+                                .append(
+                                    $('<h4 class="list-group-item-heading">').text(res[i].name).append(
+                                        $('<span class="btn btn-xs btn-primary" style="margin-left: 5px; ">Edit</span>').click(function(e){
+                                            e.stopPropagation();
+                                            Gui.Admin.editVote(res[i].uuid);
+                                        }),
+                                        $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
+                                            e.stopPropagation();
+                                            Gui.Admin.deleteVote(res[i].uuid, res[i].name);
+                                        })
+                                    ),
+                                    $('<h5 class="pull-right">').text(res[i].uuid),
+                                    $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
+                                ).click(function(e){
+                                    //show the links for this vote.
+                                    Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
+                                    return false;
                                 })
-                            ),
-                            $('<h5 class="pull-right">').text(res[i].uuid),
-                            $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
-                        ).click(function(e){
-                            //show the links for this vote.
-                            Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
-                            return false;
-                        })
-                    );
-                })(i);
-            }
+                            );
+                        })(i);
+                    }
 
-        }
+                }
 
-        $(".manager-msg-area").show().text("Done. ").fadeOut();
+                $(".manager-msg-area").show().text("Done. ").fadeOut();
 
-        if(typeof cb == "function"){cb(); }
-    })
-}
+                if(typeof cb == "function"){cb(); }
+            });
+        }, 500);
+    };
+})();
 
 /**
  * Deletes a vote form the server.
@@ -315,7 +336,7 @@ Gui.Admin.editVote = function(uuid){
 
             return false;
         });
-        
+
     }, function(msg){
         $(".manager-msg-area").text(msg).fadeOut(function(){
             //refresh the vote list

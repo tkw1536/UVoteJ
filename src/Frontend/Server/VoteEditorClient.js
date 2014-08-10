@@ -75,7 +75,6 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
             me.close();
         },
         function(){
-            logger.info("VOTE_EDIT:", this.id, "stopped editing", vote.id);
             me.close();
         }
     ];
@@ -580,6 +579,10 @@ VoteEditorClient.prototype.results = function(){
  */
 VoteEditorClient.prototype.close = function(){
 
+    if(typeof this.socket === "undefined"){
+        return;
+    }
+
     logger.info("VOTE_EDIT:", this.id, "stopped editing", this.vote.id);
 
     //unlisten for Vote Updates.
@@ -613,6 +616,8 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_RESULTS)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS);
+
+    this.socket = undefined;
 }
 
 module.exports = VoteEditorClient;
