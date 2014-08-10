@@ -75,7 +75,7 @@
                     $("<div class='row'></div>").append(
                         $("<h5>").text("Option #"+(i+1)),
                         $("<div class='btn-group' style='margin-left: 3px; '>").append(
-                                $("<button class='btn btn-default move-up'>Up</button>").click(function(e){
+                                $("<button class='btn btn-default btn-sm move-up'>Up</button>").click(function(e){
                                     //prevent the default
                                     e.preventDefault();
 
@@ -90,7 +90,7 @@
                                     // update stuffs
                                     updateHandler();
                                 }),
-                                $("<button class='btn btn-default move-down'>Down</button>").click(function(e){
+                                $("<button class='btn btn-default btn-sm move-down'>Down</button>").click(function(e){
                                     //prevent the default
                                     e.preventDefault();
 
@@ -105,7 +105,7 @@
                                     // update stuffs
                                     updateHandler();
                                 }),
-                                $("<button class='btn btn-default btn-primary'>+</button>").click(function(e){
+                                $("<button class='btn btn-default btn-sm btn-primary'>+</button>").click(function(e){
                                     //prevent the default
                                     e.preventDefault();
 
@@ -120,7 +120,7 @@
                                     // update stuffs
                                     updateHandler();
                                 }),
-                                $("<button class='btn btn-default btn-danger delete'>-</button>").click(function(e){
+                                $("<button class='btn btn-default btn-sm btn-danger delete'>-</button>").click(function(e){
                                     //prevent the default
                                     e.preventDefault();
 

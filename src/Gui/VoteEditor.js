@@ -92,6 +92,15 @@ Gui.VoteEditor.prototype.init = function(){
      */
     this.maxVotes = $("<input type='number' disabled='disabled'  class='form-control'>");
 
+    /**
+     * A jQuery element representing the staging settings
+     *
+     * @type {Browser.jQuery}
+     * @alias Gui.VoteEditor#stager
+     */
+    this.stager = $("<div class='row'>");
+
+
     try{
         /**
          * An OptionEditor handling option editing.
@@ -121,6 +130,7 @@ Gui.VoteEditor.prototype.init = function(){
         "<br />",
         this.PEditor2,
         $("<div class='row'>").append($("<h4>").text("Staging")),
+        this.stager,
         $("<div class='row'>").append($("<h4>").text("Voting Options")),
         $("<div class='row'>").html("<form class='form-inline'><b>Minimum # of options to select: </b><span style='margin-left: 3px; '></span></form>").find("span").before(this.minVotes).end(),
         "<br />",
@@ -145,6 +155,125 @@ Gui.VoteEditor.prototype.reload = function(){
             var isClosedStage = (r.stage[1] == Client.Protocol.Stage.CLOSED);
             var isPublicStage = (r.stage[1] == Client.Protocol.Stage.PUBLIC);
 
+            //whenever we cahnge the stage, we want to reload
+            me.voteEnd.update_callback = function(){
+                me.voteEnd.stage(function(s, re, m){
+                    if(s && re !== r.stage[1]){
+                        me.reload();
+                    } else {}
+                });
+            };
+
+            (function(){
+                me.stager.empty();
+
+                var curstage = $("<b>").text("Current Stage: ");
+                var nextstage = $("<b>").text("Next Stage: ");
+
+                var open_time =
+                $('<div class="input-group date" style="margin-bottom: 3px; "><span class="input-group-addon">Open Vote at: </span><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>').datetimepicker();
+
+                var close_time = $('<div class="input-group date" style="margin-bottom: 3px; "><span class="input-group-addon">Close Vote at: </span><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>').datetimepicker();
+
+                var open_picker = open_time.data("DateTimePicker");
+                var close_picker = close_time.data("DateTimePicker");
+
+                if(typeof r["openclose"][1][0] == "number"){
+                    open_picker.setDate(new Date(r["openclose"][1][0]));
+                    close_picker.setDate(new Date(r["openclose"][1][1]));
+                }
+
+                if(isInitStage){
+                    me.stager.append(
+                        curstage,
+                        $('<span class="label label-default">').text("Initial Stage"),
+                        "<br>",
+                        nextstage,
+                        $('<span class="label label-default">').text("Open Voting")
+                    )
+                }
+
+                if(isOpenStage){
+                    me.stager.append(
+                        curstage,
+                        $('<span class="label label-default">').text("Open Voting"),
+                        "<br>",
+                        nextstage,
+                        $('<span class="label label-default">').text("Vote Closed")
+                    )
+                }
+
+                if(isClosedStage){
+                    me.stager.append(
+                        curstage,
+                        $('<span class="label label-default">').text("Vote Closed"),
+                        "<br>",
+                        nextstage,
+                        $('<span class="label label-default">').text("Public Results"),
+                        $("<button class='btn btn-xs btn-default' style='margin-left: 3px; '>").text("Advance").click(function(){
+                            me.voteEnd.stage(Client.Protocol.Stage.PUBLIC, function(r, s, m){});
+                        })
+                    )
+                }
+
+                if(isPublicStage){
+                    me.stager.append(
+                        curstage,
+                        $('<span class="label label-default">').text("Results public"),
+                        "<br>",
+                        nextstage,
+                        $('<span class="label label-default">').text("None")
+                    )
+                }
+
+                me.stager.append(
+                    "<br>",
+                    "<br>",
+                    open_time,
+                    close_time
+                )
+
+                var msgtext = $("<span>");
+
+                if(isInitStage){
+                    me.stager.append(
+                        "<br>",
+                        $("<div class='btn-group'></div>").append(
+                            $("<button class='btn btn-sm btn-primary'>").text("Save scheduling").click(function(){
+                                var open = open_picker.getDate().toDate().getTime();
+                                var close = close_picker.getDate().toDate().getTime();
+
+                                me.voteEnd.openclose([open, close], function(s, v, m){
+                                    if(!s){
+                                        msgtext.show().text(m).fadeOut();
+                                    } else {
+                                        msgtext.show().text("Done! ").fadeOut();
+                                    }
+                                });
+
+                            }),
+                            $("<button class='btn btn-sm btn-danger'>").text("Reset").click(function(){
+                                me.reload();
+                            })
+                        ),
+                        msgtext
+                    )
+                } else {
+                    //disable the pickers
+                    open_picker.disable();
+                    close_picker.disable();
+
+                    me.stager.append(
+                        "<br>",
+                        $("<div class='btn-group'></div>").append(
+                            $("<button class='btn btn-sm btn-primary' disabled=disabled>").text("Save scheduling"),
+                            $("<button class='btn btn-sm btn-danger' disabled=disabled>").text("Reset")
+                        )
+                    );
+                }
+
+
+            })();
 
             /*
                 name
@@ -357,7 +486,7 @@ Gui.VoteEditor.prototype.reload = function(){
                         //TODO: Have an error handler.
 
                         if(!s){
-                            console.log(m); 
+                            console.log(m);
                         }
 
                         //set the options

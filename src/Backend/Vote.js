@@ -271,21 +271,25 @@ Vote.prototype.startStages = function(){
         //we need to set a timeout for opening the stage
 
         var now = (new Date()).getTime();
-        var then = (now - this.open_time);
+        var then = (this.open_time - now);
+
+        console.log(then);
 
         var next_stage = function(){
+            me.stopStages();
+
             logger.info("VOTE:", me.id, "now at STAGE.OPEN");
 
             //update the results, we need to reset them.
             me.results = [];
 
             //everything should be zero now.
-            for(var i=0;i<this.options.length;i++){
+            for(var i=0;i<me.options.length;i++){
                 me.results.push(0);
             }
 
             //set the Stage to open
-            me.Stage = Vote.STAGE.OPEN;
+            me.stage = Vote.Stage.OPEN;
 
             //set the next timer
             me.startStages();
@@ -296,7 +300,7 @@ Vote.prototype.startStages = function(){
 
         if(then > 0){
             logger.info("VOTE: Scheduled", me.id, "Stage.OPEN for", new Date(me.open_time).toLocaleString());
-            this._timer = setTimeout(next_stage, then)
+            this._timer = setTimeout(next_stage, then);
         } else {
             next_stage();
         }
@@ -306,13 +310,15 @@ Vote.prototype.startStages = function(){
         //we need to set a timeout for closing the stage
 
         var now = (new Date()).getTime();
-        var then = (now - this.close_time);
+        var then = ( this.close_time - now);
 
         var next_stage = function(){
+            me.stopStages();
+
             logger.info("VOTE:", me.id, "now at STAGE.CLOSED");
 
             //set the Stage to closed
-            me.Stage = Vote.Stage.CLOSED;
+            me.stage = Vote.Stage.CLOSED;
 
             //we have updated
             me.emit("update");
@@ -320,7 +326,7 @@ Vote.prototype.startStages = function(){
 
         if(then > 0){
             logger.info("VOTE: Scheduled", me.id, "Stage.CLOSED for", new Date(me.close_time).toLocaleString());
-            this._timer = setTimeout(next_stage, then)
+            this._timer = setTimeout(next_stage, then);
         } else {
             next_stage();
         }

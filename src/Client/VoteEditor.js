@@ -4,12 +4,13 @@
  * @param {NodeJS.SocketIO} socket - Socket to listen on.
  * @param {Client~editCallback} callback - Callback once we are ready. Will return the vote id as value.
  * @param {function} close_callback - Callback to be called once the voteEditor has to be closed.
+ * @param {function} [update_callback] - Callback to be called once the vote has been updated on the server.
  * @alias Client.VoteEditor
  * @this {Client.VoteEditor}
  * @class
  */
 
-Client.VoteEditor = function(socket, callback, close_callback){
+Client.VoteEditor = function(socket, callback, close_callback, update_callback){
     var me = this;
 
     /**
@@ -33,6 +34,12 @@ Client.VoteEditor = function(socket, callback, close_callback){
      */
     this.close_callback = close_callback;
 
+    /**
+     * Callback to trigger when the Vote is updated.
+     * @name Client.VoteEditor#update_callback
+     * @type {function}
+     */
+    this.update_callback = (typeof update_callback == "function")?update_callback:function(){};
 
     this.socket.once(Client.Protocol.VOTE_EDITOR.GET_VOTE_ID, function(res, value, msg){
         if(!res){
@@ -42,6 +49,10 @@ Client.VoteEditor = function(socket, callback, close_callback){
             me.id = value;
             callback(true);
         }
+    });
+
+    this.socket.on(Client.Protocol.VOTE_EDITOR.VOTE_UPDATED, function(){
+        me.update_callback();
     });
 
     //Send the id request
@@ -207,7 +218,7 @@ Client.VoteEditor.prototype.minmax = function(value, callback){
         .once(Client.Protocol.VOTE_EDITOR.GET_MINMAXVOTES, callback)
         .emit(Client.Protocol.VOTE_EDITOR.GET_MINMAXVOTES);
     } else {
-        
+
         //Assume we want to set the value.
         var callback = (typeof callback == "function")?callback:function(){};
 

@@ -555,6 +555,8 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
+                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
+            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -656,6 +658,25 @@
             </ul>
         </li>
     
+        <li class="item" data-name="Browser.jQuery">
+            <span class="title">
+                <a href="Browser.jQuery.html">Browser.jQuery</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="Client.Admin">
             <span class="title">
                 <a href="Client.Admin.html">Client.Admin</a>
@@ -717,6 +738,8 @@
                 <li data-name="Client.VoteEditor#id"><a href="Client.VoteEditor.html#id">id</a></li>
             
                 <li data-name="Client.VoteEditor#socket"><a href="Client.VoteEditor.html#socket">socket</a></li>
+            
+                <li data-name="Client.VoteEditor#update_callback"><a href="Client.VoteEditor.html#update_callback">update_callback</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -844,6 +867,8 @@
             <ul class="members itemMembers">
             
             <span class="subtitle">Members</span>
+            
+                <li data-name="Frontend.Server.VoteEditorClient#handlers"><a href="Frontend.Server.VoteEditorClient.html#handlers">handlers</a></li>
             
                 <li data-name="Frontend.Server.VoteEditorClient#id"><a href="Frontend.Server.VoteEditorClient.html#id">id</a></li>
             
@@ -1038,6 +1063,8 @@
             
                 <li data-name="Gui.VoteEditor#PEditor2"><a href="Gui.VoteEditor.html#PEditor2">PEditor2</a></li>
             
+                <li data-name="Gui.VoteEditor#stager"><a href="Gui.VoteEditor.html#stager">stager</a></li>
+            
                 <li data-name="Gui.VoteEditor#TitleEditor"><a href="Gui.VoteEditor.html#TitleEditor">TitleEditor</a></li>
             
                 <li data-name="Gui.VoteEditor#voteEnd"><a href="Gui.VoteEditor.html#voteEnd">voteEnd</a></li>
@@ -1053,6 +1080,25 @@
                 <li data-name="Gui.VoteEditor#close"><a href="Gui.VoteEditor.html#close">close</a></li>
             
                 <li data-name="Gui.VoteEditor#init"><a href="Gui.VoteEditor.html#init">init</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="NodeJS.EventEmitter">
+            <span class="title">
+                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
             
             </ul>
             <ul class="events itemMembers">
@@ -1155,6 +1201,25 @@
             </ul>
         </li>
     
+        <li class="item" data-name="NodeJS.Winston">
+            <span class="title">
+                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 </div>
     <div class="main">
@@ -1184,12 +1249,12 @@
     <div class="nameContainer">
         <h4 class="name" id="VoteEditor">
             
-            new Client.VoteEditor<span class="signature">(socket, callback, close_callback)</span>
+            new Client.VoteEditor<span class="signature">(socket, callback, close_callback, <span class="optional">update_callback</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 12
+            Client/VoteEditor.js, line 13
         </div>
         
     </div>
@@ -1250,6 +1315,11 @@
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 Socket to listen on.</td>
         </tr>
 	
@@ -1272,6 +1342,11 @@
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 Callback once we are ready. Will return the vote id as value.</td>
         </tr>
@@ -1296,7 +1371,42 @@
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 Callback to be called once the voteEditor has to be closed.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>update_callback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Callback to be called once the vote has been updated on the server.</td>
         </tr>
 	
 	
@@ -1494,6 +1604,51 @@
     
 </dd>
 
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="update_callback">update_callback<span class="type-signature type function">function</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Callback to trigger when the Vote is updated.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
         </dl>
     
     
@@ -1511,7 +1666,7 @@
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 173
+            Client/VoteEditor.js, line 184
         </div>
         
     </div>
@@ -1559,7 +1714,7 @@
             <td class="type">
             
                 
-<span class="param-type">Backend.PermissionNode.Rule[]</span>
+<span class="param-type">Array.&lt;<a href="Backend.PermissionNode.html#Rule">Backend.PermissionNode.Rule</a>></span>
 
 
             
@@ -1671,7 +1826,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 373
+            Client/VoteEditor.js, line 384
         </div>
         
     </div>
@@ -1803,7 +1958,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 119
+            Client/VoteEditor.js, line 130
         </div>
         
     </div>
@@ -1963,7 +2118,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 343
+            Client/VoteEditor.js, line 354
         </div>
         
     </div>
@@ -2088,7 +2243,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 92
+            Client/VoteEditor.js, line 103
         </div>
         
     </div>
@@ -2248,7 +2403,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 201
+            Client/VoteEditor.js, line 212
         </div>
         
     </div>
@@ -2296,7 +2451,7 @@ for chaining
             <td class="type">
             
                 
-<span class="param-type">number[]</span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -2408,7 +2563,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 64
+            Client/VoteEditor.js, line 75
         </div>
         
     </div>
@@ -2568,7 +2723,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 229
+            Client/VoteEditor.js, line 240
         </div>
         
     </div>
@@ -2616,7 +2771,7 @@ for chaining
             <td class="type">
             
                 
-<span class="param-type">number[]</span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -2728,7 +2883,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 283
+            Client/VoteEditor.js, line 294
         </div>
         
     </div>
@@ -2776,7 +2931,7 @@ for chaining
             <td class="type">
             
                 
-<span class="param-type">Backend.Vote.Option[]</span>
+<span class="param-type">Array.&lt;<a href="Backend.Vote.html#Option">Backend.Vote.Option</a>></span>
 
 
             
@@ -2888,7 +3043,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 309
+            Client/VoteEditor.js, line 320
         </div>
         
     </div>
@@ -3013,7 +3168,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 256
+            Client/VoteEditor.js, line 267
         </div>
         
     </div>
@@ -3173,7 +3328,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 326
+            Client/VoteEditor.js, line 337
         </div>
         
     </div>
@@ -3298,7 +3453,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 146
+            Client/VoteEditor.js, line 157
         </div>
         
     </div>
@@ -3346,7 +3501,7 @@ for chaining
             <td class="type">
             
                 
-<span class="param-type">Backend.PermissionNode.Rule[]</span>
+<span class="param-type">Array.&lt;<a href="Backend.PermissionNode.html#Rule">Backend.PermissionNode.Rule</a>></span>
 
 
             
@@ -3464,7 +3619,7 @@ for chaining
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Tue Aug 05 2014 10:47:00 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Aug 10 2014 17:32:34 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

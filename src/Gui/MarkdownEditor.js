@@ -2,14 +2,14 @@
 
     var buttonRow1 = '<div class="row">\n\
         <div class="btn-group inline vcenter pull-right">\n\
-            <button type="button" class="btn btn-default btn-primary">Edit</button>\n\
+            <button type="button" class="btn btn-sm btn-default btn-primary">Edit</button>\n\
         </div>\n\
     </div>';
 
     var buttonRow2 = '<div class="row">\n\
         <div class="btn-group inline vcenter pull-right">\n\
-            <button type="button" class="btn btn-default btn-primary">Save</button>\n\
-            <button type="button" class="btn btn-default">Cancel</button>\n\
+            <button type="button" class="btn btn-sm btn-default btn-primary">Save</button>\n\
+            <button type="button" class="btn btn-sm btn-default">Cancel</button>\n\
         </div>\n\
     </div>';
 

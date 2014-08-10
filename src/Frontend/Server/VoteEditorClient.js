@@ -61,22 +61,35 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
      */
     this.id = this.socket.id;
 
+    /**
+     * A list of handler which will be unbound on destruction of this client.
+     * @name Frontend.Server.VoteEditorClient#handlers
+     * @type {function[]}
+     */
+    this.handlers = [
+        function(){
+            me.socket.emit(Protocol.VOTE_EDITOR.VOTE_UPDATED);
+        },
+        function(){
+            me.socket.emit(Protocol.VOTE_EDITOR.VOTE_DELETED);
+            me.close();
+        },
+        function(){
+            logger.info("VOTE_EDIT:", this.id, "stopped editing", vote.id);
+            me.close();
+        }
+    ];
+
+
     //Listen for updates on the vote
-    vote.on("update."+this.id, function(){
-        me.socket.emit(Protocol.VOTE_EDITOR.VOTE_UPDATED);
-    });
+    vote.on("update", this.handlers[0]);
+
     //Listen for updates on the vote
-    vote.on("delete."+this.id, function(){
-        me.socket.emit(Protocol.VOTE_EDITOR.VOTE_DELETED);
-        me.close();
-    });
+    vote.on("delete", this.handlers[1]);
 
 
     //Check for disconnect
-    this.socket.on("disconnect."+this.id, function(){
-        logger.info("VOTE_EDIT:", this.id, "stopped editing", vote.id);
-        me.close();
-    });
+    this.socket.on("disconnect", this.handlers[2]);
 
     logger.info("VOTE_EDIT:", this.id, "started editing", vote.id);
 
@@ -432,7 +445,7 @@ VoteEditorClient.prototype.time = function(){
 
         vote.stopStages();
         vote.emit("update");
-        vote.startStage();
+        vote.startStages();
 
         socket.emit(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME, true, [vote.open_time, vote.close_time]);
     });
@@ -463,22 +476,17 @@ VoteEditorClient.prototype.stage = function(){
             return;
         }
 
-        if(vote.stage == Protocol.Stage.INIT){
+        if(s == Protocol.Stage.INIT){
             socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Cannot go back to INIT Stage. ");
             return;
         }
 
-        if(vote.stage == Protocol.Stage.OPEN || vote.stage == Protocol.Stage.CLOSED){
+        if(s == Protocol.Stage.OPEN || s == Protocol.Stage.CLOSED){
             socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Cannot set OPEN and CLOSED Stages manually. ");
             return;
         }
 
-        if(vote.stage == Protocol.Stage.OPEN || vote.stage == Protocol.Stage.CLOSED){
-            socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Cannot set OPEN and CLOSED Stages manually. ");
-            return;
-        }
-
-        if(s !== Protocol.STAGE.PUBLIC){
+        if(s !== Protocol.Stage.PUBLIC){
             socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Unknown STAGE. ");
         } else {
             //we updated staging.
@@ -575,9 +583,9 @@ VoteEditorClient.prototype.close = function(){
     logger.info("VOTE_EDIT:", this.id, "stopped editing", this.vote.id);
 
     //unlisten for Vote Updates.
-    this.vote.removeAllListeners("update."+this.id);
-    this.vote.removeAllListeners("delete."+this.id);
-    this.vote.removeAllListeners("disconnect."+this.id);
+    this.vote.removeListener("update", this.handlers[0]);
+    this.vote.removeListener("delete", this.handlers[1]);
+    this.socket.removeListener("disconnect", this.handlers[2]);
 
 
     //unbind all the socket events

@@ -40,16 +40,21 @@ scripts/devel # Make sure everything is set up for development
 scripts/doc # Update the documentation
 ```
 
-# TODO
+## TODO
 
-- [ ] Admin Edit GUI
-    - [ ] Phases
+- [x] Admin Edit GUI
+    - [x] Phases
     - [x] Options
 - [ ] Client Editing
 - [ ] Vote GUI
 - [ ] Results
-- [ ] OpenJUB auth
+
+
+## Wishlist
+
 - [ ] End-user help
+- [ ] OpenJUB auth (OpenJUB is not yet done)
+- [ ] SSO-style authentication
 
 ## License
 

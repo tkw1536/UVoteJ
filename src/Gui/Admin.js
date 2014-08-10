@@ -199,8 +199,10 @@ Gui.Admin.readyManager = function(){
 Gui.Admin.refreshVoteList = function(cb){
     $(".manager-msg-area").show().text("Reloading votes ...");
 
-    var voteList = $("#manager-votelist").empty();
+
     Gui.Admin.client.getSummaries(function(s, res){
+        var voteList = $("#manager-votelist").empty();
+
         if(!s || res.length == 0){
             voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
         } else {
@@ -303,6 +305,17 @@ Gui.Admin.editVote = function(uuid){
         Gui.Admin.editor = new Gui.VoteEditor(editArea, editor);
 
         Gui.Admin.editor.init(); //init the editor.
+
+        $("#manager-vote-reload").off("click").on("click", function(e){
+            //Nothing happens.
+            e.preventDefault();
+
+            //reload the editor.
+            Gui.Admin.editor.reload();
+
+            return false;
+        });
+        
     }, function(msg){
         $(".manager-msg-area").text(msg).fadeOut(function(){
             //refresh the vote list

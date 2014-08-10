@@ -92,7 +92,7 @@
         /** Gets the current voting Stage */
         GET_STAGE: "vote_get_stage",
         /** Sets the current voting Stage */
-        SET_STAGE: "vote_get_stage",
+        SET_STAGE: "vote_set_stage",
 
         /** Gets the options of this vote */
         GET_OPTIONS: "vote_edit_get_options",

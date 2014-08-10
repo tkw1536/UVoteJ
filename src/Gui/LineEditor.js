@@ -3,7 +3,7 @@
         <span><b></b>: &nbsp; </span>\n\
         <span></span>\n\
         <div class="btn-group">\n\
-            <button type="submit" class="btn btn-primary">Edit</button>\n\
+            <button type="submit" class="btn btn-sm btn-primary">Edit</button>\n\
         </div>\n\
     </form>';
     var editForm = '<form class="form-inline" role="form">\n\
@@ -12,8 +12,8 @@
             <input type="text" class="form-control">\n\
         </div>\n\
         <div class="btn-group">\n\
-            <button type="submit" class="btn btn-primary">Save</button>\n\
-            <button type="submit" class="btn btn-default">Cancel</button>\n\
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>\n\
+            <button type="submit" class="btn btn-sm btn-default">Cancel</button>\n\
         </div>\n\
     </form>';
 
