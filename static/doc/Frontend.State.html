@@ -264,11 +264,36 @@
             
                 <li data-name="Frontend.State.authReload"><a href="Frontend.State.html#authReload">authReload</a></li>
             
+                <li data-name="Frontend.State.handleVoteLogin"><a href="Frontend.State.html#handleVoteLogin">handleVoteLogin</a></li>
+            
                 <li data-name="Frontend.State.handleVoteRes"><a href="Frontend.State.html#handleVoteRes">handleVoteRes</a></li>
             
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
             
                 <li data-name="Frontend.State.handleVoteVote"><a href="Frontend.State.html#handleVoteVote">handleVoteVote</a></li>
+            
+                <li data-name="Frontend.State.handleVoteWelcome"><a href="Frontend.State.html#handleVoteWelcome">handleVoteWelcome</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Frontend.State.templates">
+            <span class="title">
+                <a href="Frontend.State.templates.html">Frontend.State.templates</a>
+                
+                <span class="static">static</span>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
             
             </ul>
             <ul class="events itemMembers">
@@ -316,8 +341,6 @@
             
                 <li data-name="Gui.Admin.editor"><a href="Gui.Admin.html#editor">editor</a></li>
             
-                <li data-name="Gui.Admin.refreshVoteList"><a href="Gui.Admin.html#refreshVoteList">refreshVoteList</a></li>
-            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -327,6 +350,8 @@
             <span class="subtitle">Methods</span>
             
                 <li data-name="Gui.Admin.clock"><a href="Gui.Admin.html#clock">clock</a></li>
+            
+                <li data-name="Gui.Admin.copyLinkDialog"><a href="Gui.Admin.html#copyLinkDialog">copyLinkDialog</a></li>
             
                 <li data-name="Gui.Admin.ready"><a href="Gui.Admin.html#ready">ready</a></li>
             
@@ -1287,6 +1312,13 @@
     
     
     
+        <h3 class="subsection-title">Namespaces</h3>
+        
+        <dl>
+            <dt><a href="namespaces.html#Frontend.State.templates"><a href="Frontend.State.templates.html">templates</a></a></dt>
+            <dd></dd>
+        </dl>
+    
     
     
         <h3 class="subsection-title">Members</h3>
@@ -2009,14 +2041,176 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="handleVoteRes">
+        <h4 class="name" id="handleVoteLogin">
             
-            <span class="type-signature static">static</span>Frontend.State.handleVoteRes<span class="signature">(uuid, type, req, res)</span>
+            <span class="type-signature static">static</span>Frontend.State.handleVoteLogin<span class="signature">(uuid, req, res)</span>
         </h4>
     
         
         <div class="tag-source">
-            Frontend/Run/http/handlers.js, line 38
+            Frontend/Run/http/vote_handlers.js, line 60
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handles the voting login.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>uuid</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                UUID of vote to handle.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="handleVoteRes">
+            
+            <span class="type-signature static">static</span>Frontend.State.handleVoteRes<span class="signature">(uuid, req, res)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Frontend/Run/http/vote_handlers.js, line 109
         </div>
         
     </div>
@@ -2081,29 +2275,6 @@
 	
         <tr>
             
-                <td class="name"><code>type</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Result type. One of "json", "xml", "csv" and "html"</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
                 <td class="name"><code>req</code></td>
             
             
@@ -2201,7 +2372,7 @@
     
         
         <div class="tag-source">
-            Frontend/Run/http/handlers.js, line 11
+            Frontend/Run/http/vote_handlers.js, line 96
         </div>
         
     </div>
@@ -2212,7 +2383,7 @@
     
     
     <div class="description">
-        Handles the voting on a specific vote.
+        Handles the editing on a specific vote.
     </div>
     
 
@@ -2363,7 +2534,7 @@
     
         
         <div class="tag-source">
-            Frontend/Run/http/handlers.js, line 24
+            Frontend/Run/http/vote_handlers.js, line 78
         </div>
         
     </div>
@@ -2374,7 +2545,169 @@
     
     
     <div class="description">
-        Handles the editing on a specific vote.
+        Handles the actual voting.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>uuid</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                UUID of vote to handle.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="handleVoteWelcome">
+            
+            <span class="type-signature static">static</span>Frontend.State.handleVoteWelcome<span class="signature">(uuid, req, res)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            Frontend/Run/http/vote_handlers.js, line 40
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handles the "welcome" to a vote thing.
     </div>
     
 
@@ -2700,7 +3033,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Aug 10 2014 18:15:05 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Aug 10 2014 22:11:25 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

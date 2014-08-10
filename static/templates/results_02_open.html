@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>UVoteJ - Voting</title>
+    <title>UVoteJ - Results</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -18,13 +18,15 @@
     <![endif]-->
 </head>
 <body>
-    <div class="container" id="loader">
-        <div class="row">
+    <br />
+    <div class="container">
+        <div class="jumbotron">
             <h1>We're sorry, </h1>
-            <p class="lead">but this vote is not open for voting yet. </p>
-            <p class="loaderMessage">Please try again later. </p>
+            <p class="lead">but this vote is still open for voting. So you can't see the results yet. </p>
+            <p>You may want to <a class="btn btn-primary btn-lg" role="button" href="/vote/{{=it.name}}">vote</a>, or alternatively you may want to <a class="btn btn-primary btn-lg" role="button" href="{{=it.url}}">try again. </a></p>
         </div>
     </div>
+
 
     <!-- Libs -->
     <script src="/lib/jquery/jquery.min.js"></script>

@@ -7,10 +7,10 @@ Gui.Admin = {};
 
 /**
  * Length for animations in milliseconds.
- * @type {number}
+ * @type {number|string}
  * @alias Gui.Admin.animateLength
  */
-Gui.Admin.animateLength = 500;
+Gui.Admin.animateLength = "slow";
 
 /**
  * Called to intialise the Admin GUI.
@@ -165,18 +165,12 @@ Gui.Admin.readyManager = function(){
     });
 
     $("#manager-back").off("click").click(function(){
-        if(Gui.Admin.editor){
+        try{
             Gui.Admin.editor.close();
-        } else {
+        } catch(e){}
+    });
 
-            //refresh the vote list
-            Gui.Admin.refreshVoteList();
-
-            //return to the manager
-            $("#manager-manager").removeClass("hidden");
-            $("#manager-editor").addClass("hidden");
-        }
-    }).click();
+    Gui.Admin.refreshVoteList(); //Lets refresh the vote list
 
     //register a disconnect handler
     Gui.Admin.client.socket.once("disconnect", function(){
@@ -191,75 +185,63 @@ Gui.Admin.readyManager = function(){
     });
 }
 
+
+var runningRefresh = false;
+
 /**
  * Called to load all existing votes from the server.
  * @property {function} [cb] - Callback once ready.
  * @alias Gui.Admin.refreshVoteList
  */
-Gui.Admin.refreshVoteList = (function(){
+Gui.Admin.refreshVoteList = function(cb){
 
-    // we have a timer and an old callback
-    var timer = null;
-    var oldCB = null;
+    if(runningRefresh){
+        //we dont ever want to refresh more than once at a time. 
+        if(typeof cb == "function"){cb(); }
+        return;
+    }
+    runningRefresh = true;
 
+    Gui.Admin.client.getSummaries(function(s, res){
+        var voteList = $("#manager-votelist").empty();
 
-    return function(cb){
-        $(".manager-msg-area").show().text("Reloading votes ...");
-
-        //clear the timeout and try and call the old callback
-        clearTimeout(timer);
-        try{
-            oldCB();
-
-        } catch(e){}
-
-        oldCB = cb; //store new callback
-
-        timer = setTimeout(function(){
-
-            oldCB = function(){};
-
-            Gui.Admin.client.getSummaries(function(s, res){
-                var voteList = $("#manager-votelist").empty();
-
-                if(!s || res.length == 0){
-                    voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
-                } else {
-                    for(var i=0;i<res.length;i++){
-                        (function(i){
-                            voteList.append(
-                                $('<a href="#" class="list-group-item"></a>')
-                                .append(
-                                    $('<h4 class="list-group-item-heading">').text(res[i].name).append(
-                                        $('<span class="btn btn-xs btn-primary" style="margin-left: 5px; ">Edit</span>').click(function(e){
-                                            e.stopPropagation();
-                                            Gui.Admin.editVote(res[i].uuid);
-                                        }),
-                                        $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
-                                            e.stopPropagation();
-                                            Gui.Admin.deleteVote(res[i].uuid, res[i].name);
-                                        })
-                                    ),
-                                    $('<h5 class="pull-right">').text(res[i].uuid),
-                                    $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
-                                ).click(function(e){
-                                    //show the links for this vote.
-                                    Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
-                                    return false;
+        if(!s || res.length == 0){
+            voteList.append('<a href="#" class="list-group-item">(No votes on the server, hit "create new vote" to add one. )</a>');
+        } else {
+            for(var i=0;i<res.length;i++){
+                (function(i){
+                    voteList.append(
+                        $('<a href="#" class="list-group-item"></a>')
+                        .append(
+                            $('<h4 class="list-group-item-heading">').text(res[i].name).append(
+                                $('<span class="btn btn-xs btn-primary" style="margin-left: 5px; ">Edit</span>').click(function(e){
+                                    e.stopPropagation();
+                                    Gui.Admin.editVote(res[i].uuid);
+                                }),
+                                $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
+                                    e.stopPropagation();
+                                    Gui.Admin.deleteVote(res[i].uuid, res[i].name);
                                 })
-                            );
-                        })(i);
-                    }
+                            ),
+                            $('<h5 class="pull-right">').text(res[i].uuid),
+                            $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
+                        ).click(function(e){
+                            //show the links for this vote.
+                            Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);
+                            return false;
+                        })
+                    );
+                })(i);
+            }
 
-                }
+            runningRefresh = false;
+        }
 
-                $(".manager-msg-area").show().text("Done. ").fadeOut();
+        $(".manager-msg-area").show().text("Done. ").fadeOut(Gui.Admin.animateLength);
 
-                if(typeof cb == "function"){cb(); }
-            });
-        }, 500);
-    };
-})();
+        if(typeof cb == "function"){cb(); }
+    });
+}
 
 /**
  * Deletes a vote form the server.
@@ -287,7 +269,7 @@ Gui.Admin.deleteVote = function(uuid, title){
 
             Gui.Admin.client.deleteVote(uuid, function(s, m){
                 if(!s){
-                    $(".manager-msg-area").text("Did not delete vote. ").fadeOut();
+                    $(".manager-msg-area").text("Did not delete vote. ").fadeOut(Gui.Admin.animateLength);
                 } else {
                     Gui.Admin.refreshVoteList();
                 }
@@ -328,6 +310,7 @@ Gui.Admin.editVote = function(uuid){
         Gui.Admin.editor.init(); //init the editor.
 
         $("#manager-vote-reload").off("click").on("click", function(e){
+
             //Nothing happens.
             e.preventDefault();
 
@@ -338,7 +321,18 @@ Gui.Admin.editVote = function(uuid){
         });
 
     }, function(msg){
-        $(".manager-msg-area").text(msg).fadeOut(function(){
+
+        //we want to make sure that this function is only called once.
+        var done = false;
+
+        $(".manager-msg-area").text(msg).fadeOut(Gui.Admin.animateLength, function(){
+
+            if(done){
+                return;
+            }
+
+            done = true;
+
             //refresh the vote list
             Gui.Admin.refreshVoteList();
 
@@ -356,7 +350,7 @@ Gui.Admin.editVote = function(uuid){
  * @property {string} title - Title of the vote.
  * @property {string} machine_name - Machine name of the vote.
  * @property {string} uuid - UUID of the vote.
- * @alias Gui.Admin.refreshVoteList
+ * @alias Gui.Admin.copyLinkDialog
  */
 Gui.Admin.copyLinkDialog = function(title, machine_name, uuid){
     var box = $("#manager-links");

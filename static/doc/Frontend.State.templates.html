@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: AdminClientPool</title>
+    <title>Namespace: templates</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -1248,7 +1248,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="Frontend.Server.AdminClientPool.html">Class: AdminClientPool</h1>
+        <h1 class="page-title" data-filename="Frontend.State.templates.html">Namespace: templates</h1>
         
 
 
@@ -1257,9 +1257,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="Frontend.html">Frontend</a><a href="Frontend.Server.html">.Server</a>.</span>
+        <span class="ancestors"><a href="Frontend.html">Frontend</a><a href="Frontend.State.html">.State</a>.</span>
     
-    AdminClientPool
+    templates
     </h2>
     
 </header>  
@@ -1270,108 +1270,10 @@
     
     
         
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="AdminClientPool">
-            
-            new Frontend.Server.AdminClientPool<span class="signature">(socket, state)</span>
-        </h4>
-    
+            <div class="description">Contains response templates parsed with DoT.js</div>
         
-        <div class="tag-source">
-            Frontend/Server/AdminClientPool.js, line 13
-        </div>
         
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Represents a pool of <a href="Frontend.Server.AdminClient.html">Frontend.Server.AdminClient</a>s.
-    </div>
-    
-
-    
-    
-    
-        <h5>This:</h5>
-        <ul><li>{<a href="Frontend.Server.AdminClientPool.html">Frontend.Server.AdminClientPool</a>}</li></ul>
-    
-    
-    
         
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>socket</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Socket connection for incoming clients.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>state</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Frontend.State.html">Frontend.State</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The server state.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
 <dl class="details">
     
         
@@ -1396,20 +1298,8 @@
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
+        
+        
     
     </div>
     
@@ -1424,176 +1314,7 @@
     
     
     
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="clients">clients<span class="type-signature type object.<string, frontend.server.adminclient>">Object.&lt;string, <a href="Frontend.Server.AdminClient.html">Frontend.Server.AdminClient</a>></span> </h4>
-    </div>
     
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Currently connected Clients.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-        <h3 class="subsection-title">Methods</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="message">
-            
-            message<span class="signature">(msg)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Frontend/Server/AdminClientPool.js, line 33
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Sends all AdminClients in this AdminClientPool a message.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>msg</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The message to send.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        </dl>
     
     
     
@@ -1610,7 +1331,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Aug 10 2014 22:11:24 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Sun Aug 10 2014 22:11:25 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

@@ -182,6 +182,9 @@ VoteEditorClient.prototype.machine_name = function(){
             if(thatId != "" && thatId != vote.id){
                 //we already have a machine_id like that from someone who is not me.
                 socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Specefied machine_name already taken by another vote. ");
+            } else if(/lib|admin|edit|doc|vote|results/.test(machine_name)){
+                //those words are reserved
+                socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Specefied machine_name is a reserved system word. ");
             } else if(! /^[a-zA-Z0-9_\-]+$/.test(machine_name)){
                 //we cant have some of the characters.
                 socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "The machine_name may only have letters, numbers, underscores and -. ");
@@ -579,10 +582,6 @@ VoteEditorClient.prototype.results = function(){
  */
 VoteEditorClient.prototype.close = function(){
 
-    if(typeof this.socket === "undefined"){
-        return;
-    }
-
     logger.info("VOTE_EDIT:", this.id, "stopped editing", this.vote.id);
 
     //unlisten for Vote Updates.
@@ -616,8 +615,6 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_RESULTS)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS);
-
-    this.socket = undefined;
 }
 
 module.exports = VoteEditorClient;

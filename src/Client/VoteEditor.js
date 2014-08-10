@@ -383,6 +383,5 @@ Client.VoteEditor.prototype.grabAll = function(callback){
  */
 Client.VoteEditor.prototype.close = function(msg){
     this.close_callback(msg);
-
     return this;
 }

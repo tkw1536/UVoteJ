@@ -80,7 +80,8 @@ var files = [
 
     //methods
     "mongo/init",
-    "http/handlers", 
+    "http/templates",
+    "http/vote_handlers",
     "http/routes",
     "socket/init",
 
