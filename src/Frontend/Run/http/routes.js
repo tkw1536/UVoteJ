@@ -1,7 +1,12 @@
 var
+    bodyParser = require('body-parser')
     express = require("express");
 
 module.exports = function(state, logger, next){
+
+    //support the post forms
+    state.app.use(bodyParser.json());
+    state.app.use(bodyParser.urlencoded({extended: false }));
 
     // GET /lib
     state.app.use("/lib/client/protocol.js", function(req, res){
@@ -15,7 +20,10 @@ module.exports = function(state, logger, next){
     state.app.use("/doc", express.static(state.dirs.static+"doc"));
 
     //GET /admin
-    state.app.use("/admin", express.static(state.dirs.static+"admin"));
+    state.app.use("/admin/", function(req, res){
+        res.set('Content-Type', 'text/html');
+        res.send(state.templates.admin());
+    });
 
     //returns a
     var resolveUUID = function(callback){
@@ -43,30 +51,30 @@ module.exports = function(state, logger, next){
 
     //Edit URLs, for administrators so that they can edit the vote.
     //Always available even once vote is closed / public.
-    state.app.get("/edit/:name", resolveUUID(state.handleVoteEdit.bind(state)));
+    state.app.all("/edit/:name", resolveUUID(state.handleVoteEdit.bind(state)));
 
     //Vote URLs, for the public so that they can vote.
 
 
 
     //hanldes the "leaving" of the vote
-    state.app.post("/vote/:name/vote", resolveUUID(state.handleVoteVote.bind(state)));
+    state.app.all("/vote/:name/vote", resolveUUID(state.handleVoteVote.bind(state)));
 
     //handles the login of the Vote
-    state.app.post("/vote/:name/login", resolveUUID(state.handleVoteLogin.bind(state)));
+    state.app.all("/vote/:name/login", resolveUUID(state.handleVoteLogin.bind(state)));
 
     //handles the initiall login dialog of the vote.
-    state.app.get("/vote/:name", resolveUUID(state.handleVoteWelcome.bind(state)));
+    state.app.all("/vote/:name", resolveUUID(state.handleVoteWelcome.bind(state)));
 
     // HTML Result URLs, for the public so that they can view results
     //Will result in a 404 if the results are not yet available.
-    state.app.get("/results/:name",  resolveUUID(state.handleVoteRes.bind(state)));
+    state.app.all("/results/:name",  resolveUUID(state.handleVoteRes.bind(state)));
 
 
 
     //Public URLs, these redirect either to /vote/:name or /results/:nam
     //dependening on the state of the vote.
-    state.app.get("/:name", resolveUUID(function(uuid, req, res){
+    state.app.all("/:name", resolveUUID(function(uuid, req, res){
         res.redirect(303, "/vote/"+req.params.name);
     }));
 

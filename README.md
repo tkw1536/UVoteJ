@@ -46,7 +46,7 @@ scripts/doc # Update the documentation
     - [x] Phases
     - [x] Options
 - [ ] Client Editing
-- [ ] Vote GUI
+- [x] Vote GUI
 - [ ] Results
 
 

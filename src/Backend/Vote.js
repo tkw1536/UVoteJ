@@ -247,12 +247,44 @@ Vote.prototype.toJSON = function(){
 Vote.prototype.stopStages = function(){
     //if we have a timeout, please clear it.
     if(typeof this._timer !== "undefined"){
-        clearTimeout(this._timer);
+        clearTimeout(this._timer());
         logger.info("VOTE: Scheduled for", this.id, " aborted. ");
         this._timer = undefined;
     }
 
     return this;
+}
+
+
+/*
+  A helper function to fix timeouts of more than the max of INT_32.
+  This one really makes sure that we have a proper timeout.
+  from: http://stackoverflow.com/a/16321280
+ */
+var setLongTimeout = function(callback, timeout_ms) {
+
+    var q = undefined;
+
+
+    //if we have to wait more than max time, need to recursively call this function again
+    if(timeout_ms > 2147483647){
+        //now wait until the max wait time passes then call this function again with
+        //requested wait - max wait we just did, make sure and pass callback
+        q = setTimeout(function(){
+            q = setLongTimeout(callback, (timeout_ms - 2147483647));
+        }, 2147483647);
+    } else {
+        //if we are asking to wait less than max, finally just do regular seTimeout and call callback
+        q = setTimeout(callback, timeout_ms);
+    }
+
+    return function(){
+        if(typeof q == "function"){
+            return q();
+        } else {
+            return q;
+        }
+    }
 }
 
 /**
@@ -273,10 +305,8 @@ Vote.prototype.startStages = function(){
         var now = (new Date()).getTime();
         var then = (this.open_time - now);
 
-        console.log(then);
-
         var next_stage = function(){
-            me.stopStages();
+            me._timer = undefined;
 
             logger.info("VOTE:", me.id, "now at STAGE.OPEN");
 
@@ -300,8 +330,9 @@ Vote.prototype.startStages = function(){
 
         if(then > 0){
             logger.info("VOTE: Scheduled", me.id, "Stage.OPEN for", new Date(me.open_time).toLocaleString());
-            this._timer = setTimeout(next_stage, then);
+            this._timer = setLongTimeout(next_stage, then);
         } else {
+            logger.warn("VOTE: ", me.id, " is behind schedule, setting late Stage.OPEN originally planned for ", new Date(me.open_time).toLocaleString());
             next_stage();
         }
     }
@@ -313,7 +344,7 @@ Vote.prototype.startStages = function(){
         var then = ( this.close_time - now);
 
         var next_stage = function(){
-            me.stopStages();
+            me._timer = undefined;
 
             logger.info("VOTE:", me.id, "now at STAGE.CLOSED");
 
@@ -326,13 +357,13 @@ Vote.prototype.startStages = function(){
 
         if(then > 0){
             logger.info("VOTE: Scheduled", me.id, "Stage.CLOSED for", new Date(me.close_time).toLocaleString());
-            this._timer = setTimeout(next_stage, then);
+            this._timer = setLongTimeout(next_stage, then);
         } else {
+            logger.warn("VOTE: ", me.id, " is behind schedule, setting late Stage.CLOSED originally planned for ", new Date(me.close_time).toLocaleString());
             next_stage();
         }
     }
 }
-
 
 /**
 * Attempts to place a vote.

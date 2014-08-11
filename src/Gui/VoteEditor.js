@@ -66,7 +66,7 @@ Gui.VoteEditor.prototype.init = function(){
      * @type {Gui.PermissionNodeEditor}
      * @alias Gui.VoteEditor#PEditor1
      */
-    this.PEditor1 = $("<div>").PermissionNodeEditor([], true);
+    this.PEditor1 = $("<div>").PermissionNodeEditor(true, []);
 
     /**
      * A PermissionNodeEditor representing the admin Permissions.
@@ -74,7 +74,7 @@ Gui.VoteEditor.prototype.init = function(){
      * @type {Gui.PermissionNodeEditor}
      * @alias Gui.VoteEditor#PEditor2
      */
-    this.PEditor2 = $("<div>").PermissionNodeEditor([], true);
+    this.PEditor2 = $("<div>").PermissionNodeEditor(true, []);
 
     /**
      * A jQuery element representing the minimum number of votes required.

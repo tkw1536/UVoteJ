@@ -13,7 +13,7 @@ var
 var PermissionNode = function PermissionNode(source_object){
 
     /**
-    * JSON-style source for the permissionNode. 
+    * JSON-style source for the permissionNode.
     *
     * @private
     * @name Backend.PermissionNode#_data
@@ -83,35 +83,35 @@ PermissionNode.prototype.matchesRule = function(user_data, rule){
     try{
         switch(rule["fieldRelation"]){
             //check equality
-            case PermissionNode.Relations.EQUALS:
+            case PermissionNode.QueryRelation.EQUALS:
                 result = (value.toString() === query.toString());
                 break;
             //check equality without case
-            case PermissionNode.Relations.EQUALS_NO_CASE:
+            case PermissionNode.QueryRelation.EQUALS_NO_CASE:
                 result = (value.toString().toLowerCase() === query.toString().toLowerCase());
                 break;
             //check if one string contains another
-            case PermissionNode.Relations.CONTAINS:
+            case PermissionNode.QueryRelation.CONTAINS:
                 result = (value.toString().indexOf(query.toString()) !== -1);
                 break;
             //check if one string starts with the other
-            case PermissionNode.Relations.STARTS_WITH:
+            case PermissionNode.QueryRelation.STARTS_WITH:
                 result = (value.toString().slice(0, query.toString().length) == query.toString());
                 break;
             //check if one string ends with the other
-            case PermissionNode.Relations.ENDS_WITH:
+            case PermissionNode.QueryRelation.ENDS_WITH:
                 result = (value.toString().indexOf(query.toString(), this.length - query.toString().length) !== -1);
                 break;
             //check if a regular expression matches
-            case PermissionNode.Relations.MATCHES:
+            case PermissionNode.QueryRelation.MATCHES:
                 result = (new RegExp(query.toString())).test(value.toString());
                 break;
             //check if its bigger then as a number
-            case PermissionNode.Relations.BIGGER_THEN:
+            case PermissionNode.QueryRelation.BIGGER_THEN:
                 result = (parseFloat(value) > parseFloat(query));
                 break;
             //check if its bigger then as a number
-            case PermissionNode.Relations.SMALLER_THEN:
+            case PermissionNode.QueryRelation.SMALLER_THEN:
                 result = (parseFloat(value) < parseFloat(query));
                 break;
             default:
@@ -141,7 +141,8 @@ PermissionNode.prototype.matches = function(user_data){
     var state = undefined;
     var relation = "";
 
-    this._data.map(function(i, e){
+    this._data.map(function(e, i){
+
         if(i==0){
             //initial check, we do not care about the relation
             state = me.matchesRule(user_data, e);

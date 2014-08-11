@@ -88,17 +88,9 @@ VoteDB.prototype.addVote = function(vote, cb){
 
     var next = function(){
         //add a listener
-        vote.addListener("update", (function(){
-            var timer = null;
-            return function(){
-                clearTimeout(timer);
-
-                //save only once per 500 ms
-                timer = setTimeout(function(){
-                    me.updateVote(vote, function(){});
-                }, 500);
-            }
-        })());
+        vote.addListener("update", function(){
+            me.updateVote(vote, function(){});
+        });
 
         //insert it locally
         me.votes[id] = vote;

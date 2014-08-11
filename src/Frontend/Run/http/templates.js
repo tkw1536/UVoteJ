@@ -29,10 +29,18 @@ module.exports = function(state, logger, next){
     state.templates.vote_closed = templateGetter("vote_02_closed");
     state.templates.vote_public = templateGetter("vote_03_public");
 
-    //init error messages. 
+    //init error messages.
     state.templates.results_init = templateGetter("results_01_init");
     state.templates.results_open = templateGetter("results_02_open");
     state.templates.results_closed = templateGetter("results_03_closed");
+
+    //actual voting
+    state.templates.voting_welcome = templateGetter("voting_01_welcome");
+    state.templates.voting_login = templateGetter("voting_02_login");
+    state.templates.voting_vote = templateGetter("voting_03_vote"); 
+
+    //admin
+    state.templates.admin = templateGetter("admin");
 
     next(state);
 };

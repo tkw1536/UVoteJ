@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>UVoteJ - Voting - {{= it.name}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/lib/bootstrap/custom/vote.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <br />
+
+        <div class="row">
+            <div class="col-md-8"><h1>{{= it.name}}</h1></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+
+              <div class="well">
+                  {{= it.description}}
+              </div>
+
+              <div class="alert alert-success" role="alert">
+                  <ul>
+                      <li>
+                          This vote opened on <em class="date">{{= it.open_time}}</em>.
+                      </li>
+                      <li>
+                          It will close on <em class="date">{{= it.close_time}}</em>.
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-3 col-md-offset-1">
+            <div class="alert alert-info" role="alert">
+                <ul>
+                    <li>
+                        Administrators can not see who voted.
+                    </li>
+                    <li>
+                        Administrators can not see results until the vote is closed.
+                    </li>
+                    <li>
+                        No one will ever be able to see who voted for what or how many options you selected.
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/vote/{{= it.machine_name}}/vote" method="POST">
+                    <input type="hidden" name="user" value="{{= it.user}}">
+                    <input type="hidden" name="pass" value="{{= it.pass}}">
+                    <div class="list-group">
+                        {{~it.options :option}}
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading"><input type="checkbox" name="select_option_{{= option.index}}" value="is_selected">{{= option.title}}</h4>
+                                <p class="list-group-item-text text-muted">{{= option.tagline }}</p>
+                                <p class="list-group-item-text">{{= option.description}}</p>
+                            </a>
+                        {{~}}
+                    </div>
+
+                    <div class="btn-group">
+                        <input type="submit" class="btn btn-primary" value="Submit Vote">
+                        <input type="reset" class="btn btn-danger" value="Reset">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3 col-md-offset-1">
+
+                {{? it.message}}
+                    <div class="alert alert-danger" role="alert">
+                        {{= it.message}}
+                    </div>
+
+                {{?}}
+
+                <div class="alert alert-success" role="alert">
+                    Please select between <em>{{= it.min}}</em> and <em>{{= it.max}}</em> option(s). Then click "Submit Vote" to submit your vote.
+                    Please note that you can not undo voting.
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Libs -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/lib/client/vote.js"></script>
+    </body>
+</html>

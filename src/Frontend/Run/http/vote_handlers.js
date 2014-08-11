@@ -1,4 +1,7 @@
-var Protocol = require("../../Server/protocol.js")
+var
+    Protocol = require("../../Server/protocol.js"),
+    markdown = require( "markdown" ).markdown,
+    entities = require('html-entities').AllHtmlEntities;
 
 module.exports = function(state, logger, next){
 
@@ -28,6 +31,38 @@ module.exports = function(state, logger, next){
         return true;
     }
 
+    var voteWrapper = function(req, res, vote, message){
+        var htmls = new entities();
+
+        return {
+            "user": htmls.encode(req.body.user),
+            "pass": htmls.encode(req.body.pass),
+
+            "message": message,
+
+            "machine_name": req.params.name,
+
+            "name": vote.name,
+            "description": markdown.toHTML(vote.description),
+
+            "open_time": new Date(vote.open_time).toUTCString(),
+            "close_time": new Date(vote.close_time).toUTCString(),
+
+            "min": vote.minVotes,
+            "max": vote.maxVotes,
+
+            "options": vote.options.map(function(o, i){
+                return {
+                    "title": o.title,
+                    "index": i,
+                    "tagline": o.short_description,
+                    "description": markdown.toHTML(o.markdown_description)
+                }
+                return e;
+            })
+        };
+    }
+
     /**
     * Handles the "welcome" to a vote thing.
     *
@@ -43,7 +78,9 @@ module.exports = function(state, logger, next){
             return;
         }
 
-        state.templates.send_500(req, res, 'We should be sending something, oops ...');
+        //here we just show a login form.
+        res.set('content-type', "text/html");
+        res.send(state.templates.voting_welcome({"name": req.params.name, "message": ""}));
 
         return;
     };
@@ -63,7 +100,40 @@ module.exports = function(state, logger, next){
             return;
         }
 
-        state.templates.send_500(req, res, 'Vote Login is not yet implemented. ');
+        if(state.config.normalise_usernames){
+            //normalise the username, please
+            var user = req.body.user.toLowerCase().trim();
+        } else {
+            var user = req.body.user;
+        }
+
+        state.auth.loginUser(user, req.body.pass, function(s, user_info){
+            if(!s){
+                res.set('content-type', "text/html");
+                res.send(state.templates.voting_welcome({"name": req.params.name, "message": "Unknown Username / Password. "}));
+            } else {
+
+                //are you eligible?
+                if(! vote.votePermissions.matches(user_info) ){
+
+                    res.set('content-type', "text/html");
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "You are ineligible for this vote. "}));
+
+                    return;
+                }
+
+                //have you already voted?
+                if (vote.voters.indexOf(user) != -1){
+                    res.set('content-type', "text/html");
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "You have already voted and can not vote again. "}));
+
+                    return;
+                }
+
+                res.set('content-type', "text/html");
+                res.send(state.templates.voting_login(voteWrapper(req, res, vote)));
+            }
+        })
     };
 
     /**
@@ -81,7 +151,64 @@ module.exports = function(state, logger, next){
             return;
         }
 
-        state.templates.send_500(req, res, 'Voting storing is not yet implemented. ');
+        if(state.config.normalise_usernames){
+            //normalise the username, please
+            var user = req.body.user.toLowerCase().trim();
+        } else {
+            var user = req.body.user;
+        }
+
+        state.auth.loginUser(user, req.body.pass, function(s, user_info){
+
+            res.set('content-type', "text/html");
+
+            if(!s){
+                res.send(state.templates.voting_welcome({"name": req.params.name, "message": "Unknown Username / Password. "}));
+            } else {
+
+                //what did we select?
+                var options = [];
+                for(var i=0;i<vote.options.length;i++){
+                    if(req.body["select_option_"+i] == "is_selected"){
+                        options.push(i);
+                    }
+                }
+
+                //now, lets try and vote.
+                var vote_res = vote.vote(user, user_info, options);
+
+                if(vote_res == Protocol.VoteState.CANT_VOTE){
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "You are ineligible for this vote. "}));
+
+                    return;
+                }
+
+                if(vote_res == Protocol.VoteState.HAS_VOTED){
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "You have already voted and can not vote again. "}));
+
+                    return;
+                }
+
+                if(vote_res == Protocol.VoteState.CLOSED){
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "The vote seems to have closed just now. "}));
+
+                    return;
+                }
+
+                if(vote_res == Protocol.VoteState.UNKNOWN_OPINION  || vote_res == Protocol.VoteState.DOUBLE_OPINION){
+                    res.send(state.templates.voting_welcome({"name": req.params.name, "message": "Looks like you broke something. Please report a bug. "}));
+                    return;
+                }
+
+                if(vote_res == Protocol.VoteState.INVALID_NUMBER){
+                    res.send(state.templates.voting_login(voteWrapper(req, res, vote, "You selected an invalid number of opinions. ")));
+                    return;
+                }
+
+                //ok, everything is fine
+                res.send(state.templates.voting_vote({"name": req.params.name}));
+            }
+        })
     };
 
     /**
