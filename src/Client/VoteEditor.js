@@ -312,47 +312,13 @@ Client.VoteEditor.prototype.options = function(value, callback){
 }
 
 /**
- * Gets the vote results.
- *
- * @param {Client~editCallback} callback - Callback on return.
- * @return {Client.VoteEditor} - for chaining
- */
-Client.VoteEditor.prototype.results = function(callback){
-    //Assume we want to get the value.
-    var callback = (typeof callback == "function")?callback:function(){};
-
-    this.socket
-    .once(Client.Protocol.VOTE_EDITOR.GET_RESULTS, callback)
-    .emit(Client.Protocol.VOTE_EDITOR.GET_RESULTS);
-
-    return this;
-}
-
-/**
- * Gets the voting stats.
- *
- * @param {Client~editCallback} callback - Callback on return.
- * @return {Client.VoteEditor} - for chaining
- */
-Client.VoteEditor.prototype.stats = function(callback){
-    //Assume we want to get the value.
-    var callback = (typeof callback == "function")?callback:function(){};
-
-    this.socket
-    .once(Client.Protocol.VOTE_EDITOR.GET_VOTER_STATS, callback)
-    .emit(Client.Protocol.VOTE_EDITOR.GET_VOTER_STATS);
-
-    return this;
-}
-
-/**
  * Executes all other callback methods at the same time and returns them in the form {"function_name": arguments_to_result_callback}
  *
  * @param {function} callback - Simple callback containing the resulting object.
  * @return {Client.VoteEditor} - for chaining
  */
 Client.VoteEditor.prototype.grabAll = function(callback){
-    var things = ["name", "machine_name", "description", "voting_permissions", "admin_permissions", "minmax", "openclose", "stage", "options", "results", "stats"];
+    var things = ["name", "machine_name", "description", "voting_permissions", "admin_permissions", "minmax", "openclose", "stage", "options"];
     var counter = 0;
     var res = {}
 

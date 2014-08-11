@@ -140,12 +140,20 @@ var Vote = function Vote(source_object){
     this.results = undefined;
 
     /**
-    * List of user identifiers of people that have voted.
+    * List of user identifiers of people that have voted. After the vote is CLOSED, we replace this by only the number. 
     *
     * @name Backend.Vote#voters
-    * @type string[]
+    * @type {string[]|number}
     */
     this.voters = [];
+
+    /**
+    * Number of eligible voters. has to be udpated manually to take effect.
+    *
+    * @name Backend.Vote#count_eligible
+    * @type number
+    */
+    this.count_eligible = undefined;
 
     /**
     * Current Timer for {@link Backend.Vote.Stage} scheduling or undefined.
@@ -190,6 +198,7 @@ Vote.prototype.fromJSON = function(source_object){
     //Results
     this.results = source_object.results;
     this.voters = source_object.voters;
+    this.count_eligible = source_object.count_eligible;
 
     //Update staging, we need to stop this
     this.stopStages();
@@ -231,6 +240,7 @@ Vote.prototype.toJSON = function(){
         //Results
         "results": this.results,
         "voters": this.voters,
+        "count_eligible": this.count_eligible,
 
         //Staging
         "stage": this.stage,
@@ -351,6 +361,9 @@ Vote.prototype.startStages = function(){
             //set the Stage to closed
             me.stage = Vote.Stage.CLOSED;
 
+            //Count the voters, we no longer need to know who voted.
+            me.voters = me.voters.length;
+
             //we have updated
             me.emit("update");
         }
@@ -460,6 +473,7 @@ Vote.VoteState = require("../Frontend/Server/protocol.js").VoteState;
  * @property {Backend.Vote.Option[]} options - Set of options for this vote.
  * @property {number} minVotes - Minimum number of votes required for this vote.
  * @property {number} maxVotes - Maximum number of votes allowed for this vote.
+ * @property {number} count_eligible - Number of eligible voters.
  * @property {Backend.PermissionNode.Rule[]} votePermissions - PermissionNode for users being able to vote on this vote.
  * @property {Backend.PermissionNode.Rule[]} adminPermissions - PermissionNode for users being able to vote on this vote.
  * @property {number[]} results - List of results for this Vote.

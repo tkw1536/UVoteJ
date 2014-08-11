@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>UVoteJ - Results - {{= it.name}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <br />
+
+    <div class="container">
+        <br />
+
+        <div class="row">
+            <div class="col-md-8"><h1>{{= it.name}}</h1></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    {{= it.description}}
+                </div>
+                <br />
+                <div class="alert alert-success" role="alert">
+                    <ul>
+                        <li>
+                            This vote opened on <em class="date">{{= it.open_time}}</em>.
+                        </li>
+                        <li>
+                            The vote closed on <em class="date">{{= it.close_time}}</em>.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Results</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" style="display:table; ">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <table class="table table-striped" style="width: 100%; ">
+                        <tr>
+                            <th></th>
+                            <th>Absolute</th>
+                            <th>Relative</th>
+                        </tr>
+
+                        {{~it.options :option}}
+                            <tr>
+                                <td>{{= option.title}}</td>
+                                <td>{{= option.count_abs}}</td>
+                                <td>{{= option.count_per}} % </td>
+                            </tr>
+                        {{~}}
+
+                        <tr style="border-top: 2px solid black; ">
+                            <td> Total</td>
+                            <td>{{= it.voters}}</td>
+                            <td>100 % </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div id="result_graph"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Participation</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="participation_graph"></div>
+            </div>
+
+            <div class="col-md-6" style="display:table; ">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <table class="table table-striped" style="width: 100%; ">
+                        <tr>
+                            <th></th>
+                            <th>Absolute</th>
+                            <th>Relative</th>
+                        </tr>
+
+                        <tr>
+                            <td>voted</td>
+                            <td>{{= it.voters}}</td>
+                            <td>{{= it.voters_per}} % </td>
+                        </tr>
+
+                        <tr>
+                            <td>not voted</td>
+                            <td>{{= it.unvoters}}</td>
+                            <td>{{= it.unvoters_per}} % </td>
+                        </tr>
+
+                        <tr style="border-top: 2px solid black; ">
+                            <td> Total</td>
+                            <td>{{= it.eligible}}</td>
+                            <td>100 % </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Available options</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li>
+                        Users had to choose between <em>{{= it.min}}</em> and <em>{{= it.max}}</em> option(s) from this vote.
+                    </li>
+                </ul>
+
+                <div class="list-group">
+                    {{~it.options :option}}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{= option.title}}</h4>
+                            <p class="list-group-item-text text-muted">{{= option.tagline }}</p>
+                            <p class="list-group-item-text"><em>{{= option.count_abs }}</em> / <em>{{= option.count_per }}</em> % of votes received</p>
+                            <p class="list-group-item-text">{{= option.description}}</p>
+                        </a>
+                    {{~}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Libs -->
+        <script src="/lib/jquery/jquery.min.js"></script>
+        <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="/lib/raphaeljs/raphael-min.js"></script>
+        <script src="/lib/raphaeljs/pie.js"></script>
+
+        <script type="text/javascript">
+            buildGraph("participation_graph", [{{= it.voters}}, {{= it.unvoters}}], ["voted", "not voted"], ["green", "red"]);
+
+            buildGraph("result_graph", {{= it.results}}, {{= it.result_labels}});
+        </script>
+    </body>
+    </html>

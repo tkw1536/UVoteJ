@@ -588,6 +588,8 @@
             
                 <li data-name="Backend.Vote#close_time"><a href="Backend.Vote.html#close_time">close_time</a></li>
             
+                <li data-name="Backend.Vote#count_eligible"><a href="Backend.Vote.html#count_eligible">count_eligible</a></li>
+            
                 <li data-name="Backend.Vote#description"><a href="Backend.Vote.html#description">description</a></li>
             
                 <li data-name="Backend.Vote#machine_name"><a href="Backend.Vote.html#machine_name">machine_name</a></li>
@@ -792,11 +794,7 @@
             
                 <li data-name="Client.VoteEditor#options"><a href="Client.VoteEditor.html#options">options</a></li>
             
-                <li data-name="Client.VoteEditor#results"><a href="Client.VoteEditor.html#results">results</a></li>
-            
                 <li data-name="Client.VoteEditor#stage"><a href="Client.VoteEditor.html#stage">stage</a></li>
-            
-                <li data-name="Client.VoteEditor#stats"><a href="Client.VoteEditor.html#stats">stats</a></li>
             
                 <li data-name="Client.VoteEditor#voting_permissions"><a href="Client.VoteEditor.html#voting_permissions">voting_permissions</a></li>
             
@@ -1851,7 +1849,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 384
+            Client/VoteEditor.js, line 350
         </div>
         
     </div>
@@ -2143,7 +2141,7 @@ for chaining
     
         
         <div class="tag-source">
-            Client/VoteEditor.js, line 354
+            Client/VoteEditor.js, line 320
         </div>
         
     </div>
@@ -3061,131 +3059,6 @@ for chaining
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="results">
-            
-            results<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Client.VoteEditor.html">Client.VoteEditor</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Client/VoteEditor.js, line 320
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Gets the vote results.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Client.html#editCallback">Client~editCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Callback on return.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-for chaining
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="stage">
             
             stage<span class="signature">(<span class="optional">value</span>, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Client.VoteEditor.html">Client.VoteEditor</a>}</span>
@@ -3285,131 +3158,6 @@ for chaining
                     
                         
                     
-                
-                Callback on return.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-for chaining
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="stats">
-            
-            stats<span class="signature">(callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Client.VoteEditor.html">Client.VoteEditor</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            Client/VoteEditor.js, line 337
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Gets the voting stats.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Client.html#editCallback">Client~editCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
                 
                 Callback on return.</td>
         </tr>
@@ -3644,7 +3392,7 @@ for chaining
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Mon Aug 11 2014 16:28:07 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Mon Aug 11 2014 22:18:30 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

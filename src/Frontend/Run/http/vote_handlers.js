@@ -33,10 +33,11 @@ module.exports = function(state, logger, next){
 
     var voteWrapper = function(req, res, vote, message){
         var htmls = new entities();
+        var show_res = (typeof vote.count_eligible == "number");
 
         return {
-            "user": htmls.encode(req.body.user),
-            "pass": htmls.encode(req.body.pass),
+            "user": htmls.encode(req.body.user || ""),
+            "pass": htmls.encode(req.body.pass || ""),
 
             "message": message,
 
@@ -52,14 +53,29 @@ module.exports = function(state, logger, next){
             "max": vote.maxVotes,
 
             "options": vote.options.map(function(o, i){
+
+                var count = vote.results[i];
+
+
                 return {
                     "title": o.title,
                     "index": i,
                     "tagline": o.short_description,
-                    "description": markdown.toHTML(o.markdown_description)
+                    "description": markdown.toHTML(o.markdown_description),
+                    "count_abs": show_res?count:undefined,
+                    "count_per": show_res?(100*(count/vote.voters)):undefined
                 }
+
                 return e;
-            })
+            }),
+
+            "voters": show_res?vote.voters:undefined,
+            "voters_per": show_res?((vote.voters/vote.count_eligible)* 100):undefined,
+            "unvoters": show_res?(vote.count_eligible - vote.voters):undefined,
+            "unvoters_per": show_res?(((vote.count_eligible - vote.voters)/vote.count_eligible)* 100):undefined,
+            "eligible": show_res?vote.count_eligible:undefined,
+            "results": show_res?JSON.stringify(vote.results):undefined,
+            "result_labels": show_res?JSON.stringify(vote.options.map(function(o){return o.title; })):undefined,
         };
     }
 
@@ -195,7 +211,7 @@ module.exports = function(state, logger, next){
                     return;
                 }
 
-                if(vote_res == Protocol.VoteState.UNKNOWN_OPINION  || vote_res == Protocol.VoteState.DOUBLE_OPINION){
+                if(vote_res == Protocol.VoteState.UNKNOWN_OPINION || vote_res == Protocol.VoteState.DOUBLE_OPINION){
                     res.send(state.templates.voting_welcome({"name": req.params.name, "message": "Looks like you broke something. Please report a bug. "}));
                     return;
                 }
@@ -257,7 +273,8 @@ module.exports = function(state, logger, next){
             return;
         }
 
-        state.templates.send_500(req, res, 'Vote Results are not yet implemented. ');
+        res.set('content-type', "text/html");
+        res.send(state.templates.results(voteWrapper(req, res, vote)));
     };
 
     next(state);

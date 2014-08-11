@@ -99,12 +99,6 @@
         /** Sets the options of this vote */
         SET_OPTIONS: "vote_edit_set_options",
 
-        /** Gets the results of the vote.  */
-        GET_RESULTS: "vote_edit_get_results",
-
-        /** Gets the voters */
-        GET_VOTER_STATS: "vote_edit_get_voter_stats",
-
         /** Gets the vote Id */
         GET_VOTE_ID: "vote_edit_get_vote_id",
 

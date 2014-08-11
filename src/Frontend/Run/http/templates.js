@@ -37,7 +37,9 @@ module.exports = function(state, logger, next){
     //actual voting
     state.templates.voting_welcome = templateGetter("voting_01_welcome");
     state.templates.voting_login = templateGetter("voting_02_login");
-    state.templates.voting_vote = templateGetter("voting_03_vote"); 
+    state.templates.voting_vote = templateGetter("voting_03_vote");
+
+    state.templates.results = templateGetter("results");
 
     //admin
     state.templates.admin = templateGetter("admin");

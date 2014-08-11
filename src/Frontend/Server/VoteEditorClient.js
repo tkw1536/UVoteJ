@@ -103,8 +103,7 @@ var VoteEditorClient = function(socket, vote, user, pass, state){
     .minmax_votes()
     .stage()
     .options()
-    .time()
-    .results();
+    .time();
 
 };
 
@@ -462,6 +461,8 @@ VoteEditorClient.prototype.time = function(){
  * @return {Frontend.Server.VoteEditorClient} - for chaining
  */
 VoteEditorClient.prototype.stage = function(){
+    var me = this;
+
 
     var vote = this.vote;
     var socket = this.socket;
@@ -491,10 +492,23 @@ VoteEditorClient.prototype.stage = function(){
         if(s !== Protocol.Stage.PUBLIC){
             socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Unknown STAGE. ");
         } else {
-            //we updated staging.
-            vote.stage = s;
-            vote.emit("update");
-            socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, true, vote.stage);
+            me.state.auth.getAll(me.user, me.pass, function(s, r){
+
+                if(!s){
+                    socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, false, vote.stage, "Unable to update count_eligible. ");
+                    return;
+                }
+
+                //we can now update the stage
+                vote.stage = Protocol.Stage.PUBLIC;
+
+                //also, we can count everyone now.
+                vote.count_eligible = vote.votePermissions.findMatchingUsers(r).length;
+
+                //lets update and then thats it
+                vote.emit("update");
+                socket.emit(Protocol.VOTE_EDITOR.SET_STAGE, true, vote.stage);
+            });
         }
     });
 
@@ -537,45 +551,6 @@ VoteEditorClient.prototype.options = function(){
     return this;
 };
 
-VoteEditorClient.prototype.results = function(){
-    var vote = this.vote;
-    var socket = this.socket;
-    var state = this.state;
-
-    var user = this.user;
-    var pass = this.pass;
-
-    socket
-    .on(Protocol.VOTE_EDITOR.GET_RESULTS, function(){
-        if(vote.stage == Protocol.Stage.CLOSED || vote.stage == Protocol.Stage.PUBLIC ){
-            socket.emit(Protocol.VOTE_EDITOR.GET_RESULTS, true, vote.results);
-        } else {
-            socket.emit(Protocol.VOTE_EDITOR.GET_RESULTS, false, [], "Results are not yet available because voting has not been completed. ");
-        }
-
-    })
-    .on(Protocol.VOTE_EDITOR.GET_VOTER_STATS, function(){
-
-        if(vote.stage == Protocol.Stage.CLOSED || vote.stage == Protocol.Stage.PUBLIC ){
-            logger.info("VOTE_EDIT: Getting all users from auth for ", this.id);
-            //get all users
-            state.auth.getAll(user, pass, function(s, res){
-                if(!s){
-                    socket.emit(Protocol.VOTE_EDITOR.GET_VOTER_STATS, true, "Statistics are unavailable because of authentication errors. Please try again. ");
-                } else {
-                    var total = vote.votePermissions.findMatchingUsers(res).length;
-                    socket.emit(Protocol.VOTE_EDITOR.GET_VOTER_STATS, true, {"voters": vote.voters, "total": total});
-                }
-            })
-        } else {
-            socket.emit(Protocol.VOTE_EDITOR.GET_VOTER_STATS, false, {}, "Voter stats are not yet available because voting has not been completed. ");
-        }
-
-    })
-
-    return this;
-}
-
 
 /**
  * Closes the Editor and unbinds all events.
@@ -612,9 +587,7 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_OPTIONS)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_OPTIONS)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_STAGE)
-    .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_RESULTS)
-    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTER_STATS);
+    .removeAllListeners(Protocol.VOTE_EDITOR.SET_STAGE);
 }
 
 module.exports = VoteEditorClient;

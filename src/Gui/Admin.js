@@ -153,10 +153,8 @@ Gui.Admin.readyManager = function(){
     $("#manager-new").off("click").click(function(){
         $(".manager-msg-area").show().text("Creating vote ... ");
         Gui.Admin.client.createVote(function(m){
-            //created the vote m
-            Gui.Admin.refreshVoteList(function(){
-                Gui.Admin.editVote(m);
-            });
+            $(".manager-msg-area").text("Done. ").fadeOut(Gui.Admin.refreshVoteList)
+            Gui.Admin.editVote(m);
         });
     });
 
@@ -196,8 +194,12 @@ var runningRefresh = false;
 Gui.Admin.refreshVoteList = function(cb){
 
     if(runningRefresh){
-        //we dont ever want to refresh more than once at a time. 
-        if(typeof cb == "function"){cb(); }
+        //we dont ever want to refresh more than once at a time, so lets wait and try again.
+
+        setTimeout(function(){
+            Gui.Admin.refreshVoteList(cb);
+        }, 1000);
+
         return;
     }
     runningRefresh = true;
@@ -233,9 +235,9 @@ Gui.Admin.refreshVoteList = function(cb){
                     );
                 })(i);
             }
-
-            runningRefresh = false;
         }
+
+        runningRefresh = false;
 
         $(".manager-msg-area").show().text("Done. ").fadeOut(Gui.Admin.animateLength);
 
