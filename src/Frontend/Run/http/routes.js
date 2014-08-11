@@ -85,6 +85,11 @@ module.exports = function(state, logger, next){
         res.send(404, state.templates.error_404({"url": req.protocol + '://' + req.get('host') + req.originalUrl}))
     });
 
+    //500 page
+    state.app.use(function(error, req, res, next){
+        state.templates.send_500(req, res, error);
+    });
+
     //run the next thing
     next(state);
 }
