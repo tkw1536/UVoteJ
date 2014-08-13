@@ -140,7 +140,7 @@ var Vote = function Vote(source_object){
     this.results = undefined;
 
     /**
-    * List of user identifiers of people that have voted. After the vote is CLOSED, we replace this by only the number. 
+    * List of user identifiers of people that have voted. After the vote is CLOSED, we replace this by only the number.
     *
     * @name Backend.Vote#voters
     * @type {string[]|number}
@@ -390,12 +390,12 @@ Vote.prototype.vote = function(username, user, opinions){
 
     //is the vote open?
     if(this.stage !== Vote.Stage.OPEN){
-        return this.VoteState.CLOSED;
+        return Vote.VoteState.CLOSED;
     }
 
     //do we have the right number of votes?
     if(opinions.length < this.minVotes || opinions.length > this.maxVotes){
-        return this.VoteState.INVALID_NUMBER;
+        return Vote.VoteState.INVALID_NUMBER;
     }
 
     //List of unique vote
@@ -405,24 +405,24 @@ Vote.prototype.vote = function(username, user, opinions){
     for(var i=0;i<opinions.length;i++){
         if(typeof opinions[i] !== "number"){
             //Vote has to be a number
-            return this.VoteState.UNKNOWN_OPINION;
+            return Vote.VoteState.UNKNOWN_OPINION;
         }
 
         if(opinions[i] % 1 !== 0){
             //it has to be an integer
-            return this.VoteState.UNKNOWN_OPINION;
+            return Vote.VoteState.UNKNOWN_OPINION;
         }
 
         if(opinions[i] < 0 || opinions[i] >= this.options.length){
             //it has to be in the correct range
-            return this.VoteState.UNKNOWN_OPINION;
+            return Vote.VoteState.UNKNOWN_OPINION;
         }
 
         //Do we have this opinion more than once?
         if(uniques.indexOf(opinions[i]) === -1){
             uniques.push(opinions[i])
         } else {
-            return this.VoteState.DOUBLE_OPINION;
+            return Vote.VoteState.DOUBLE_OPINION;
         }
     }
 
@@ -430,12 +430,12 @@ Vote.prototype.vote = function(username, user, opinions){
 
     //are we allowed to vote?
     if (!this.votePermissions.matches(user)){
-        return this.VoteState.CANT_VOTE;
+        return Vote.VoteState.CANT_VOTE;
     }
 
     //have we already voted?
     if(this.voters.indexOf(username) !== -1){
-        return this.VoteState.HAS_VOTED;
+        return Vote.VoteState.HAS_VOTED;
     }
 
     //ok, add me to the voters now!
