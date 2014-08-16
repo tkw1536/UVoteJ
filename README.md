@@ -45,16 +45,16 @@ scripts/doc # Update the documentation
 - [x] Admin Edit GUI
     - [x] Phases
     - [x] Options
-- [ ] Client Editing
 - [x] Vote GUI
-- [ ] Results
+- [x] Results
+- [ ] SSO-style authentication
 
 
 ## Wishlist
 
 - [ ] End-user help
 - [ ] OpenJUB auth (OpenJUB is not yet done)
-- [ ] SSO-style authentication
+- [ ] Client Editing (already partially implemented. )
 
 ## License
 

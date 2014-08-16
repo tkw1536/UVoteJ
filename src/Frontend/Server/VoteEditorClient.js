@@ -171,6 +171,7 @@ VoteEditorClient.prototype.machine_name = function(){
         socket.emit(Protocol.VOTE_EDITOR.GET_MACHINE_NAME, true, vote.machine_name);
     })
     .on(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, function(machine_name){
+        var machine_name = machine_name.toLowerCase(); 
         if(vote.stage !== Protocol.Stage.INIT){
             socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Cannot edit vote while in non-init stage. ");
         } else {

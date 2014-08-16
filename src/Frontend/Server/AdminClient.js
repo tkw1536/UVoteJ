@@ -200,12 +200,38 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
             return;
         }
 
+        //string for the options
+        var options_string = "Options: "+vote.options.length+" (min: "+vote.minVotes+",max: "+vote.maxVotes+")";
+        var stage_string = (function(s){
+            if(s == Protocol.Stage.INIT){
+              return "Stage: INIT";
+            } else if(s == Protocol.Stage.OPEN){
+              return "Stage: OPEN";
+            } else if(s == Protocol.Stage.CLOSED){
+              return "Stage: CLOSED";
+            } else {
+              return "Stage: PUBLIC";
+            }
+        })(vote.stage);
+
+        if(vote.stage == Protocol.Stage.INIT && typeof vote.open_time == "number"){
+          stage_string += " (Stage.OPEN: "+(new Date(vote.open_time).toLocaleString())+", Stage.CLOSED: "+(new Date(vote.close_time).toLocaleString())+")"
+        }
+
+        if(vote.stage == Protocol.Stage.OPEN){
+          stage_string += " (since: "+(new Date(vote.open_time).toLocaleString())+", Stage.CLOSED: "+(new Date(vote.close_time).toLocaleString())+")"
+        }
+
+        if(vote.stage == Protocol.Stage.CLOSED){
+          stage_string += " (since: "+(new Date(vote.close_time).toLocaleString())+")"
+        }
+
         //send info about the vote
         me.socket.emit(Protocol.ADMIN.GET_VOTE_SUMMARY, true, {
             "uuid": uuid,
             "name": vote.name,
             "machine_name": vote.machine_name,
-            "description": vote.description
+            "summary_string": options_string + " / " + stage_string
         });
     });
 

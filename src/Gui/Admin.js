@@ -226,7 +226,7 @@ Gui.Admin.refreshVoteList = function(cb){
                                 })
                             ),
                             $('<h5 class="pull-right">').text(res[i].uuid),
-                            $('<p class="list-group-item-text">').text("TODO: Put vote summary line here. ")
+                            $('<p class="list-group-item-text">').text(res[i].summary_string)
                         ).click(function(e){
                             //show the links for this vote.
                             Gui.Admin.copyLinkDialog(res[i].name, res[i].machine_name, res[i].uuid);

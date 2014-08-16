@@ -126,9 +126,11 @@ Gui.VoteEditor.prototype.init = function(){
         $("<div class='row'>").append($("<b>").text("Voting Permissions: ")),
         "<br />",
         this.PEditor1,
+        /*
         $("<div class='row'>").append($("<b>").text("Edit Permissions: ")),
         "<br />",
         this.PEditor2,
+        */
         $("<div class='row'>").append($("<h4>").text("Staging")),
         this.stager,
         $("<div class='row'>").append($("<h4>").text("Voting Options")),
@@ -483,8 +485,6 @@ Gui.VoteEditor.prototype.reload = function(){
                     me.Options.set(true, me.Options.get());
 
                     me.voteEnd.options(v, function(s, v, m){
-                        //TODO: Have an error handler.
-
                         if(!s){
                             console.log(m);
                         }
