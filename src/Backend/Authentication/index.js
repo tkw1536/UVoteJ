@@ -100,4 +100,5 @@ Authentication.available = ["dummy", "LDAP"];
 
 module.exports = Authentication;
 module.exports.dummy = require("./dummy.js");
-module.exports.ldap = require("./ldap.js")
+module.exports.ldap = require("./ldap.js");
+module.exports.jub = require("./jub.js");
