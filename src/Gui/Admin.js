@@ -216,11 +216,11 @@ Gui.Admin.refreshVoteList = function(cb){
                     var slink = undefined;
 
                     if(res[i].stage == Client.Protocol.Stage.OPEN){
-                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 20px; " target="_blank" href="/vote/'+escape(res[i].machine_name)+'">Vote</a>').click(function(e){
+                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 5px; " target="_blank" href="/vote/'+escape(res[i].machine_name)+'">Vote</a>').click(function(e){
                             e.stopPropagation();
                         });
                     } else if(res[i].stage == Client.Protocol.Stage.PUBLIC){
-                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 20px; " target="_blank" href="/results/'+escape(res[i].machine_name)+'">Results</a>').click(function(e){
+                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 5px; " target="_blank" href="/results/'+escape(res[i].machine_name)+'">Results</a>').click(function(e){
                             e.stopPropagation();
                         });
                     }
