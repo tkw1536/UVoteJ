@@ -71,12 +71,16 @@
 
         /** Gets the voting PermissionNode */
         GET_VOTING_PERMISSIONS: "vote_edit_get_voting_permissions",
+        /** Gets a list of JSON-Style users that can vote. **/
+        GET_VOTING_PEOPLE: "vote_edit_people_voting",
         /** Sets the voting PermissionNode */
         SET_VOTING_PERMISSIONS: "vote_edit_set_voting_permissions",
 
-        /** Gets the voting PermissionNode */
+        /** Gets the admin PermissionNode */
         GET_ADMIN_PERMISSIONS: "vote_edit_get_admin_permissions",
-        /** Sets the voting PermissionNode */
+        /** Gets a list of JSON-Style users that can admin. **/
+        GET_ADMIN_PEOPLE: "vote_edit_people_admin",
+        /** Sets the admin PermissionNode */
         SET_ADMIN_PERMISSIONS: "vote_edit_set_admin_permissions",
 
         /** Gets the minimum / maximum number of votes */

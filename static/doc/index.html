@@ -613,8 +613,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -718,25 +716,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Client.Admin">
             <span class="title">
                 <a href="Client.Admin.html">Client.Admin</a>
@@ -814,6 +793,10 @@
                 <li data-name="Client.VoteEditor#close"><a href="Client.VoteEditor.html#close">close</a></li>
             
                 <li data-name="Client.VoteEditor#description"><a href="Client.VoteEditor.html#description">description</a></li>
+            
+                <li data-name="Client.VoteEditor#get_admins"><a href="Client.VoteEditor.html#get_admins">get_admins</a></li>
+            
+                <li data-name="Client.VoteEditor#get_voters"><a href="Client.VoteEditor.html#get_voters">get_voters</a></li>
             
                 <li data-name="Client.VoteEditor#grabAll"><a href="Client.VoteEditor.html#grabAll">grabAll</a></li>
             
@@ -1143,25 +1126,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1257,25 +1221,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
     </ul>
 </div>
     <div class="main">
@@ -1307,10 +1252,12 @@
 <p>Currently, LDAP is used for authentication and user management. Other
 authentications are also possible, but not yet implemented.</p>
 <p>Run:</p>
-<pre class="prettyprint source lang-bash"><code>cd UVoteJ # Directory the repository was cloned into.
+<pre><code class="lang-bash">cd UVoteJ # Directory the repository was cloned into.
 scripts/install # Interactive setup routine
 # Edit config/config.json and set yourself as admin.
-scripts/run # Run the script</code></pre><p>The scripts/install routine will write a configuration file to config/config.json
+scripts/run # Run the script
+</code></pre>
+<p>The scripts/install routine will write a configuration file to config/config.json
 which can should be manually edited.</p>
 <p>The only thing that is not configured by the install script is:</p>
 <ul>
@@ -1318,9 +1265,11 @@ which can should be manually edited.</p>
 </ul>
 <h2>Getting started</h2><p>Get started by going to http://localhost:3000/admin and log in.</p>
 <h2>API Documentation</h2><p>Can be found in &quot;static/doc&quot;. To update documentation:</p>
-<pre class="prettyprint source lang-bash"><code>cd UVoteJ # Directory the repository was cloned into.
+<pre><code class="lang-bash">cd UVoteJ # Directory the repository was cloned into.
 scripts/devel # Make sure everything is set up for development
-scripts/doc # Update the documentation</code></pre><h2>TODO</h2><ul>
+scripts/doc # Update the documentation
+</code></pre>
+<h2>TODO</h2><ul>
 <li>[x] Admin Edit GUI<ul>
 <li>[x] Phases</li>
 <li>[x] Options</li>
@@ -1335,7 +1284,7 @@ scripts/doc # Update the documentation</code></pre><h2>TODO</h2><ul>
 <li>[ ] OpenJUB auth (OpenJUB is not yet done)</li>
 <li>[ ] Client Editing (already partially implemented. )</li>
 </ul>
-<h2>License</h2><pre class="prettyprint source"><code>The MIT License (MIT)
+<h2>License</h2><pre><code>The MIT License (MIT)
 
 Copyright (c) 2014 Tom Wiesing
 
@@ -1355,7 +1304,8 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</code></pre></article>
+SOFTWARE.
+</code></pre></article>
     </section>
 
 
@@ -1366,7 +1316,7 @@ SOFTWARE.</code></pre></article>
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Sep 04 2014 17:51:31 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Sep 25 2014 16:53:07 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

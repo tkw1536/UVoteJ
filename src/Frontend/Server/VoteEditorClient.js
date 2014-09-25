@@ -171,7 +171,7 @@ VoteEditorClient.prototype.machine_name = function(){
         socket.emit(Protocol.VOTE_EDITOR.GET_MACHINE_NAME, true, vote.machine_name);
     })
     .on(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, function(machine_name){
-        var machine_name = machine_name.toLowerCase(); 
+        var machine_name = machine_name.toLowerCase();
         if(vote.stage !== Protocol.Stage.INIT){
             socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Cannot edit vote while in non-init stage. ");
         } else {
@@ -244,6 +244,11 @@ VoteEditorClient.prototype.voting_permissions = function(){
     var vote = this.vote;
     var socket = this.socket;
 
+    var state = this.state;
+
+    var user = this.user;
+    var pass = this.pass;
+
     socket
     .on(Protocol.VOTE_EDITOR.GET_VOTING_PERMISSIONS, function(){
         //send name to the client.
@@ -260,6 +265,24 @@ VoteEditorClient.prototype.voting_permissions = function(){
             //send that to the client.
             socket.emit(Protocol.VOTE_EDITOR.SET_VOTING_PERMISSIONS, true, vote.votePermissions.toJSON());
         }
+    }).on(Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE, function(){
+
+        //Get the users
+        state.auth.getAll(user, pass, function(s, users){
+
+            //we did not get them
+            if(!s){
+                socket.emit(Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE, false, "Unable to get all users. ");
+                return;
+            }
+
+            //find all the matching users.
+            var matching_users = vote.votePermissions.findMatchingUsers(users);
+
+
+            //and return it.
+            socket.emit(Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE, true, matching_users);
+        });
     });
 
     return this;
@@ -274,6 +297,11 @@ VoteEditorClient.prototype.admin_permissions = function(){
     var vote = this.vote;
     var socket = this.socket;
 
+    var state = this.state;
+
+    var user = this.user;
+    var pass = this.pass;
+
     socket
     .on(Protocol.VOTE_EDITOR.GET_ADMIN_PERMISSIONS, function(){
         //send name to the client.
@@ -286,6 +314,24 @@ VoteEditorClient.prototype.admin_permissions = function(){
 
         //send that to the client.
         socket.emit(Protocol.VOTE_EDITOR.SET_ADMIN_PERMISSIONS, true, vote.adminPermissions.toJSON());
+    })
+    .on(Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE, function(){
+        //Get the users
+        state.auth.getAll(user, pass, function(s, users){
+
+            //we did not get them
+            if(!s){
+                socket.emit(Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE, false, "Unable to get all users. ");
+                return;
+            }
+
+            //find all the matching users.
+            var matching_users = vote.adminPermissions.findMatchingUsers(users);
+
+
+            //and return it.
+            socket.emit(Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE, true, matching_users);
+        });
     });
 
     return this;
@@ -576,9 +622,11 @@ VoteEditorClient.prototype.close = function(){
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_DESCRIPTION)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_DESCRIPTION)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTING_PERMISSIONS)
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_VOTING_PERMISSIONS)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_ADMIN_PERMISSIONS)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_ADMIN_PERMISSIONS)
+    .removeAllListeners(Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_OPENCLOSE_TIME)
     .removeAllListeners(Protocol.VOTE_EDITOR.SET_OPENCLOSE_TIME)
     .removeAllListeners(Protocol.VOTE_EDITOR.GET_CLOSE_TIME)

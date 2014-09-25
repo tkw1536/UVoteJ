@@ -613,8 +613,6 @@
             
                 <li data-name="Backend.Vote.VoteState"><a href="Backend.Vote.html#VoteState">VoteState</a></li>
             
-                <li data-name="Backend.Vote#.id"><a href="Backend.Vote.html#id">id</a></li>
-            
                 <li data-name="Backend.Vote#_timer"><a href="Backend.Vote.html#_timer">_timer</a></li>
             
                 <li data-name="Backend.Vote#adminPermissions"><a href="Backend.Vote.html#adminPermissions">adminPermissions</a></li>
@@ -718,25 +716,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="Browser.jQuery">
-            <span class="title">
-                <a href="Browser.jQuery.html">Browser.jQuery</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Client.Admin">
             <span class="title">
                 <a href="Client.Admin.html">Client.Admin</a>
@@ -814,6 +793,10 @@
                 <li data-name="Client.VoteEditor#close"><a href="Client.VoteEditor.html#close">close</a></li>
             
                 <li data-name="Client.VoteEditor#description"><a href="Client.VoteEditor.html#description">description</a></li>
+            
+                <li data-name="Client.VoteEditor#get_admins"><a href="Client.VoteEditor.html#get_admins">get_admins</a></li>
+            
+                <li data-name="Client.VoteEditor#get_voters"><a href="Client.VoteEditor.html#get_voters">get_voters</a></li>
             
                 <li data-name="Client.VoteEditor#grabAll"><a href="Client.VoteEditor.html#grabAll">grabAll</a></li>
             
@@ -1143,25 +1126,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="NodeJS.EventEmitter">
-            <span class="title">
-                <a href="NodeJS.EventEmitter.html">NodeJS.EventEmitter</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="NodeJS.Express">
             <span class="title">
                 <a href="NodeJS.Express.html">NodeJS.Express</a>
@@ -1241,25 +1205,6 @@
         <li class="item" data-name="NodeJS.SocketIO">
             <span class="title">
                 <a href="NodeJS.SocketIO.html">NodeJS.SocketIO</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="NodeJS.Winston">
-            <span class="title">
-                <a href="NodeJS.Winston.html">NodeJS.Winston</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -1441,7 +1386,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="components"><span class="type-signature static">static</span>Gui.Admin.components<span class="type-signature type object.<string, browser.jquery>">object.&lt;string, <a href="Browser.jQuery.html">Browser.jQuery</a>></span> </h4>
+        <h4 class="name" id="components"><span class="type-signature static">static</span>Gui.Admin.components<span class="type-signature type object<string,browser.jquery>">object.&lt;string, Browser.jQuery></span> </h4>
     </div>
     
     
@@ -1489,7 +1434,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
+<span class="param-type">Browser.jQuery</span>
 
 
             
@@ -1512,7 +1457,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
+<span class="param-type">Browser.jQuery</span>
 
 
             
@@ -1535,7 +1480,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
+<span class="param-type">Browser.jQuery</span>
 
 
             
@@ -1558,7 +1503,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
+<span class="param-type">Browser.jQuery</span>
 
 
             
@@ -1581,7 +1526,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="Browser.jQuery.html">Browser.jQuery</a></span>
+<span class="param-type">Browser.jQuery</span>
 
 
             
@@ -1758,7 +1703,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 357
+            Gui/Admin.js, line 373
         </div>
         
     </div>
@@ -1997,7 +1942,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 142
+            Gui/Admin.js, line 40
         </div>
         
     </div>
@@ -2122,7 +2067,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 40
+            Gui/Admin.js, line 142
         </div>
         
     </div>
@@ -2247,7 +2192,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 290
+            Gui/Admin.js, line 270
         </div>
         
     </div>
@@ -2258,7 +2203,7 @@
     
     
     <div class="description">
-        Starts editing a vote.
+        Deletes a vote form the server.
     </div>
     
 
@@ -2524,7 +2469,7 @@
     
         
         <div class="tag-source">
-            Gui/Admin.js, line 254
+            Gui/Admin.js, line 306
         </div>
         
     </div>
@@ -2535,7 +2480,7 @@
     
     
     <div class="description">
-        Deletes a vote form the server.
+        Starts editing a vote.
     </div>
     
 
@@ -2675,7 +2620,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Sep 04 2014 17:51:31 GMT+0200 (CEST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Sep 25 2014 16:53:07 GMT+0200 (CEST)
         </footer>
     </div>
 </div>

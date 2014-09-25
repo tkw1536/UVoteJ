@@ -175,6 +175,23 @@ Client.VoteEditor.prototype.voting_permissions = function(value, callback){
 }
 
 /**
+ * Gets a list of people allowed voting access to this vote.
+ *
+ * @param {Client~editCallback} callback - Callback on return.
+ * @return {Client.VoteEditor} - for chaining
+ */
+Client.VoteEditor.prototype.get_voters = function(callback){
+    var callback = (typeof callback == "function")?callback:function(){};
+
+    this.socket
+    .once(Client.Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE, callback)
+    .emit(Client.Protocol.VOTE_EDITOR.GET_VOTING_PEOPLE);
+
+    return this;
+}
+
+
+/**
  * Gets or sets the admin_permissions.
  *
  * @param {Backend.PermissionNode.Rule[]} [value] - Value to set the admin_permissions to. If omitted, gets the value.
@@ -197,6 +214,22 @@ Client.VoteEditor.prototype.admin_permissions = function(value, callback){
         .once(Client.Protocol.VOTE_EDITOR.SET_ADMIN_PERMISSIONS, callback)
         .emit(Client.Protocol.VOTE_EDITOR.SET_ADMIN_PERMISSIONS, value);
     }
+
+    return this;
+}
+
+/**
+ * Gets a list of people allowed admin access to this vote.
+ *
+ * @param {Client~editCallback} callback - Callback on return.
+ * @return {Client.VoteEditor} - for chaining
+ */
+Client.VoteEditor.prototype.get_admins = function(callback){
+    var callback = (typeof callback == "function")?callback:function(){};
+
+    this.socket
+    .once(Client.Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE, callback)
+    .emit(Client.Protocol.VOTE_EDITOR.GET_ADMIN_PEOPLE);
 
     return this;
 }
