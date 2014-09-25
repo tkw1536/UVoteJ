@@ -231,7 +231,8 @@ AdminClient.prototype.loggedin = function(user, password, user_info){
             "uuid": uuid,
             "name": vote.name,
             "machine_name": vote.machine_name,
-            "summary_string": options_string + " / " + stage_string
+            "summary_string": options_string + " / " + stage_string,
+            "stage": vote.stage
         });
     });
 

@@ -212,6 +212,21 @@ Gui.Admin.refreshVoteList = function(cb){
         } else {
             for(var i=0;i<res.length;i++){
                 (function(i){
+
+                    var slink = undefined;
+
+                    if(res[i].stage == Client.Protocol.Stage.OPEN){
+                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 20px; " target="_blank" href="/vote/'+escape(res[i].machine_name)+'">Vote</a>').click(function(e){
+                            e.stopPropagation();
+                        });
+                    } else if(res[i].stage == Client.Protocol.Stage.PUBLIC){
+                        slink = $('<a class="btn btn-xs btn btn-default" style="margin-left: 20px; " target="_blank" href="/results/'+escape(res[i].machine_name)+'">Results</a>').click(function(e){
+                            e.stopPropagation();
+                        });
+                    }
+
+
+
                     voteList.append(
                         $('<a href="#" class="list-group-item"></a>')
                         .append(
@@ -223,7 +238,8 @@ Gui.Admin.refreshVoteList = function(cb){
                                 $('<span class="btn btn-xs btn-danger" style="margin-left: 5px; ">Delete</span>').click(function(e){
                                     e.stopPropagation();
                                     Gui.Admin.deleteVote(res[i].uuid, res[i].name);
-                                })
+                                }),
+                                slink
                             ),
                             $('<h5 class="pull-right">').text(res[i].uuid),
                             $('<p class="list-group-item-text">').text(res[i].summary_string)
