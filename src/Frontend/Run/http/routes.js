@@ -16,8 +16,11 @@ module.exports = function(state, logger, next){
     state.app.use("/lib/gui", express.static(state.dirs.src+"Gui"))
     state.app.use("/lib", express.static(state.dirs.static+"lib"));
 
-    //GET /doc
-    state.app.use("/doc", express.static(state.dirs.static+"doc"));
+    //GET /api
+    state.app.use("/api", express.static(state.dirs.static+"api"));
+
+    //GET /help
+    state.app.use("/help", express.static(state.dirs.static+"help"));
 
     //GET /admin
     state.app.use("/admin/", function(req, res){
@@ -78,6 +81,11 @@ module.exports = function(state, logger, next){
         res.redirect(303, "/vote/"+req.params.name);
     }));
 
+
+    //just for the root
+    state.app.get("/", function(req, res){
+        res.sendfile(state.dirs.static+"/index.html");
+    })
 
     // 404 Page
     state.app.use(function(req, res){

@@ -182,7 +182,7 @@ VoteEditorClient.prototype.machine_name = function(){
             if(thatId != "" && thatId != vote.id){
                 //we already have a machine_id like that from someone who is not me.
                 socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Specefied machine_name already taken by another vote. ");
-            } else if(/lib|admin|edit|doc|vote|results/.test(machine_name)){
+            } else if(/^(lib|admin|edit|api|help|vote|results)$/.test(machine_name)){
                 //those words are reserved
                 socket.emit(Protocol.VOTE_EDITOR.SET_MACHINE_NAME, false, vote.machine_name, "Specefied machine_name is a reserved system word. ");
             } else if(! /^[a-zA-Z0-9_\-]+$/.test(machine_name)){
