@@ -31,6 +31,8 @@ Gui.VoteEditor = function VoteEditor(element, voteEditor){
 */
 Gui.VoteEditor.prototype.init = function(){
 
+    var me = this;
+
     /**
      * A LineEditor representing the title.
      *
@@ -123,14 +125,42 @@ Gui.VoteEditor.prototype.init = function(){
         "<br />",
         this.DescEditor,
         $("<div class='row'>").append($("<h4>").text("Permissions")),
-        $("<div class='row'>").append($("<b>").text("Voting Permissions: ")),
+        $("<div class='row'>").append(
+            $("<b>").text("Voting Permissions: "),
+            $("<button class='btn btn-sm btn-default'>").text("Inspect").click(function(e){
+                //don't do anything
+                e.preventDefault();
+                e.stopPropagation();
+                me.voteEnd.get_voters(function(s, e){
+                    if(s){
+                        $.fn.peopleViewer(e, "Inspect Voters");
+                    } else {
+                        //TODO: Error message
+                    }
+                });
+            })
+        ),
         "<br />",
         this.PEditor1,
         /*
-        $("<div class='row'>").append($("<b>").text("Edit Permissions: ")),
+        $("<div class='row'>").append(
+            $("<b>").text("Edit Permissions: "),
+            $("<button class='btn btn-sm btn-default'>").text("Inspect").click(function(e){
+                //don't do anything
+                e.preventDefault();
+                e.stopPropagation();
+                me.voteEnd.get_admins(function(s, e){
+                    if(s){
+                        $.fn.peopleViewer(e, "Inspect Admins");
+                    } else {
+                        //TODO: Error message
+                    }
+                });
+            })
+        ),
         "<br />",
-        this.PEditor2,
-        */
+        this.PEditor2,*/
+
         $("<div class='row'>").append($("<h4>").text("Staging")),
         this.stager,
         $("<div class='row'>").append($("<h4>").text("Voting Options")),
