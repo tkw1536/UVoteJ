@@ -131,9 +131,17 @@ Gui.VoteEditor.prototype.init = function(){
                 //don't do anything
                 e.preventDefault();
                 e.stopPropagation();
+
+                //create a new window
+                var w = window.open("about:blank", "_blank", "toolbar=no, scrollbars=no, resizable=yes, width=400, height=400");
+
+                //write the new window
+                w.document.write("<html><head><title>Loading viewer...</title></head><body><h1>Loading Viewer...</h1></body></html>");
+                w.document.close();
+
                 me.voteEnd.get_voters(function(s, e){
                     if(s){
-                        $.fn.peopleViewer(e, "Inspect Voters");
+                        $.fn.peopleViewer(e, "Inspect Voters", w);
                     } else {
                         //TODO: Error message
                     }
@@ -149,9 +157,17 @@ Gui.VoteEditor.prototype.init = function(){
                 //don't do anything
                 e.preventDefault();
                 e.stopPropagation();
+
+                //create a new window
+                var w = window.open("about:blank", "_blank", "toolbar=no, scrollbars=no, resizable=yes, width=400, height=400");
+
+                //write the new window
+                w.document.write("<html><head><title>Loading viewer...</title></head><body><h1>Loading Viewer...</h1></body></html>");
+                w.document.close();
+
                 me.voteEnd.get_admins(function(s, e){
                     if(s){
-                        $.fn.peopleViewer(e, "Inspect Admins");
+                        $.fn.peopleViewer(e, "Inspect Admins", w);
                     } else {
                         //TODO: Error message
                     }

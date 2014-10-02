@@ -1,22 +1,4 @@
 (function($){
-
-    var ModalTemplate =
-    '<div class="modal fade" role="dialog">\
-  <div class="modal-dialog">\
-    <div class="modal-content">\
-      <div class="modal-header">\
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>\
-        <h4 class="modal-title"></h4>\
-      </div>\
-      <div class="modal-body">\
-      </div>\
-      <div class="modal-footer">\
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\
-      </div>\
-    </div>\
-  </div>\
-</div>';
-
     var typer = function(a){
         //undefined < bool < number < string < everything else
         if(typeof a == "string"){
@@ -182,12 +164,13 @@
      *
      * @param {Object[]} people - List of people to show.
      * @param {string} [title = "People Viewer"] - Title of People Viewer.
+     * @param {Window} w - Window to display things in.
      * @this {Browser.jQuery}
      * @class
      * @alias Gui.OptionEditor
      * @extends {Browser.jQuery}
      */
-    var PeopleViewer = function(people, title){
+    var PeopleViewer = function(people, title, w){
 
         var title = title;
 
@@ -195,7 +178,7 @@
             title = "People Viewer";
         }
 
-        title += " ("+people.length+")"; 
+        title += " ("+people.length+")";
 
         // The objects to visualise.
         var things = [];
@@ -211,25 +194,20 @@
             }
         });
 
-        //create the modal and find title and body.
-        var modal = $(ModalTemplate);
-        var modal_title = modal.find(".modal-title");
-        var modal_body = modal.find(".modal-body");
 
-        //rebuilds a table
-        var table = $("<table class='table'>");
+        setTimeout(function(){
+            //rebuilds a table
+            var table = $("<table class='table'>");
 
-        //Make the table sorted
-        makeSortedTable(table, things, undefined, true, people);
+            //Make the table sorted
+            makeSortedTable(table, things, undefined, true, people);
 
-        //set title
-        modal_title.text(title)
+            //Set the body
+            $(w.document.body).empty().append(table);
 
-        //Set the body
-        modal_body.append(table);
-
-        //Show the modal
-        modal.modal();
+            //set title
+            w.document.title = title;
+        }, 1000)
     };
 
     $.fn.peopleViewer = PeopleViewer;
